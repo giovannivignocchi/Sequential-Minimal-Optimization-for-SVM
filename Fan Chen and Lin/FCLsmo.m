@@ -93,7 +93,7 @@ classdef FCLsmo < handle
     
     methods
         
-        function obj = FCLsmo(data, classLabels, C, tolerance, maxiter)
+        function obj = FCLsmo(data, classLabels, C, tolerance, tau, maxiter)
             % SMO Constructor
             
             % Checking optional parameter
@@ -107,6 +107,10 @@ classdef FCLsmo < handle
             end
             
             if nargin > 4
+                obj.tau = tau;
+            end
+            
+            if nargin > 5
                 obj.maxiter = maxiter;
             end
             

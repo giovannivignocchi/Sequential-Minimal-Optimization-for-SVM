@@ -1,7 +1,7 @@
 %% TEST INITIALIZATION
 clear all;
 clc;
-name = 'CORNER TEST';
+name = 'CIRCULAR TEST';
 
 % For reproducibility
 seed = 100;
@@ -13,33 +13,38 @@ saveResult = 1; % if set to 1 the results of the test will be stored
 
 
 %% CREATE THE ARTIFICIAL DATASET
-trainingSize = 250;
-data = corners(trainingSize);
-
-if saveResult
-    fprintf(fid, 'DataSet parameter:\n');
-    fprintf(fid, 'trainingSize: %d\n', trainingSize);
-end
-
-%Shuffle del dataset
-s = RandStream('mt19937ar','Seed',0);
-rand_pos = randperm(s, size(data,1)); %array of random positions
-dataShuffle = data;
-for i=1:size(data,1)
-    dataShuffle(i,:) = data(rand_pos(i),:);
-end
-
-xTrain = dataShuffle(:,1:2);
-yTrain = dataShuffle(:,3);
+r = sqrt(rand(100,1)); % Radius
+t = 2*pi*rand(100,1);  % Angle
+data1 = [r.*cos(t), r.*sin(t)]; % Points
+r2 = sqrt(3*rand(100,1)+1); % Radius
+t2 = 2*pi*rand(100,1);      % Angle
+data2 = [r2.*cos(t2), r2.*sin(t2)]; % points
+xTrain = [data1;data2];
+yTrain = ones(200,1);
+yTrain(1:100) = -1;
 
 % Standardize the dataset
 xTrain = zscore(xTrain);
 
+% Shuffle del dataset
+s = RandStream('mt19937ar','Seed',0);
+rand_pos = randperm(s, size(xTrain,1)); %array of random positions
+xTrainShuffle = xTrain;
+yTrainShuffle = yTrain;
+for i=1:size(xTrain,1)
+    yTrainShuffle(i,1) = yTrain(rand_pos(i));
+    xTrainShuffle(i,:) = xTrain(rand_pos(i),:);
+end
+
+xTrain = xTrainShuffle;
+yTrain = yTrainShuffle;
+
 % build the grid over which make preiction
-dX1 = (max(xTrain(:,1)) - min(xTrain(:,1))) / 200;
-dX2 = (max(xTrain(:,2)) - min(xTrain(:,2))) / 200;
-[x1Grid,x2Grid] = meshgrid(min(xTrain(:,1)):dX1:max(xTrain(:,1)),min(xTrain(:,2)):dX2:max(xTrain(:,2)));
+d = 0.02;
+[x1Grid,x2Grid] = meshgrid(min(xTrain(:,1)):d:max(xTrain(:,1)),min(xTrain(:,2)):d:max(xTrain(:,2)));
 xGrid = [x1Grid(:),x2Grid(:)];
+
+
 
 %% BUILDING MODELS
 
@@ -68,7 +73,6 @@ trainingStats = cell(1, size(models,2));
 predictionStats = cell(1, size(models,2));
 numberOfSV = cell(1, size(models,2));
 
-
 for k=1:size(models,2)
     
     tic
@@ -81,7 +85,9 @@ for k=1:size(models,2)
     
     numberOfSV{k} = sum(models{k}.isSupportVector);    
 end
-    
+
+
+
 %% TEST RESULTS
 
 % Write Test statistics
@@ -95,6 +101,7 @@ for k=1:size(models,2)
     fprintf(fid, 'Number of support vector generated: %d\n', numberOfSV{k});
 end
 fclose(fid);
+
 
 % Plot the reults for the generated models
 plotResults(saveResult, path, name, models, figureTitle, output, x1Grid, x2Grid)

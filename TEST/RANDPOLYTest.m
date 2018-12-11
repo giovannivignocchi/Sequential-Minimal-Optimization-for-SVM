@@ -1,17 +1,34 @@
-%% Build the dataset
+%% TEST INITIALIZATION
 clear all;
+clc;
+name = 'RANDPOLY TEST';
 
-%Path in which the figure resulting from the test will be saved
-path = 'C:\Users\giova\Desktop';
+% For reproducibility
+seed = 100;
+rng(seed);
 
-rng(24); % For reproducibility
 
-maxDegree = 5; %degree of the polynomial
+saveResult = 1; % if set to 1 the results of the test will be stored
+[path,fid] = initTest(saveResult, name, seed);
+
+
+%% CREATE THE ARTIFICIAL DATASET
+maxDegree = 5;
 trainingSize = 200;
-
-[data, coeff, polyTitle] = randPolyDataSet(trainingSize, maxDegree, 0);
+incorrectPercentage = 0;
+delta = 300;
+[data, coeff, polyTitle] = randPolyDataSet(trainingSize, maxDegree, incorrectPercentage, delta);
 xTrain = data(:,1:2);
 yTrain = data(:,3);
+
+if saveResult
+    fprintf(fid, 'DataSet parameter:\n');
+    fprintf(fid, 'polynomial that guide dataset genartion: = %s\n', polyTitle);
+    fprintf(fid, 'trainingSize = %d\n', trainingSize);
+    fprintf(fid, 'maxDegree = %d\n', maxDegree);
+    fprintf(fid, 'incorrectPercentage = %d\n', incorrectPercentage);
+    fprintf(fid, 'delta = %d\n\n', delta);
+end
 
 %Standardize the dataset
 xTrain = zscore(xTrain);
@@ -22,94 +39,66 @@ dX2 = (max(xTrain(:,2)) - min(xTrain(:,2))) / 500;
 [x1Grid,x2Grid] = meshgrid(min(xTrain(:,1)):dX1:max(xTrain(:,1)),min(xTrain(:,2)):dX2:max(xTrain(:,2)));
 xGrid = [x1Grid(:),x2Grid(:)];
 
-%% Build the models
+
+
+%% BUILDING MODELS
 
 % Set parameter for the Models
-tolerance = 10e-5; % Tolerance allowed in the violation of the KKT conditions
 C = inf;
+tolerance = 10e-5; % Tolerance allowed in the violation of the KKT conditions
+tau = 1e-12;
+eps = 10e-5;
+maxiter = 200;
+kernel = 'gaussian';
 
-modelsNumber = 3;
-models = cell(1, modelsNumber);
-figureTitle = cell(1, modelsNumber);
+if saveResult
+    fprintf(fid, 'Model parameter:\n');
+    fprintf(fid, 'C = %d\n', C);
+    fprintf(fid, 'tolerance = %d\n', tolerance);
+    fprintf(fid, 'tau = %d\n', tau);
+    fprintf(fid, 'eps = %d\n', eps);
+    fprintf(fid, 'maxiter = %d\n', maxiter);
+    fprintf(fid, 'kernel = %s\n\n', kernel);
+end
 
-smo = smo(xTrain, yTrain, C);
-smo.setKernel('gaussian');
-errorSmo = smoErrorCache(xTrain, yTrain, C);
-errorSmo.setKernel('gaussian');
-FCLsmo = FCLsmo(xTrain, yTrain, C);
-FCLsmo.setKernel('gaussian');
+[models,figureTitle] = initModel(xTrain, yTrain, C, tolerance, eps, tau, maxiter, kernel);
+output = zeros(size(xGrid,1),size(models,2));
 
-
-models{1} = smo;
-models{2} = errorSmo;
-models{3} = FCLsmo;
-
-figureTitle{1} = "PLATT version";
-figureTitle{2} = "PLATT version with Error cache";
-figureTitle{3} = "Fan Chen and Lin version";
-
-output = zeros(size(xGrid,1),modelsNumber);
+trainingStats = cell(1, size(models,2));
+predictionStats = cell(1, size(models,2));
+numberOfSV = cell(1, size(models,2));
 
 for k=1:size(models,2)
     
     tic
     models{k}.train();
-    trainingStats(k) = toc;
+    trainingStats{k} = toc;
     
     tic
     output(:,k) = models{k}.predict(xGrid);
-    predictionStats(k) = toc;
+    predictionStats{k} = toc;
     
-    numberOfSV(k) = sum(models{k}.isSupportVector);
+    numberOfSV{k} = sum(models{k}.isSupportVector);   
     
 end
 
-% %Statistichs about training time an prediction time
-% disp("---------------------------------------------------------------")
-% formatSpec = "Training time %f sec";
-% str = compose(formatSpec,traningTime);
-% disp(str);
-% disp("---------------------------------------------------------------")
-% formatSpec = "Prediction time %f sec";
-% str = compose(formatSpec,predictionTime);
-% disp(str);
-% disp("---------------------------------------------------------------")
+%% TEST RESULTS
+varFile = strcat(path,'\var.m');
+save varFile;
 
-%% Plot the reult
+%Write Test statistics
+if saveResult
+    for k=1:size(models,2)
+        fprintf(fid, compose("------------------------------------------ %s ------------------------------------------\n", figureTitle{k}));
 
-for k=1:size(models,2)
-    
-    formatSpec = 'Random polynomial approximation TEST for %s';
-    strTitle = compose(formatSpec,figureTitle{k});
-    figure('NumberTitle', 'off', 'Name', strTitle{1});
+        fprintf(fid, 'Training time %f sec\n', trainingStats{k});
 
-    % Plot the data and the decision boundary
-    subplot(2,2,1)
-    h(1:2) = gscatter(xTrain(:,1),xTrain(:,2),yTrain,'rb','.');
-    hold on
-    h(3) = plot(xTrain(models{k}.isSupportVector,1),xTrain(models{k}.isSupportVector,2),'ko');
-    contour(x1Grid,x2Grid,reshape(output(:,k),size(x1Grid)),[0 0],'k');
-    s=findobj('type','legend');
-    delete(s)
-    title(polyTitle);
-    axis equal
-    hold off
+        fprintf(fid, 'Prediction time %f sec\n', predictionStats{k});
 
-    %Plot the heat map of the countour lines characterizing the function
-    subplot(2,2,2)
-    contourf(x1Grid,x2Grid,reshape(output(:,k),size(x1Grid)),10);
-    hold on
-    contour(x1Grid,x2Grid,reshape(output(:,k),size(x1Grid)),[0 0],'k','LineWidth',2);
-    title('contour lines of the model');
-
-    % Plot the behaviour of alphas during the iterations of the algorithm
-    subplot(2,2,[3 4])
-    supportVectorHistory = models{k}.alphaHistory(models{k}.isSupportVector,1:models{k}.iter);
-    plot(supportVectorHistory');
-    formatSpec = 'behaviour of LMs during algorithm iterations (maxIter = %d)';
-    str = compose(formatSpec,models{k}.maxiter);
-    title(str);
-    
-    % Save current figure in the selected path
-    saveas(gcf, fullfile(path, figureTitle{k}), 'jpeg');
+        fprintf(fid, 'Number of support vector generated: %d\n', numberOfSV{k});
+    end
 end
+fclose(fid);
+
+% Plot the reults for the generated models
+plotResults(saveResult, path, name, models, figureTitle, output, x1Grid, x2Grid)

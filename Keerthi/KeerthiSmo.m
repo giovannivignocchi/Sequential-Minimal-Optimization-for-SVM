@@ -1,11 +1,11 @@
 classdef KeerthiSmo < handle
-    %Jsmo class 
+    %KeerthiSmo class 
     %
     %   Implemets the Sequential Minimal Optimization algorithm in the
-    %   version suggested by Joachims in the paper "Making large-scale SVM
-    %   learning practical".
+    %   version suggested by Keerthi in the paper "Improvements to Platt's SMO 
+    %   algorithm for SVM Classifier Design".
     %   An online free version of the paper is available at:
-    %   www.cs.cornell.edu/~tj/publications/joachims_99a.pdf
+    %   http://web.cs.iastate.edu/~honavar/keerthi-svm.pdf
     %
     %
     %   PROPERTIES:
@@ -14,10 +14,12 @@ classdef KeerthiSmo < handle
     %   y = class label associated with the train set
     %   N = size of the train set
     %   alpha = vector of solution
-    %   G = Gradient vector
-    %   bias = bias of the solution provided.
-    %   tau = (default 1e-12) value used when H >= 0 in order to make the
-    %          objective function strictly convex.
+    %   b = 
+    %   Fcache =
+    %   i_up =
+    %   i_down =
+    %   b_up =
+    %   b_down =
     %   tolerance = (default 1e-3) tolerance in the strenght thee KKT
     %               condition are fullfil.
     %   iter = number of iterations the training last.
@@ -40,6 +42,7 @@ classdef KeerthiSmo < handle
         y;
         N;
         alpha;
+        b;
         Fcache;
         i_up;
         i_down;
@@ -48,6 +51,7 @@ classdef KeerthiSmo < handle
         C;
         
         tolerance = 1e-3;
+        eps = 10e-5;
         iter = 0;
         maxiter = 200;
         
@@ -61,12 +65,12 @@ classdef KeerthiSmo < handle
     
     methods
         
-        function obj = KeerthiSmo(data, classLabels, C, tolerance, maxiter)
-            % SMO Constructor
+        function obj = KeerthiSmo(data, classLabels, C, tolerance, eps, maxiter)
+            % Keerthi SMO Constructor
             
             % Checking optional parameter
             if nargin < 3
-                disp("ERROR: Not enough input arguments, not possible to instatitate FCLsmo");
+                disp("ERROR: Not enough input arguments, not possible to instatitate smo");
                 return;
             end
             
@@ -74,7 +78,11 @@ classdef KeerthiSmo < handle
                 obj.tolerance = tolerance;
             end
             
-            if nargin > 4
+             if nargin > 4
+                obj.eps = eps;
+            end
+            
+            if nargin > 5
                 obj.maxiter = maxiter;
             end
             
@@ -85,13 +93,15 @@ classdef KeerthiSmo < handle
             
             % Initialize all Lagrange multipliers (LMs) to 0
             obj.alpha = zeros(obj.N,1);
+            obj.b = 0;
             
+            %Initialize b_up and b_down to assure violation is guaranteed
             obj.b_up = -1;
             obj.b_down = 1;
             % initializie i_up to the index of any element of class 1
             [~,obj.i_up] = max(obj.y == 1);
-            % initializie i_up to the index of any element of class -1
-            [~,obj.i_up] = max(obj.y == -1);
+            % initializie i_down to the index of any element of class -1
+            [~,obj.i_down] = max(obj.y == -1);
             
             %Initialize the Fcache
             obj.Fcache = zeros(obj.N,1);
@@ -133,6 +143,18 @@ classdef KeerthiSmo < handle
             end
         end
         
+        function [L,H] = calculateBoundaries(smo,i1,i2,alphaOld1,alphaOld2)
+            % Return the High (H) and Low (L) margins between which the LMs that
+            % are under joint optimization must lie.
+            if (smo.y(i1) ~= smo.y(i2) )
+                L = max(0, alphaOld2 - alphaOld1);
+                H = min(smo.C, smo.C + alphaOld2 - alphaOld1);
+            else
+                L = max(0, alphaOld2 + alphaOld1 - smo.C);
+                H = min(smo.C, alphaOld2 + alphaOld1);
+            end
+        end
+        
         function Fi = calcFi(smo,i)
             % Calculate F for the element i.
             % Note that Fi = - grad(i) * y(i), this quantitiy will be used
@@ -145,79 +167,6 @@ classdef KeerthiSmo < handle
             end
             u = sum ( smo.alpha .* smo.y .* res );
             Fi = u - smo.y(i);
-        end
-        
-        function [i,j] = WorkingSetSelection(smo)
-            
-            % Select first alpha (i)
-            i = -1;
-            G_max = -inf;
-            G_min = inf;
-            
-            for k=1:smo.N
-                % We look for the first alpha only among those indexes inside I(up)
-                if(smo.y(k) == 1 && smo.alpha(k) < smo.C) || (smo.y(k) == -1 && smo.alpha(k) > 0)
-                    
-                    %Select the index i such that the value -y(k) * G(k) is maximized
-                    if( -(smo.y(k)) * smo.G(k) >= G_max)
-                        i = k;
-                        G_max = -(smo.y(k)) * smo.G(k);
-                    end
-                    
-                end
-            end
-            
-            % Select the second alpha (j)
-            j = -1;
-            obj_min = inf;
-            
-            for k=1:smo.N
-                
-                % We look for the second alpha only among those indexes inside I(low)
-                if(smo.y(k) == 1 && smo.alpha(k) > 0) || (smo.y(k) == -1 && smo.alpha(k) < smo.C)
-                    
-                    if( -smo.y(k) * smo.G(k) <= G_min)
-                        G_min = -smo.y(k) * smo.G(k);
-                    end
-                    
-                    % Theorem (3) of the paper provide an efficient way to
-                    % evaluate the 2nd order approximation of th objective function.
-                    % In order to do it we need to calculate a and b.
-                    
-                    b = G_max + (smo.y(k) * smo.G(k));
-                    
-                    %Otherwise we don't have a violating pair (i,j)
-                    if(b > 0)
-                        
-                        a1 = smo.kernel(smo.x(i,:),smo.x(i,:));
-                        a2 = smo.kernel(smo.x(k,:),smo.x(k,:));
-                        a3 = smo.y(i) * smo.y(k) * smo.kernel(smo.x(i,:),smo.x(k,:));
-                        
-                        a = a1 + a2 - 2*a3;
-                        
-                        % if a<=0 the function is no more strictly convex
-                        % and we need to modify it to enforce convexity.
-                        if(a <= 0)
-                            a = smo.tau;
-                        end
-                        
-                        %We pick the one such that the couple (i,j) minimize
-                        %the 2nd order approximation of the objective function
-                        if(-(b*b) / a <= obj_min)
-                            j = k;
-                            obj_min = -(b*b) / a;
-                        end
-                    end
-                end
-            end
-            
-            % If the values of G_max e G_min are closed enough it
-            % means that there are no (i,j) violating the kkt
-            % condition and the solution found so far is optimal.
-            if(G_max - G_min < smo.tolerance)
-                i = -1;
-                j = -1;
-            end
         end
         
         function update = examineExample(smo,i1)
@@ -234,29 +183,32 @@ classdef KeerthiSmo < handle
             if (smo.alpha(i1) > 0 && smo.alpha(i1) < smo.C)
                 F1 = smo.Fcache(i1);
             else
-                F1 = smo.calcFi;
+                F1 = smo.calcFi(i1);
                 smo.Fcache(i1) = F1;
+                
+                % Update (b_low, i_low) or (b_up, i_up) using (F1, i1)
+                if (smo.alpha(i1) == 0 && smo.y(i1) == 1) || (smo.alpha(i1) == smo.C && smo.y(i1) == -1) && (F1 < smo.b_up)
+                    
+                    smo.b_up = F1;
+                    smo.i_up = i1;
+                    
+                elseif (smo.alpha(i1) == smo.C && smo.y(i1) == 1) || (smo.alpha(i1) == 0 && smo.y(i1) == -1) && (F1 > smo.b_down)
+                    
+                    smo.b_down = F1;
+                    smo.i_down = i1;
+                    
+                end
+                
             end
             
-            % Update (b_low, i_low) or (b_up, i_up) using (F1, i1)
-            if (smo.alpha(i1) == 0 && smo.y(i1) == 1) || (smo.alpha(i1) == smo.C && smo.y(i1) == -1) && (F1 < smo.b_up)
-               
-               smo.b_up = F1;
-               smo.i_up = i1;
-               
-            elseif (smo.alpha(i1) == smo.C && smo.y(i1) == 1) || (smo.alpha(i1) == 0 && smo.y(i1) == -1) && (F1 > smo.b_down)
-                   
-               smo.b_down = F1;
-               smo.i_down = i1;
-               
-            end
+
             
             % Check optimality using current b_down and b_up,
             % If violated, find an index i2 to jointly optimize with i1
              optimality = 1;
              
              % if i1 is in Iup
-             if (smo.y(i1) == 1 && smo.alpha(i1) < smo.C) || (smo.y(k) == -1 && smo.alpha(k) > 0)
+             if (smo.y(i1) == 1 && smo.alpha(i1) < smo.C) || (smo.y(i1) == -1 && smo.alpha(i1) > 0)
                 if smo.b_down - F1 > 2 * smo.tolerance
                     optimality = 0;
                     i2 = smo.i_down;
@@ -264,20 +216,22 @@ classdef KeerthiSmo < handle
              end
              
              % if i1 is in Idown
-             if (smo.y(i1) == -1 && smo.alpha(i1) < smo.C) || (smo.y(k) == 1 && smo.alpha(k) > 0)
+             if (smo.y(i1) == -1 && smo.alpha(i1) < smo.C) || (smo.y(i1) == 1 && smo.alpha(i1) > 0)
                  if F1 - smo.b_up > 2 * smo.tolerance
                     optimality = 0;
                     i2 = smo.i_up;
                  end
              end
              
-             if optimality == 0
+             if optimality == 1
                  return
              end
              
-             % if i1 is in Io choose the best i2
+             %If i1 is a non boundary example and b_up <= Fi1 <= b_down
+             %both i_down and i_up are valid choice. Then we need to choose
+             %the best among the 2 possible values.
              if (smo.alpha(i1) > 0 && smo.alpha(i1) < smo.C)
-                 if smo.b_down - F1 > 2 * smo.tolerance
+                 if F1 < (smo.b_down - smo.b_up)/2
                      i2 = smo.i_down;
                  else
                      i2 = smo.i_up;
@@ -303,7 +257,7 @@ classdef KeerthiSmo < handle
             
             s = smo.y(i1) * smo.y(i2);
             F1 = smo.calcFi(i1);
-            F2 = smo.calcEi(i2);
+            F2 = smo.calcFi(i2);
             alphaOld1 = smo.alpha(i1);
             alphaOld2 = smo.alpha(i2);
             
@@ -313,9 +267,9 @@ classdef KeerthiSmo < handle
                 return;
             end
             
-            k11 = smo.kernel(smo.x(i1,:),smo.x(i1,:))';
-            k12 = smo.kernel(smo.x(i1,:),smo.x(i2,:))';
-            k22 = smo.kernel(smo.x(i2,:),smo.x(i2,:))';
+            k11 = smo.kernel(smo.x(i1,:),smo.x(i1,:));
+            k12 = smo.kernel(smo.x(i1,:),smo.x(i2,:));
+            k22 = smo.kernel(smo.x(i2,:),smo.x(i2,:));
             eta = 2 * k12 - k11 - k22;
             
             if (eta < 0)
@@ -375,15 +329,46 @@ classdef KeerthiSmo < handle
             smo.alpha(i1) = alphaNew1;
             smo.alpha(i2) = alphaNew2;
             
+            deltaAlpha1 = alphaNew1 - alphaOld1;
+            deltaAlpha2 = alphaNew2 - alphaOld2;
             
+            % Update Fcache for non boundary LMs
+            for k=1:smo.N
+                if (smo.alpha(k) > 0 && smo.alpha(k) < smo.C)
+                    smo.Fcache(k) = smo.Fcache(k) + smo.y(i1) * deltaAlpha1 * smo.kernel(smo.x(i1,:),smo.x(k,:)) + smo.y(i2) * deltaAlpha2 * smo.kernel(smo.x(i2,:),smo.x(k,:));
+                end
+            end
+
             
+            smo.Fcache(i1) = smo.Fcache(i1) + smo.y(i1) * deltaAlpha1 * smo.kernel(smo.x(i1,:),smo.x(i1,:)) + smo.y(i2) * deltaAlpha2 * smo.kernel(smo.x(i1,:),smo.x(i2,:));
+            smo.Fcache(i2) = smo.Fcache(i2) + smo.y(i1) * deltaAlpha1 * smo.kernel(smo.x(i1,:),smo.x(i2,:)) + smo.y(i2) * deltaAlpha2 * smo.kernel(smo.x(i2,:),smo.x(i2,:));
+            
+            for k=1:smo.N
+                if (smo.alpha(k) > 0 && smo.alpha(k) < smo.C) || k == i1 || k == i2
+                    
+                    % if k is in I1 or I2
+                    if (smo.alpha(k) == 0 && smo.y(k) == 1) || (smo.alpha(k) == smo.C && smo.y(k) == -1)
+                        if smo.Fcache(k) < smo.b_up
+                            smo.b_up = smo.Fcache(k);
+                        end
+                        
+                    % if k is in I3 or I4
+                    elseif (smo.alpha(k) == smo.C && smo.y(k) == 1) || (smo.alpha(k) == 0 && smo.y(k) == -1)
+                        if smo.Fcache(k) > smo.b_down
+                            smo.b_down = smo.Fcache(k);
+                        end
+                        
+                    end
+                    
+                end
+            end    
         end
         
         function train(smo)
             
             numChanged = 0;
             examineAll = 1;
-            while (numChanged > 0 && smo.iter < smo.maxiter) || (smo.iter == 0)
+            while (numChanged > 0 || examineAll) && smo.iter < smo.maxiter
                 numChanged = 0;
                 smo.iter = smo.iter + 1;
                 if(examineAll)
@@ -394,12 +379,11 @@ classdef KeerthiSmo < handle
                 else
                     %Loop over all non-bounding example ( 0 < alpha < C)
                     for i1=1:smo.N
-                        if (smo.alpha(i1) ~= 0 && smo.alpha(i1) ~= smo.C)
+                        if (smo.alpha(i1) > 0 && smo.alpha(i1) < smo.C)
                             numChanged = numChanged + examineExample(smo,i1);
                         end
                         
                         if smo.b_up > smo.b_down - 2 * smo.tolerance
-                            examineAll = 1;
                             break;
                         end
                     end
@@ -413,6 +397,14 @@ classdef KeerthiSmo < handle
                 smo.alphaHistory(:,smo.iter) = smo.alpha; 
                 
             end
+            
+            % Round LMs too close to 0 (numerical imprecision due to the Fcache)
+            for k=1:smo.N
+                if smo.alpha(k) < 1e-10
+                    smo.alpha(k) = 0;
+                end
+            end
+            
             
             smo.isSupportVector = smo.alpha > 0;
             %Calculate the final bias of the model.
@@ -447,7 +439,7 @@ classdef KeerthiSmo < handle
                     res(k) = smo.kernel(smo.x(k,:),data(i,:));
                 end
                 
-                output(i) = sum(smo.alpha .* smo.y .* res) + smo.bias;
+                output(i) = sum(smo.alpha .* smo.y .* res) + smo.b;
             end
             
         end

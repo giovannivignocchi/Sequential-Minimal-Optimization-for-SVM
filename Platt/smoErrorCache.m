@@ -180,9 +180,9 @@ classdef smoErrorCache < handle
                 return;
             end
             
-            k11 = smo.kernel(smo.x(i1,:),smo.x(i1,:))';
-            k12 = smo.kernel(smo.x(i1,:),smo.x(i2,:))';
-            k22 = smo.kernel(smo.x(i2,:),smo.x(i2,:))';
+            k11 = smo.kernel(smo.x(i1,:),smo.x(i1,:));
+            k12 = smo.kernel(smo.x(i1,:),smo.x(i2,:));
+            k22 = smo.kernel(smo.x(i2,:),smo.x(i2,:));
             eta = 2 * k12 - k11 - k22;
             
             if (eta < 0)
@@ -382,15 +382,14 @@ classdef smoErrorCache < handle
                     examineAll = 1;
                 end
                 
-                smo.alphaHistory(:,smo.iter) = smo.alpha; 
+                smo.alphaHistory(:,smo.iter) = smo.alpha;
                 
             end
             
-            % Filter out LMs with an associated too small value
-            % (numerical imprecision due to the error cache)
-            for i=1:size(smo.alpha(),1)
-                if smo.alpha(i) < 1e-10
-                    smo.alpha(i) = 0;
+            % Round LMs too close to 0 (numerical imprecision due to the error cache)
+            for k=1:smo.N
+                if smo.alpha(k) < 1e-10
+                    smo.alpha(k) = 0;
                 end
             end
             

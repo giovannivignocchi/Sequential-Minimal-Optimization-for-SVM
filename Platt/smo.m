@@ -182,9 +182,9 @@ classdef smo < handle
                 return;
             end
             
-            k11 = smo.kernel(smo.x(i1,:),smo.x(i1,:))';
-            k12 = smo.kernel(smo.x(i1,:),smo.x(i2,:))';
-            k22 = smo.kernel(smo.x(i2,:),smo.x(i2,:))';
+            k11 = smo.kernel(smo.x(i1,:),smo.x(i1,:));
+            k12 = smo.kernel(smo.x(i1,:),smo.x(i2,:));
+            k22 = smo.kernel(smo.x(i2,:),smo.x(i2,:));
             eta = 2 * k12 - k11 - k22;
             
             if (eta < 0)

@@ -20,6 +20,8 @@ if saveResult
     statFilePath = strcat(path,'\stat.txt');
     fid = fopen( statFilePath, 'wt' );
     fprintf(fid, '%s\n\n', testName{1});
+else
+    fid = 0;
 end
 
 

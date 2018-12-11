@@ -346,19 +346,19 @@ classdef KeerthiSmo < handle
             for k=1:smo.N
                 if (smo.alpha(k) > 0 && smo.alpha(k) < smo.C) || k == i1 || k == i2
                     
-                    % if k is in I1 or I2
-                    if (smo.alpha(k) == 0 && smo.y(k) == 1) || (smo.alpha(k) == smo.C && smo.y(k) == -1)
+%                     % if k is in I1 or I2
+%                     if (smo.alpha(k) == 0 && smo.y(k) == 1) || (smo.alpha(k) == smo.C && smo.y(k) == -1)
                         if smo.Fcache(k) < smo.b_up
                             smo.b_up = smo.Fcache(k);
                         end
                         
-                    % if k is in I3 or I4
-                    elseif (smo.alpha(k) == smo.C && smo.y(k) == 1) || (smo.alpha(k) == 0 && smo.y(k) == -1)
+%                     % if k is in I3 or I4
+%                     elseif (smo.alpha(k) == smo.C && smo.y(k) == 1) || (smo.alpha(k) == 0 && smo.y(k) == -1)
                         if smo.Fcache(k) > smo.b_down
                             smo.b_down = smo.Fcache(k);
                         end
                         
-                    end
+%                     end
                     
                 end
             end    

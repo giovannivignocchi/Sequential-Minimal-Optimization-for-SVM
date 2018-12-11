@@ -1,45 +1,42 @@
 %% TEST INITIALIZATION
 clear all;
-clc;
-name = 'CORNER TEST';
+name = 'LINEAR TEST';
 
 % For reproducibility
-seed = 100;
+seed = 12;
 rng(seed);
 
 
 saveResult = 0; % if set to 1 the results of the test will be stored
 [path,fid] = initTest(saveResult, name, seed);
 
-
 %% CREATE THE ARTIFICIAL DATASET
-trainingSize = 250;
-data = corners(trainingSize);
+trainingSize = 200;
+maxDegree = 2;
+incorrectPercentage = 0;
+delta = 5;
+[data, coeff, title] = randPolyDataSet(trainingSize, maxDegree, incorrectPercentage, delta);
+xTrain = data(:,1:2);
+yTrain = data(:,3);
 
 if saveResult
     fprintf(fid, 'DataSet parameter:\n');
-    fprintf(fid, 'trainingSize: %d\n', trainingSize);
+    fprintf(fid, 'polynomial that guide dataset genartion: = %s\n', polyTitle);
+    fprintf(fid, 'trainingSize = %d\n', trainingSize);
+    fprintf(fid, 'maxDegree = %d\n', maxDegree);
+    fprintf(fid, 'incorrectPercentage = %d\n', incorrectPercentage);
+    fprintf(fid, 'delta = %d\n\n', delta);
 end
 
-%Shuffle del dataset
-s = RandStream('mt19937ar','Seed',0);
-rand_pos = randperm(s, size(data,1)); %array of random positions
-dataShuffle = data;
-for i=1:size(data,1)
-    dataShuffle(i,:) = data(rand_pos(i),:);
-end
-
-xTrain = dataShuffle(:,1:2);
-yTrain = dataShuffle(:,3);
-
-% Standardize the dataset
+%Standardize the dataset
 xTrain = zscore(xTrain);
 
-% build the grid over which make preiction
-dX1 = (max(xTrain(:,1)) - min(xTrain(:,1))) / 200;
-dX2 = (max(xTrain(:,2)) - min(xTrain(:,2))) / 200;
+% Predict scores over the grid
+dX1 = (max(xTrain(:,1)) - min(xTrain(:,1))) / 500;
+dX2 = (max(xTrain(:,2)) - min(xTrain(:,2))) / 500;
 [x1Grid,x2Grid] = meshgrid(min(xTrain(:,1)):dX1:max(xTrain(:,1)),min(xTrain(:,2)):dX2:max(xTrain(:,2)));
 xGrid = [x1Grid(:),x2Grid(:)];
+
 
 %% BUILDING MODELS
 
@@ -49,7 +46,7 @@ tolerance = 10e-5; % Tolerance allowed in the violation of the KKT conditions
 tau = 1e-12;
 eps = 10e-5;
 maxiter = 200;
-kernel = 'gaussian';
+kernel = 'linear';
 
 if saveResult
     fprintf(fid, 'Model parameter:\n');
@@ -62,21 +59,11 @@ if saveResult
 end
 
 [models,figureTitle] = initModel(xTrain, yTrain, C, tolerance, eps, tau, maxiter, kernel);
-
-% Keerthi = KeerthiSmo(xTrain, yTrain, C, tolerance, eps, maxiter);
-% Keerthi.setKernel(kernel);
-% 
-% models = cell(1,1);
-% models{1} = Keerthi;
-% figureTitle = cell(1,1);
-% figureTitle{1} = 'Keerthi';
-
 output = zeros(size(xGrid,1),size(models,2));
 
 trainingStats = cell(1, size(models,2));
 predictionStats = cell(1, size(models,2));
 numberOfSV = cell(1, size(models,2));
-
 
 for k=1:size(models,2)
     
@@ -88,14 +75,17 @@ for k=1:size(models,2)
     output(:,k) = models{k}.predict(xGrid);
     predictionStats{k} = toc;
     
-    numberOfSV{k} = sum(models{k}.isSupportVector);    
-end
+    numberOfSV{k} = sum(models{k}.isSupportVector);   
     
+end
+
 % Save the current workspace
 if saveResult
     varFile = strcat(path,'\var.m');
     save varFile;
 end
+
+
 %% TEST RESULTS
 
 %Write Test statistics

@@ -87,6 +87,9 @@ for k=1:size(models,2)
 end
 
 
+% Save the current workspace
+varFile = strcat(path,'\var.m');
+save varFile;
 
 %% TEST RESULTS
 

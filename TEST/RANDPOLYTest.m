@@ -82,9 +82,13 @@ for k=1:size(models,2)
     
 end
 
+% Save the current workspace
+if saveResult
+    varFile = strcat(path,'\var.m');
+    save varFile;
+end
+
 %% TEST RESULTS
-varFile = strcat(path,'\var.m');
-save varFile;
 
 %Write Test statistics
 if saveResult
@@ -97,8 +101,8 @@ if saveResult
 
         fprintf(fid, 'Number of support vector generated: %d\n', numberOfSV{k});
     end
+    fclose(fid);
 end
-fclose(fid);
 
 % Plot the reults for the generated models
 plotResults(saveResult, path, name, models, figureTitle, output, x1Grid, x2Grid)

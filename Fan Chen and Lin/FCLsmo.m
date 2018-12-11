@@ -149,7 +149,6 @@ classdef FCLsmo < handle
             end
             if strcmp(type,'gaussian')
                 smo.kernelType = 'gaussian';
-                
                 if size(varargin,2) == 1
                     smo.sigma = varargin{1};
                 end
@@ -173,9 +172,9 @@ classdef FCLsmo < handle
                 if(smo.y(k) == 1 && smo.alpha(k) < smo.C) || (smo.y(k) == -1 && smo.alpha(k) > 0)
                     
                     %Select the index i such that the value -y(k) * G(k) is maximized
-                    if( -(smo.y(k)) * smo.G(k) >= G_max)
+                    if( -smo.y(k) * smo.G(k) >= G_max)
                         i = k;
-                        G_max = -(smo.y(k)) * smo.G(k);
+                        G_max = - smo.y(k) * smo.G(k);
                     end
                     
                 end
@@ -189,7 +188,6 @@ classdef FCLsmo < handle
                 
                 % We look for the second alpha only among those indexes inside I(low)
                 if(smo.y(k) == 1 && smo.alpha(k) > 0) || (smo.y(k) == -1 && smo.alpha(k) < smo.C)
-                    
                     if( -smo.y(k) * smo.G(k) <= G_min)
                         G_min = -smo.y(k) * smo.G(k);
                     end
@@ -259,7 +257,7 @@ classdef FCLsmo < handle
                 oldAlphaI = smo.alpha(i);
                 oldAlphaJ = smo.alpha(j);
                 smo.alpha(i) = smo.alpha(i) + smo.y(i)*(b/a);
-                smo.alpha(j) = smo.alpha(j) + smo.y(j)*(b/a);
+                smo.alpha(j) = smo.alpha(j) - smo.y(j)*(b/a);
                 
                 
                 constantSum = smo.y(i) * oldAlphaI + smo.y(j) * oldAlphaJ;
@@ -291,6 +289,13 @@ classdef FCLsmo < handle
                 smo.iter = smo.iter + 1;
                 smo.alphaHistory(:,smo.iter) = smo.alpha;
                 
+            end
+            
+            % Round LMs too close to 0 (numerical imprecision)
+            for k=1:smo.N
+                if smo.alpha(k) < 1e-10
+                    smo.alpha(k) = 0;
+                end
             end
             
             smo.isSupportVector = smo.alpha > 0;

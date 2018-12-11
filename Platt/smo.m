@@ -372,8 +372,15 @@ classdef smo < handle
                 elseif(examineAll == 0)
                     examineAll = 1;
                 end
-                smo.alphaHistory(:,smo.iter) = smo.alpha; 
+                smo.alphaHistory(:,smo.iter) = smo.alpha;
                 
+            end
+            
+            % Round LMs too close to 0 (numerical imprecision)
+            for k=1:smo.N
+                if smo.alpha(k) < 1e-10
+                    smo.alpha(k) = 0;
+                end
             end
             
             smo.isSupportVector = smo.alpha > 0;

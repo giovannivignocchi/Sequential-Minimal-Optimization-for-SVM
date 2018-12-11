@@ -1,7 +1,5 @@
 function [models,figureTitle] = initModel(xTrain, yTrain, C, tolerance, eps, tau, maxiter, kernel)
 
-
-
 modelsNumber = 4;
 models = cell(1, modelsNumber);
 figureTitle = cell(1, modelsNumber);

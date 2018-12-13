@@ -4,7 +4,7 @@ clc;
 name = 'CIRCULAR TEST';
 
 % For reproducibility
-seed = 100;
+seed = randi(100,1);
 rng(seed);
 
 
@@ -13,31 +13,23 @@ saveResult = 1; % if set to 1 the results of the test will be stored
 
 
 %% CREATE THE ARTIFICIAL DATASET
-r = sqrt(rand(100,1)); % Radius
-t = 2*pi*rand(100,1);  % Angle
-data1 = [r.*cos(t), r.*sin(t)]; % Points
-r2 = sqrt(3*rand(100,1)+1); % Radius
-t2 = 2*pi*rand(100,1);      % Angle
-data2 = [r2.*cos(t2), r2.*sin(t2)]; % points
-xTrain = [data1;data2];
-yTrain = ones(200,1);
-yTrain(1:100) = -1;
+trainingSize = 200;
+incorrectPercentage = 0.2;
+r1 = 2;
+r2 = 5;
 
-% Standardize the dataset
-xTrain = zscore(xTrain);
-
-% Shuffle del dataset
-s = RandStream('mt19937ar','Seed',0);
-rand_pos = randperm(s, size(xTrain,1)); %array of random positions
-xTrainShuffle = xTrain;
-yTrainShuffle = yTrain;
-for i=1:size(xTrain,1)
-    yTrainShuffle(i,1) = yTrain(rand_pos(i));
-    xTrainShuffle(i,:) = xTrain(rand_pos(i),:);
+if saveResult
+    fprintf(fid, 'DataSet parameter:\n');
+    fprintf(fid, 'trainingSize = %d\n', trainingSize);
+    fprintf(fid, 'incorrectPercentage = %d\n', incorrectPercentage);
+    fprintf(fid, 'r1 = %d\n', r1);
+    fprintf(fid, 'r2 = %d\n\n', r2);
+    
 end
 
-xTrain = xTrainShuffle;
-yTrain = yTrainShuffle;
+
+[xTrain, yTrain] = circularDataSet(trainingSize, incorrectPercentage, r1, r2);
+
 
 % build the grid over which make preiction
 d = 0.02;
@@ -49,7 +41,7 @@ xGrid = [x1Grid(:),x2Grid(:)];
 %% BUILDING MODELS
 
 % Set parameter for the Models
-C = inf;
+C = 0.2;
 tolerance = 10e-5; % Tolerance allowed in the violation of the KKT conditions
 tau = 1e-12;
 eps = 10e-5;
@@ -71,7 +63,6 @@ output = zeros(size(xGrid,1),size(models,2));
 
 trainingStats = cell(1, size(models,2));
 predictionStats = cell(1, size(models,2));
-numberOfSV = cell(1, size(models,2));
 
 for k=1:size(models,2)
     
@@ -83,28 +74,40 @@ for k=1:size(models,2)
     output(:,k) = models{k}.predict(xGrid);
     predictionStats{k} = toc;
     
-    numberOfSV{k} = sum(models{k}.isSupportVector);    
 end
 
-
-% Save the current workspace
-varFile = strcat(path,'\var.m');
-save varFile;
+% Check the validity of the results obtained using fitcsvm
+fitcsvmMODEL = checkModelsUsingFITCSVM(saveResult, path, xTrain,yTrain,C,tolerance,maxiter,kernel,x1Grid,x2Grid);
 
 %% TEST RESULTS
 
-% Write Test statistics
-for k=1:size(models,2)
-    fprintf(fid, compose("------------------------------------------ %s ------------------------------------------\n", figureTitle{k}));
-    
-    fprintf(fid, 'Training time %f sec\n', trainingStats{k});
+%Write Test statistics
+if saveResult
+    for k=1:size(models,2)
+        fprintf(fid, compose("------------------------------------------ %s ------------------------------------------\n", figureTitle{k}));
 
-    fprintf(fid, 'Prediction time %f sec\n', predictionStats{k});
-    
-    fprintf(fid, 'Number of support vector generated: %d\n', numberOfSV{k});
+        fprintf(fid, 'Training time %f sec\n', trainingStats{k});
+
+        fprintf(fid, 'Prediction time %f sec\n', predictionStats{k});
+        
+        fprintf(fid, 'Number of iteration %d\n',models{k}.iter);
+        
+        fprintf(fid, 'Average iteration time %f sec\n', trainingStats{k} / models{k}.iter);
+        
+        fprintf(fid, 'Number of support vector generated: %d\n', sum(models{k}.isSupportVector));
+        
+        fprintf(fid, 'Number of SV shared with fitcsvm model: %d\n\n', sum( and(models{k}.isSupportVector, SVMModel.IsSupportVector) ));
+        
+    end
+    fclose(fid);
 end
-fclose(fid);
 
 
 % Plot the reults for the generated models
 plotResults(saveResult, path, name, models, figureTitle, output, x1Grid, x2Grid)
+
+% Save the current workspace
+if saveResult
+    varFile = strcat(path,'\var.m');
+    save(varFile);
+end

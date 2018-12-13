@@ -4,11 +4,11 @@ clc;
 name = 'CORNER TEST';
 
 % For reproducibility
-seed = 100;
+seed = randi(100,1);
 rng(seed);
 
 
-saveResult = 0; % if set to 1 the results of the test will be stored
+saveResult = 1; % if set to 1 the results of the test will be stored
 [path,fid] = initTest(saveResult, name, seed);
 
 
@@ -75,7 +75,6 @@ output = zeros(size(xGrid,1),size(models,2));
 
 trainingStats = cell(1, size(models,2));
 predictionStats = cell(1, size(models,2));
-numberOfSV = cell(1, size(models,2));
 
 
 for k=1:size(models,2)
@@ -87,15 +86,13 @@ for k=1:size(models,2)
     tic
     output(:,k) = models{k}.predict(xGrid);
     predictionStats{k} = toc;
-    
-    numberOfSV{k} = sum(models{k}.isSupportVector);    
+      
 end
+
+% Check the validity of the results obtained using fitcsvm
+fitcsvmMODEL = checkModelsUsingFITCSVM(saveResult, path, xTrain,yTrain,C,tolerance,maxiter,kernel,x1Grid,x2Grid);
+
     
-% Save the current workspace
-if saveResult
-    varFile = strcat(path,'\var.m');
-    save varFile;
-end
 %% TEST RESULTS
 
 %Write Test statistics
@@ -106,8 +103,15 @@ if saveResult
         fprintf(fid, 'Training time %f sec\n', trainingStats{k});
 
         fprintf(fid, 'Prediction time %f sec\n', predictionStats{k});
-
-        fprintf(fid, 'Number of support vector generated: %d\n', numberOfSV{k});
+        
+        fprintf(fid, 'Number of iteration %d\n',models{k}.iter);
+        
+        fprintf(fid, 'Average iteration time %f sec\n', trainingStats{k} / models{k}.iter);
+        
+        fprintf(fid, 'Number of support vector generated: %d\n', sum(models{k}.isSupportVector));
+        
+        fprintf(fid, 'Number of SV shared with fitcsvm model: %d\n\n', sum( and(models{k}.isSupportVector, SVMModel.IsSupportVector) ));
+        
     end
     fclose(fid);
 end
@@ -115,3 +119,9 @@ end
 
 % Plot the reults for the generated models
 plotResults(saveResult, path, name, models, figureTitle, output, x1Grid, x2Grid)
+
+% Save the current workspace
+if saveResult
+    varFile = strcat(path,'\var.m');
+    save(varFile);
+end

@@ -24,9 +24,5 @@ else
     fid = 0;
 end
 
-
-
-
-
 end
 

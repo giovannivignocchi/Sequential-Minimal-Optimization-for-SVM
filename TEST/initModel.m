@@ -4,6 +4,7 @@ modelsNumber = 4;
 models = cell(1, modelsNumber);
 figureTitle = cell(1, modelsNumber);
 
+
 PlattSmo = smo(xTrain, yTrain, C, tolerance, eps, maxiter);
 PlattSmo.setKernel(kernel);
 errorSmo = smoErrorCache(xTrain, yTrain, C, tolerance, eps, maxiter);

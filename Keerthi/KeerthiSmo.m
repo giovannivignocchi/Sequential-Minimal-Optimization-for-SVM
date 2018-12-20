@@ -201,8 +201,6 @@ classdef KeerthiSmo < handle
                 
             end
             
-
-            
             % Check optimality using current b_down and b_up,
             % If violated, find an index i2 to jointly optimize with i1
              optimality = 1;
@@ -231,7 +229,7 @@ classdef KeerthiSmo < handle
              %both i_down and i_up are valid choice. Then we need to choose
              %the best among the 2 possible values.
              if (smo.alpha(i1) > 0 && smo.alpha(i1) < smo.C)
-                 if F1 < (smo.b_down - smo.b_up)/2
+                 if smo.b_down - F1 > F1 - smo.b_up
                      i2 = smo.i_down;
                  else
                      i2 = smo.i_up;
@@ -256,8 +254,21 @@ classdef KeerthiSmo < handle
             end
             
             s = smo.y(i1) * smo.y(i2);
-            F1 = smo.calcFi(i1);
-            F2 = smo.calcFi(i2);
+            
+            if (smo.alpha(i1) > 0 && smo.alpha(i1) < smo.C)
+                F1 = smo.Fcache(i1);
+            else
+                F1 = smo.calcFi(i1);
+                smo.Fcache(i1) = F1;
+            end
+            
+            if (smo.alpha(i2) > 0 && smo.alpha(i2) < smo.C)
+                F2 = smo.Fcache(i2);
+            else
+                F2 = smo.calcFi(i2);
+                smo.Fcache(i2) = F2;
+            end
+
             alphaOld1 = smo.alpha(i1);
             alphaOld2 = smo.alpha(i2);
             
@@ -338,27 +349,27 @@ classdef KeerthiSmo < handle
                     smo.Fcache(k) = smo.Fcache(k) + smo.y(i1) * deltaAlpha1 * smo.kernel(smo.x(i1,:),smo.x(k,:)) + smo.y(i2) * deltaAlpha2 * smo.kernel(smo.x(i2,:),smo.x(k,:));
                 end
             end
-
-            
             smo.Fcache(i1) = smo.Fcache(i1) + smo.y(i1) * deltaAlpha1 * smo.kernel(smo.x(i1,:),smo.x(i1,:)) + smo.y(i2) * deltaAlpha2 * smo.kernel(smo.x(i1,:),smo.x(i2,:));
             smo.Fcache(i2) = smo.Fcache(i2) + smo.y(i1) * deltaAlpha1 * smo.kernel(smo.x(i1,:),smo.x(i2,:)) + smo.y(i2) * deltaAlpha2 * smo.kernel(smo.x(i2,:),smo.x(i2,:));
-            
+                        
             for k=1:smo.N
                 if (smo.alpha(k) > 0 && smo.alpha(k) < smo.C) || k == i1 || k == i2
                     
-%                     % if k is in I1 or I2
-%                     if (smo.alpha(k) == 0 && smo.y(k) == 1) || (smo.alpha(k) == smo.C && smo.y(k) == -1)
+                     %if k is in I1 or I2
+%                    if (smo.alpha(k) == 0 && smo.y(k) == 1) || (smo.alpha(k) == smo.C && smo.y(k) == -1)
                         if smo.Fcache(k) < smo.b_up
                             smo.b_up = smo.Fcache(k);
+                            smo.i_up = k;
                         end
                         
-%                     % if k is in I3 or I4
-%                     elseif (smo.alpha(k) == smo.C && smo.y(k) == 1) || (smo.alpha(k) == 0 && smo.y(k) == -1)
+                    % if k is in I3 or I4
+%                    elseif (smo.alpha(k) == smo.C && smo.y(k) == 1) || (smo.alpha(k) == 0 && smo.y(k) == -1)
                         if smo.Fcache(k) > smo.b_down
                             smo.b_down = smo.Fcache(k);
+                            smo.i_down = k;
                         end
                         
-%                     end
+%                    end
                     
                 end
             end    
@@ -407,6 +418,7 @@ classdef KeerthiSmo < handle
             
             
             smo.isSupportVector = smo.alpha > 0;
+            
             %Calculate the final bias of the model.
             % For numerical stability average over all support vectors, to
             % simplify the code average over all alpha (inefficient).

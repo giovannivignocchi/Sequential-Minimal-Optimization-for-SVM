@@ -1,0 +1,44 @@
+CORNER TEST 13-Dec-2018 rng(100)
+
+DataSet parameter:
+trainingSize: 250
+Model parameter:
+C = Inf
+tolerance = 1.000000e-04
+tau = 1.000000e-12
+eps = 1.000000e-04
+maxiter = 200
+kernel = gaussian
+
+------------------------------------------ PLATT version ------------------------------------------
+Training time 101.123486 sec
+Prediction time 19.228407 sec
+Number of iteration 106
+Average iteration time 0.953995 sec
+Number of support vector generated: 17
+Number of SV shared with fitcsvm model: 17
+
+------------------------------------------ PLATT version with Error cache ------------------------------------------
+Training time 25.139854 sec
+Prediction time 19.528352 sec
+Number of iteration 115
+Average iteration time 0.218607 sec
+Number of support vector generated: 17
+Number of SV shared with fitcsvm model: 17
+
+------------------------------------------ Fan Chen and Lin version ------------------------------------------
+Training time 0.601430 sec
+Prediction time 19.462283 sec
+Number of iteration 200
+Average iteration time 0.003007 sec
+Number of support vector generated: 17
+Number of SV shared with fitcsvm model: 17
+
+------------------------------------------ Keerthi version ------------------------------------------
+Training time 4.373025 sec
+Prediction time 19.232235 sec
+Number of iteration 21
+Average iteration time 0.208239 sec
+Number of support vector generated: 44
+Number of SV shared with fitcsvm model: 14
+

@@ -1,0 +1,49 @@
+RANDPOLY TEST 13-Dec-2018 rng(100)
+
+DataSet parameter:
+polynomial that guide dataset genartion: =  -5 +4X -1 X^2 -2 X^3
+trainingSize = 200
+maxDegree = 5
+incorrectPercentage = 0
+delta = 300
+
+Model parameter:
+C = Inf
+tolerance = 1.000000e-04
+tau = 1.000000e-12
+eps = 1.000000e-04
+maxiter = 200
+kernel = gaussian
+
+------------------------------------------ PLATT version ------------------------------------------
+Training time 123.588317 sec
+Prediction time 97.026951 sec
+Number of iteration 83
+Average iteration time 1.489016 sec
+Number of support vector generated: 15
+Number of SV shared with fitcsvm model: 15
+
+------------------------------------------ PLATT version with Error cache ------------------------------------------
+Training time 24.400772 sec
+Prediction time 97.947508 sec
+Number of iteration 122
+Average iteration time 0.200006 sec
+Number of support vector generated: 15
+Number of SV shared with fitcsvm model: 15
+
+------------------------------------------ Fan Chen and Lin version ------------------------------------------
+Training time 0.495409 sec
+Prediction time 98.355449 sec
+Number of iteration 200
+Average iteration time 0.002477 sec
+Number of support vector generated: 15
+Number of SV shared with fitcsvm model: 15
+
+------------------------------------------ Keerthi version ------------------------------------------
+Training time 23.772469 sec
+Prediction time 98.519429 sec
+Number of iteration 200
+Average iteration time 0.118862 sec
+Number of support vector generated: 30
+Number of SV shared with fitcsvm model: 14
+

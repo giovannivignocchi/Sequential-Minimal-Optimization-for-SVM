@@ -1,8 +1,0 @@
-CIRCULAR TEST 12-Dec-2018 rng(100)
-
-DataSet parameter:
-trainingSize = 200
-incorrectPercentage = 2.000000e-01
-r1 = 2
-r2 = 5
-

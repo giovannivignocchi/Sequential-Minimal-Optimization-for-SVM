@@ -3,7 +3,7 @@ clear all;
 name = 'LINEAR TEST';
 
 % For reproducibility
-seed = 12;
+seed = 100;
 rng(seed);
 
 
@@ -58,8 +58,18 @@ if saveResult
     fprintf(fid, 'kernel = %s\n\n', kernel);
 end
 
-[models,figureTitle] = initModel(xTrain, yTrain, C, tolerance, eps, tau, maxiter, kernel);
+%[models,figureTitle] = initModel(xTrain, yTrain, C, tolerance, eps, tau, maxiter, kernel);
+%output = zeros(size(xGrid,1),size(models,2));
+
+
+models = cell(1,1);
+FenChinLinSmo = FCLsmo(xTrain, yTrain, C, tolerance, tau, maxiter);
+FenChinLinSmo.setKernel(kernel);
+models{1} = FenChinLinSmo;
+figureTitle = cell(1, 1);
+figureTitle{1} = "Fan Chen and Lin version";
 output = zeros(size(xGrid,1),size(models,2));
+
 
 trainingStats = cell(1, size(models,2));
 predictionStats = cell(1, size(models,2));

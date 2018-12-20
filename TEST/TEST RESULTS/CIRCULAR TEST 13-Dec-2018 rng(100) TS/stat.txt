@@ -1,0 +1,48 @@
+CIRCULAR TEST 13-Dec-2018 rng(100)
+
+DataSet parameter:
+trainingSize = 200
+incorrectPercentage = 0
+r1 = 2
+r2 = 5
+
+Model parameter:
+C = Inf
+tolerance = 1.000000e-04
+tau = 1.000000e-12
+eps = 1.000000e-04
+maxiter = 200
+kernel = gaussian
+
+------------------------------------------ PLATT version ------------------------------------------
+Training time 91.423949 sec
+Prediction time 17.144731 sec
+Number of iteration 200
+Average iteration time 0.457120 sec
+Number of support vector generated: 16
+Number of SV shared with fitcsvm model: 15
+
+------------------------------------------ PLATT version with Error cache ------------------------------------------
+Training time 42.993456 sec
+Prediction time 17.275129 sec
+Number of iteration 200
+Average iteration time 0.214967 sec
+Number of support vector generated: 16
+Number of SV shared with fitcsvm model: 15
+
+------------------------------------------ Fan Chen and Lin version ------------------------------------------
+Training time 0.548061 sec
+Prediction time 17.525241 sec
+Number of iteration 200
+Average iteration time 0.002740 sec
+Number of support vector generated: 21
+Number of SV shared with fitcsvm model: 15
+
+------------------------------------------ Keerthi version ------------------------------------------
+Training time 25.769839 sec
+Prediction time 17.126733 sec
+Number of iteration 200
+Average iteration time 0.128849 sec
+Number of support vector generated: 14
+Number of SV shared with fitcsvm model: 10
+

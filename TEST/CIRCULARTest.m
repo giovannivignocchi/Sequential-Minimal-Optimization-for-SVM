@@ -4,17 +4,18 @@ clc;
 name = 'CIRCULAR TEST';
 
 % For reproducibility
-seed = randi(100,1);
+%seed = randi(100,1);
+seed = 100;
 rng(seed);
 
 
-saveResult = 1; % if set to 1 the results of the test will be stored
+saveResult = 0; % if set to 1 the results of the test will be stored
 [path,fid] = initTest(saveResult, name, seed);
 
 
 %% CREATE THE ARTIFICIAL DATASET
 trainingSize = 200;
-incorrectPercentage = 0.2;
+incorrectPercentage = 0;
 r1 = 2;
 r2 = 5;
 
@@ -41,7 +42,8 @@ xGrid = [x1Grid(:),x2Grid(:)];
 %% BUILDING MODELS
 
 % Set parameter for the Models
-C = 0.2;
+C = inf;
+q = 4; %size of the working set for Joachims version
 tolerance = 10e-5; % Tolerance allowed in the violation of the KKT conditions
 tau = 1e-12;
 eps = 10e-5;
@@ -51,6 +53,7 @@ kernel = 'gaussian';
 if saveResult
     fprintf(fid, 'Model parameter:\n');
     fprintf(fid, 'C = %d\n', C);
+    fprintf(fid, 'Working set used in Joachims version = %d\n', q);
     fprintf(fid, 'tolerance = %d\n', tolerance);
     fprintf(fid, 'tau = %d\n', tau);
     fprintf(fid, 'eps = %d\n', eps);
@@ -58,8 +61,24 @@ if saveResult
     fprintf(fid, 'kernel = %s\n\n', kernel);
 end
 
-[models,figureTitle] = initModel(xTrain, yTrain, C, tolerance, eps, tau, maxiter, kernel);
+% [models,figureTitle] = initModel(xTrain, yTrain, C, q, tolerance, eps, tau, maxiter, kernel);
+% output = zeros(size(xGrid,1),size(models,2));
+
+models = cell(1,1);
+Joachims = Jsmo(xTrain, yTrain, C, 4, tolerance, maxiter);
+Joachims.setKernel(kernel);
+models{1} = Joachims;
+figureTitle = cell(1, 1);
+figureTitle{1} = "Joachims ORIGINAL version";
 output = zeros(size(xGrid,1),size(models,2));
+
+% models = cell(1,1);
+% Keerthi = KeerthiSmo(xTrain, yTrain, C, eps, tolerance, maxiter);
+% Keerthi.setKernel(kernel);
+% models{1} = Keerthi;
+% figureTitle = cell(1, 1);
+% figureTitle{1} = "Keerthi version";
+% output = zeros(size(xGrid,1),size(models,2));
 
 trainingStats = cell(1, size(models,2));
 predictionStats = cell(1, size(models,2));
@@ -96,7 +115,7 @@ if saveResult
         
         fprintf(fid, 'Number of support vector generated: %d\n', sum(models{k}.isSupportVector));
         
-        fprintf(fid, 'Number of SV shared with fitcsvm model: %d\n\n', sum( and(models{k}.isSupportVector, SVMModel.IsSupportVector) ));
+        fprintf(fid, 'Number of SV shared with fitcsvm model: %d\n\n', sum( and(models{k}.isSupportVector, fitcsvmMODEL.IsSupportVector) ));
         
     end
     fclose(fid);

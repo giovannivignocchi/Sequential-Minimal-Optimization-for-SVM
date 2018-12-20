@@ -64,8 +64,8 @@ classdef smo < handle
         
         isSupportVector;
         alphaHistory;
+ 
     end
-    
     methods
         
         function obj = smo(data, classLabels, C, tolerance, eps, maxiter)

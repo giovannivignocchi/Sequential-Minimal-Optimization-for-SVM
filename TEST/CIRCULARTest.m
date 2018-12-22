@@ -71,23 +71,25 @@ models{1} = Joachims;
 figureTitle = cell(1, 1);
 figureTitle{1} = "Joachims ORIGINAL version";
 output = zeros(size(xGrid,1),size(models,2));
-
-% models = cell(1,1);
-% Keerthi = KeerthiSmo(xTrain, yTrain, C, eps, tolerance, maxiter);
-% Keerthi.setKernel(kernel);
-% models{1} = Keerthi;
-% figureTitle = cell(1, 1);
-% figureTitle{1} = "Keerthi version";
-% output = zeros(size(xGrid,1),size(models,2));
+% 
+% % models = cell(1,1);
+% % Keerthi = KeerthiSmo(xTrain, yTrain, C, eps, tolerance, maxiter);
+% % Keerthi.setKernel(kernel);
+% % models{1} = Keerthi;
+% % figureTitle = cell(1, 1);
+% % figureTitle{1} = "Keerthi version";
+% % output = zeros(size(xGrid,1),size(models,2));
 
 trainingStats = cell(1, size(models,2));
 predictionStats = cell(1, size(models,2));
+kernelEval = cell(1, size(models,2));
 
 for k=1:size(models,2)
     
     tic
     models{k}.train();
     trainingStats{k} = toc;
+    kernelEval{k} = models{k}.kernelEvaluation;
     
     tic
     output(:,k) = models{k}.predict(xGrid);
@@ -112,6 +114,10 @@ if saveResult
         fprintf(fid, 'Number of iteration %d\n',models{k}.iter);
         
         fprintf(fid, 'Average iteration time %f sec\n', trainingStats{k} / models{k}.iter);
+        
+        fprintf(fid, 'Total number of kernel evaluation %d\n', kernelEval{k});
+        
+        fprintf(fid, 'Average kernel evaluation per iteration %d\n', kernelEval{k} / models{k}.iter);
         
         fprintf(fid, 'Number of support vector generated: %d\n', sum(models{k}.isSupportVector));
         

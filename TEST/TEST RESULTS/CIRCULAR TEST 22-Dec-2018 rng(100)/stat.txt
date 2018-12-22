@@ -1,0 +1,17 @@
+CIRCULAR TEST 22-Dec-2018 rng(100)
+
+DataSet parameter:
+trainingSize = 200
+incorrectPercentage = 0
+r1 = 2
+r2 = 5
+
+Model parameter:
+C = Inf
+Working set used in Joachims version = 4
+tolerance = 1.000000e-04
+tau = 1.000000e-12
+eps = 1.000000e-04
+maxiter = 200
+kernel = gaussian
+

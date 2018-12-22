@@ -1,3 +1,7 @@
+function mdl = in_codrna(subsampleSize,seed)
+
+rng(seed);
+
 x = readtable('C:\Users\giova\Dropbox\documenti\MATLAB\Sequential Minimal Optimization for SVM\Dataset\Data\in_cod-rna.txt');
 y = readtable('C:\Users\giova\Dropbox\documenti\MATLAB\Sequential Minimal Optimization for SVM\Dataset\Data\out_cod-rna.txt');
 x = x(:,1:end-1);
@@ -7,17 +11,10 @@ y = table2array(y);
 
 x = zscore(x);
 
-%Subsampling
-x = [x(1:1000,:);x(end-1000:end,:)];
-y = [y(1:1000,:);y(end-1000:end,:)];
-
-
-%Shuffle del dataset
+%Shuffle the dataset
 rand_pos = randperm(size(x,1)); %array of random positions
 xTrainShuffle = x;
 yTrainShuffle = y;
-
-
 for i=1:size(x,1)
     xTrainShuffle(i,:) = x(rand_pos(i),:);
     yTrainShuffle(i,:) = y(rand_pos(i),:);
@@ -25,7 +22,14 @@ end
 x = xTrainShuffle;
 y = yTrainShuffle;
 
-MdlCodrna = fitcsvm(x,y,'KernelFunction','rbf','OptimizeHyperparameters','auto','HyperparameterOptimizationOptions',struct('AcquisitionFunctionName','expected-improvement-plus'));
+%Subsample the dataset
+if size(x,1) > subsampleSize
+    r = randperm(size(x,1),subsampleSize);
+    x = x(r,:);
+    y = y(r);
+end
+
+mdl = fitcsvm(x,y,'KernelFunction','rbf','OptimizeHyperparameters','auto','HyperparameterOptimizationOptions',struct('AcquisitionFunctionName','expected-improvement-plus'));
 
 
 

@@ -1,6 +1,11 @@
 classdef Jsmo < handle
     %jsmo class 
     %
+    %   Implemets the Sequential Minimal Optimization algorithm in the
+    %   version suggested by Joachims in the paper "Making Large-Scale SVM
+    %   Learning Practical".
+    %   An online free version of the paper is available at:
+    %   http://www.cs.cornell.edu/people/tj/publications/joachims_99a.pdf
     %   
     %
     %   PROPERTIES:
@@ -36,6 +41,44 @@ classdef Jsmo < handle
     %                     is effectively a support vector.
     %   alphaHistory = vector recording the behaviour of aplhas during the
     %                  iteration of the algorithm.
+    %   kernelEvaluation = varable that records the number of kernel
+    %                      evaluation carried out during the iteration of
+    %                      the algorithm. 
+    %
+    %
+    %   METHODS:
+    %
+    %   Jsmo = constructor; the folllowing values are required as input parameter:
+    %          -data 
+    %          -classLabels 
+    %          -C 
+    %          -q 
+    %          As optional parameter it can also take the tolerance allowded in the
+    %          violation of the KKT condition (tolerance) and the maximum number of 
+    %          iterations that the algorithm can loops (maxiter)
+    %
+    %   kernel = It returns the value of the kernel K(Xi,Xj)
+    %
+    %   setKernel = It sets the type of kernel. take as required input the type
+    %               of kernel ('gaussian', 'polynomial' and 'linear'). If
+    %               the choice of the kernel is either polynomial or
+    %               gaussian, is also possible to specify an optional
+    %               parameter that modify rispectively the deegre of the
+    %               polynomial kernel or the sigma of the gaussian kernel.
+    %
+    %   checkOpt = checks if the values assigned so far to the LMs satisfay
+    %              the KKT conditions within a degree of violation specified
+    %              by the value tolerance.
+    %
+    %   WorkingSetSelection = it retuns the indexes of the LMs that compose
+    %                         the working set during the current iteration.
+    %
+    %   train = train the SVM
+    %
+    %
+    %   predict = given a set of data points as input returns the prediction
+    %             using the model generated.
+
     
     properties
         x;
@@ -58,6 +101,7 @@ classdef Jsmo < handle
         
         isSupportVector;
         alphaHistory;
+        kernelEvaluation = 0;
     end
     
     methods
@@ -116,6 +160,8 @@ classdef Jsmo < handle
             else
                 ker = x1*x2'; %linear Kernel
             end
+            
+            smo.kernelEvaluation = smo.kernelEvaluation + 1;
         end
         
         function setKernel(smo,type,varargin)
@@ -136,21 +182,6 @@ classdef Jsmo < handle
             end
         end
         
-        function Fi = calcFi(smo,i)
-            % Calculate F for the element i.
-            % Note that Fi = grad(i) * y(i), this quantitiy will be used
-            % both to check for optimality and select the next LM to be
-            % optimized.
-            
-            res = zeros(smo.N,1);
-            for k=1:smo.N
-                res(k) = smo.kernel(smo.x(i,:),smo.x(k,:));
-            end
-            c = ones(smo.N,1) * smo.y(i);
-            u = sum ( smo.alpha .* smo.y .* c .* res );
-            Fi = u - 1;
-        end
-        
         function opt = checkOpt(smo)
             
             opt = 0;
@@ -158,19 +189,24 @@ classdef Jsmo < handle
             b_up = inf;
             b_down = -inf;
             for k=1:smo.N
+                
+                F = smo.y(k) .* smo.G(k);
+                
                 %if k is in I0 or I1 or I2
                 if (smo.y(k) == 1 && smo.alpha(k) < smo.C) || (smo.y(k) == -1 && smo.alpha(k) > 0)
-                    F = smo.calcFi(k);
+                    
                     if F < b_up
                         b_up = F;
+                        i_up = k;
                     end
                 end
                 
                 % if k is in I0 or I3 or I4
                 if (smo.y(k) == -1 && smo.alpha(k) < smo.C) || (smo.y(k) == 1 && smo.alpha(k) > 0)
-                    F = smo.calcFi(k);
+
                     if F > b_down
                         b_down = F;
+                        i_down = k;
                     end
                 end
             end
@@ -241,6 +277,7 @@ classdef Jsmo < handle
                 index = qSelDown(1,k);
                 B(index) = 1;
             end
+
         end
         
         function train(smo)
@@ -250,11 +287,14 @@ classdef Jsmo < handle
                 smo.iter = smo.iter + 1;
                 [check,B] = WorkingSetSelection(smo);
                 
+                % In case is not possible to select an even number > 0 of
+                % LM to build the working set, exit from the loop.
                 if check == 0
                     break;
                 end
                 
-                %Calculate parameter involved in the quadratic optimization step
+%---- Calculate parameter involved in the quadratic optimization step -----
+                
                 [indexB,~] = find(B); % Active set(B)
                 [indexN,~] = find(~B); % NonActive set(N)
                 alphaN = smo.alpha(indexN);
@@ -301,6 +341,8 @@ classdef Jsmo < handle
                     end
                 end
                 
+% ----------------- Update the gradient -----------------------------------
+                
                 % For each variable in the Working set calculate how
                 % much LM increase or decrease due to the optimization
                 % step (deltaAlpha)
@@ -315,7 +357,6 @@ classdef Jsmo < handle
                 for k1=1:size(indexN,1)
                     i = indexN(k1);
                     for k2=1:size(indexB,1)
-                        %smo.G(i) = smo.G(i) + (smo.y(j) * smo.y(i) * smo.kernel(smo.x(i,:),smo.x(j,:)) * deltaAlpha(k,1));
                         smo.G(i) = smo.G(i) + Qbn(k2,k1) * deltaAlpha(k2,1);
                     end
                 end
@@ -325,12 +366,11 @@ classdef Jsmo < handle
                 for k1=1:size(indexB,1)
                     i = indexB(k1);
                     for k2=1:size(indexB,1)
-                        %smo.G(i) = smo.G(i) + (smo.y(j) * smo.y(i) * smo.kernel(smo.x(i,:),smo.x(j,:)) * deltaAlpha(k,1));
                         smo.G(i) = smo.G(i) + Qbb(k2,k1) * deltaAlpha(k2,1);
                     end
                 end
                 
-                % Reorder the list with the updated gradient
+%------------- Reorder the list with the updated gradient -----------------
                 [~,smo.orderedGradList] = sort(smo.y .* smo.G,'descend');
                 
                 smo.alphaHistory(:,smo.iter) = smo.alpha;

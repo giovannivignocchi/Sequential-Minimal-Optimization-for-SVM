@@ -3,7 +3,7 @@ set(0,'DefaultFigureVisible','off');
 
 numberOfDataset = 4;
 saveResult = 1;
-iterationNumber = 3;
+iterationNumber = 100;
 subsampleSize = 2000;
 
 C = zeros(iterationNumber,numberOfDataset);
@@ -13,28 +13,25 @@ for i=1:iterationNumber
     seed = i;
     
     mdl = diabetes(subsampleSize,seed);
-    C(i,1) = mdl.ModelParameters.BoxConstraint;
-    sigma(i,1) = mdl.ModelParameters.KernelScale;
+    C(i,1) = mdl.BoxConstraint;
+    sigma(i,1) = mdl.Sigma;
     
     mdl = in_codrna(subsampleSize,seed);
-    C(i,2) = mdl.ModelParameters.BoxConstraint;
-    sigma(i,2) = mdl.ModelParameters.KernelScale;
+    C(i,2) = mdl.BoxConstraint;
+    sigma(i,2) = mdl.Sigma;
     
     mdl = magic(subsampleSize,seed);
-    C(i,3) = mdl.ModelParameters.BoxConstraint;
-    sigma(i,3) = mdl.ModelParameters.KernelScale;
+    C(i,3) = mdl.BoxConstraint;
+    sigma(i,3) = mdl.Sigma;
     
     mdl = ringnorm(subsampleSize,seed);
-    C(i,4) = mdl.ModelParameters.BoxConstraint;
-    sigma(i,4) = mdl.ModelParameters.KernelScale;
+    C(i,4) = mdl.BoxConstraint;
+    sigma(i,4) = mdl.Sigma;
     
 end  
 
 Cestimated = mean(C,2);
 Sigmaestimated = mean(sigma,2);
-CVar = var(C,2);
-SigmaVar = var(sigma,2);
-
 
 %Save the current workspace
 if saveResult

@@ -1,9 +1,10 @@
 function [path,fid] = initTest(saveResult, name, seed)
 
 % Add path of external function used during the test
-addpath('C:\Users\giova\Dropbox\documenti\MATLAB\Sequential Minimal Optimization for SVM\Platt');
-addpath('C:\Users\giova\Dropbox\documenti\MATLAB\Sequential Minimal Optimization for SVM\Fan Chen and Lin');
-addpath('C:\Users\giova\Dropbox\documenti\MATLAB\Sequential Minimal Optimization for SVM\Keerthi');
+addpath('C:\Users\giova\Dropbox\documenti\MATLAB\Sequential Minimal Optimization for SVM\Algorithm\Platt');
+addpath('C:\Users\giova\Dropbox\documenti\MATLAB\Sequential Minimal Optimization for SVM\Algorithm\Fan Chen and Lin');
+addpath('C:\Users\giova\Dropbox\documenti\MATLAB\Sequential Minimal Optimization for SVM\Algorithm\Keerthi');
+addpath('C:\Users\giova\Dropbox\documenti\MATLAB\Sequential Minimal Optimization for SVM\Algorithm\Joachims');
 addpath('C:\Users\giova\Dropbox\documenti\MATLAB\Artificial datasets');
 
 %Path in which results of the TEST will be saved

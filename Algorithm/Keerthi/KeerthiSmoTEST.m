@@ -1,4 +1,4 @@
-classdef KeerthiSmo < handle
+classdef KeerthiSmoTEST < handle
     %KeerthiSmo class 
     %
     %   Implemets the Sequential Minimal Optimization algorithm in the
@@ -36,7 +36,9 @@ classdef KeerthiSmo < handle
     %                     is effectively a support vector.
     %   alphaHistory = vector recording the behaviour of aplhas during the
     %                  iteration of the algorithm.
-    
+    %   kernelEvaluation = varable that records the number of kernel
+    %                      evaluation carried out during the iteration of
+    %                      the algorithm.    
     properties
         x;
         y;
@@ -61,11 +63,12 @@ classdef KeerthiSmo < handle
         
         isSupportVector;
         alphaHistory;
+        kernelEvaluation = 0;
     end
     
     methods
         
-        function obj = KeerthiSmo(data, classLabels, C, tolerance, eps, maxiter)
+        function obj = KeerthiSmoTEST(data, classLabels, C, tolerance, eps, maxiter)
             % Keerthi SMO Constructor
             
             % Checking optional parameter
@@ -122,6 +125,8 @@ classdef KeerthiSmo < handle
             else
                 ker = x1*x2'; %linear Kernel
             end
+            
+            smo.kernelEvaluation = smo.kernelEvaluation + 1;
         end
         
         function setKernel(smo,type,varargin)
@@ -172,8 +177,6 @@ classdef KeerthiSmo < handle
         function update = examineExample(smo,i1)
             % Given the index of the first LM that compose the working set,
             % examineExample search for the second LM and perform the update.
-            % To optimized the selection of the second LM is used a
-            % hyerarchy of heuristics.
             %
             % If the function succeed in updating a couple of LMs (i1, ix)
             % it returns 1, 0 otherwise.
@@ -207,7 +210,7 @@ classdef KeerthiSmo < handle
              
              % if i1 is in Iup
              if (smo.y(i1) == 1 && smo.alpha(i1) < smo.C) || (smo.y(i1) == -1 && smo.alpha(i1) > 0)
-                if smo.b_down - F1 > 2 * smo.tolerance
+                if smo.b_down - F1 > smo.tolerance
                     optimality = 0;
                     i2 = smo.i_down;
                 end
@@ -215,7 +218,7 @@ classdef KeerthiSmo < handle
              
              % if i1 is in Idown
              if (smo.y(i1) == -1 && smo.alpha(i1) < smo.C) || (smo.y(i1) == 1 && smo.alpha(i1) > 0)
-                 if F1 - smo.b_up > 2 * smo.tolerance
+                 if F1 - smo.b_up > smo.tolerance
                     optimality = 0;
                     i2 = smo.i_up;
                  end
@@ -336,6 +339,20 @@ classdef KeerthiSmo < handle
                 alphaNew1 = smo.C;
             end
             
+            % Round the new alphas that are too close to the boundaries.
+            if alphaNew2 < 1e-7
+                alphaNew2 = 0;
+            elseif alphaNew2 > (smo.C - 1e-7)
+                alphaNew2 = smo.C;
+            end
+            
+            if alphaNew1 < 1e-7
+                alphaNew1 = 0;
+            elseif alphaNew1 > (smo.C - 1e-7)
+                alphaNew1 = smo.C;
+            end
+            
+            
             %Update the vector of LMs
             smo.alpha(i1) = alphaNew1;
             smo.alpha(i2) = alphaNew2;
@@ -351,25 +368,43 @@ classdef KeerthiSmo < handle
             end
             smo.Fcache(i1) = smo.Fcache(i1) + smo.y(i1) * deltaAlpha1 * smo.kernel(smo.x(i1,:),smo.x(i1,:)) + smo.y(i2) * deltaAlpha2 * smo.kernel(smo.x(i1,:),smo.x(i2,:));
             smo.Fcache(i2) = smo.Fcache(i2) + smo.y(i1) * deltaAlpha1 * smo.kernel(smo.x(i1,:),smo.x(i2,:)) + smo.y(i2) * deltaAlpha2 * smo.kernel(smo.x(i2,:),smo.x(i2,:));
-                        
+            
+            if (smo.alpha(i1) == 0 && smo.y(i1) == 1) || (smo.alpha(i1) == smo.C && smo.y(i1) == -1)
+                if smo.Fcache(i1) < smo.b_up
+                    smo.b_up = smo.Fcache(i1);
+                    smo.i_up = i1;
+                end
+            elseif (smo.alpha(i1) == smo.C && smo.y(i1) == 1) || (smo.alpha(i1) == 0 && smo.y(i1) == -1)
+                if smo.Fcache(i1) > smo.b_down
+                    smo.b_down = smo.Fcache(i1);
+                    smo.i_down = i1;
+                end
+            end
+            
+            if (smo.alpha(i2) == 0 && smo.y(i2) == 1) || (smo.alpha(i2) == smo.C && smo.y(i2) == -1)
+                if smo.Fcache(i2) < smo.b_up
+                    smo.b_up = smo.Fcache(i2);
+                    smo.i_up = i2;
+                end
+            elseif (smo.alpha(i2) == smo.C && smo.y(i2) == 1) || (smo.alpha(i2) == 0 && smo.y(i2) == -1)
+                if smo.Fcache(i2) > smo.b_down
+                    smo.b_down = smo.Fcache(i2);
+                    smo.i_down = i2;
+                end
+            end
+            
             for k=1:smo.N
-                if (smo.alpha(k) > 0 && smo.alpha(k) < smo.C) || k == i1 || k == i2
+                if (smo.alpha(k) > 0 && smo.alpha(k) < smo.C)
                     
-                     %if k is in I1 or I2
-%                    if (smo.alpha(k) == 0 && smo.y(k) == 1) || (smo.alpha(k) == smo.C && smo.y(k) == -1)
-                        if smo.Fcache(k) < smo.b_up
-                            smo.b_up = smo.Fcache(k);
-                            smo.i_up = k;
-                        end
-                        
-                    % if k is in I3 or I4
-%                    elseif (smo.alpha(k) == smo.C && smo.y(k) == 1) || (smo.alpha(k) == 0 && smo.y(k) == -1)
-                        if smo.Fcache(k) > smo.b_down
-                            smo.b_down = smo.Fcache(k);
-                            smo.i_down = k;
-                        end
-                        
-%                    end
+                    if smo.Fcache(k) < smo.b_up
+                        smo.b_up = smo.Fcache(k);
+                        smo.i_up = k;
+                    end
+                    
+                    if smo.Fcache(k) > smo.b_down
+                        smo.b_down = smo.Fcache(k);
+                        smo.i_down = k;
+                    end 
                     
                 end
             end    
@@ -394,7 +429,7 @@ classdef KeerthiSmo < handle
                             numChanged = numChanged + examineExample(smo,i1);
                         end
                         
-                        if smo.b_up > smo.b_down - 2 * smo.tolerance
+                        if smo.b_up > smo.b_down - smo.tolerance
                             break;
                         end
                     end

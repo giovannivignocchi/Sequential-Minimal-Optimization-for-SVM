@@ -43,7 +43,7 @@ q = 4; %size of the working set for Joachims version
 tolerance = 10e-5; % Tolerance allowed in the violation of the KKT conditions
 tau = 1e-12;
 eps = 10e-5;
-maxiter = 200;
+maxiter = 500;
 kernel = 'gaussian';
 
 if saveResult
@@ -60,31 +60,32 @@ end
 % [models,figureTitle] = initModel(xTrain, yTrain, C, q, tolerance, eps, tau, maxiter, kernel);
 % output = zeros(size(xGrid,1),size(models,2));
 
-models = cell(1,1);
-Joachims = Jsmo(xTrain, yTrain, C, 2, tolerance, maxiter);
-Joachims.setKernel(kernel);
-models{1} = Joachims;
-figureTitle = cell(1, 1);
-figureTitle{1} = "Joachims ORIGINAL version";
-output = zeros(size(xGrid,1),size(models,2));
-
 % models = cell(1,1);
-% Keerthi = KeerthiSmo(xTrain, yTrain, C, eps, tolerance, maxiter);
-% Keerthi.setKernel(kernel);
-% models{1} = Keerthi;
+% Joachims = Jsmo(xTrain, yTrain, C, 4, tolerance, maxiter);
+% Joachims.setKernel(kernel);
+% models{1} = Joachims;
 % figureTitle = cell(1, 1);
-% figureTitle{1} = "Keerthi version";
+% figureTitle{1} = "Joachims ORIGINAL version";
 % output = zeros(size(xGrid,1),size(models,2));
+
+models = cell(1,1);
+Keerthi = KeerthiSmoTEST(xTrain, yTrain, C, eps, tolerance, maxiter);
+Keerthi.setKernel(kernel);
+models{1} = Keerthi;
+figureTitle = cell(1, 1);
+figureTitle{1} = "Keerthi version";
+output = zeros(size(xGrid,1),size(models,2));
 
 trainingStats = cell(1, size(models,2));
 predictionStats = cell(1, size(models,2));
-
+kernelEval = cell(1, size(models,2));
 
 for k=1:size(models,2)
     
     tic
     models{k}.train();
     trainingStats{k} = toc;
+    kernelEval{k} = models{k}.kernelEvaluation;
     
     tic
     output(:,k) = models{k}.predict(xGrid);
@@ -110,6 +111,10 @@ if saveResult
         fprintf(fid, 'Number of iteration %d\n',models{k}.iter);
         
         fprintf(fid, 'Average iteration time %f sec\n', trainingStats{k} / models{k}.iter);
+        
+        fprintf(fid, 'Total number of kernel evaluation %d\n', kernelEval{k});
+        
+        fprintf(fid, 'Average kernel evaluation per iteration %d\n', kernelEval{k} / models{k}.iter);
         
         fprintf(fid, 'Number of support vector generated: %d\n', sum(models{k}.isSupportVector));
         

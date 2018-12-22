@@ -68,6 +68,9 @@ classdef FCLsmo < handle
     %                     is effectively a support vector.
     %   alphaHistory = vector recording the behaviour of aplhas during the
     %                  iteration of the algorithm.
+    %   kernelEvaluation = varable that records the number of kernel
+    %                      evaluation carried out during the iteration of
+    %                      the algorithm.
     
     properties
         x;
@@ -89,12 +92,13 @@ classdef FCLsmo < handle
         
         isSupportVector;
         alphaHistory;
+        kernelEvaluation = 0;
     end
     
     methods
         
         function obj = FCLsmo(data, classLabels, C, tolerance, tau, maxiter)
-            % SMO Constructor
+            % FCLSMO Constructor
             
             % Checking optional parameter
             if nargin < 3
@@ -140,6 +144,8 @@ classdef FCLsmo < handle
             else
                 ker = x1*x2'; %linear Kernel
             end
+            
+            smo.kernelEvaluation = smo.kernelEvaluation + 1;
         end
         
         function setKernel(smo,type,varargin)

@@ -33,6 +33,29 @@ implementations approximate well known functions.
 
 
 
+corners
+<p align="left">
+  <img width="308" alt="corners" src="https://user-images.githubusercontent.com/32396630/50488895-ff3f5b80-0a04-11e9-8b38-b88c7de53a4a.PNG">
+</p>
+Linerly separable polynomial function
+<p align="right">
+<img width="311" alt="polyls" src="https://user-images.githubusercontent.com/32396630/50488896-ffd7f200-0a04-11e9-8177-e1e80341089a.PNG">
+</p>
+
+
+
+
+Non linerly separable polynomial function
+<img width="313" alt="polynls" src="https://user-images.githubusercontent.com/32396630/50488897-ffd7f200-0a04-11e9-84f8-542ede64caf6.PNG">
+
+Linerly separable circle
+<img width="313" alt="circlels" src="https://user-images.githubusercontent.com/32396630/50488899-ffd7f200-0a04-11e9-8b7b-4cb8acb55370.PNG">
+
+Non linerly separable circle
+<img width="313" alt="circlenls" src="https://user-images.githubusercontent.com/32396630/50488900-ffd7f200-0a04-11e9-9a00-613d76eff642.PNG">
+
+
+
 
 ## Contributing
 

@@ -28,10 +28,15 @@ The folder Algorithms collects all the implementations cited above.
 The last part of the project consisted in comparing the training of the various implementations on different dataset.
 
 A first set of tests was carried out on three different (bidimensional) dataset that were specially generated to test how the
-implementations approximate well known functions.
+implementations approximate well known functions. A sample of the artificial dataset used, is shown in the images below:
 
+
+CORNERS DATASET
+<p align="left">
 <img width="308" alt="corners" src="https://user-images.githubusercontent.com/32396630/50488895-ff3f5b80-0a04-11e9-8b38-b88c7de53a4a.PNG">
+<\p>
 
+LINEARLY AND NON LINERLY SEPARABLE DATASET
 <img width="687" alt="mosaico" src="https://user-images.githubusercontent.com/32396630/50489264-fa7ba700-0a06-11e9-8595-23353999a8de.png">
 
 

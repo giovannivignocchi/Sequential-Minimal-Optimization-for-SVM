@@ -39,6 +39,8 @@ LINEARLY AND NON LINERLY SEPARABLE DATASET
 <img width="687" alt="mosaico" src="https://user-images.githubusercontent.com/32396630/50489264-fa7ba700-0a06-11e9-8595-23353999a8de.png">
 
 
+The results of the test performed are collected in the folder TEST RESULT, under the subpath 
+
 
 
 ## Contributing

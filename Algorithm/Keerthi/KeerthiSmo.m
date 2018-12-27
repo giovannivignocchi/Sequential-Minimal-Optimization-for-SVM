@@ -14,7 +14,7 @@ classdef KeerthiSmo < handle
     %   y = class label associated with the train set
     %   N = size of the train set
     %   alpha = vector of solution
-    %   b = 
+    %   bias = 
     %   Fcache =
     %   i_up =
     %   i_down =
@@ -34,8 +34,6 @@ classdef KeerthiSmo < handle
     %           it possible to modify it using setKernel method.
     %   isSupportVector = boolean vector that indicates which of the alpha
     %                     is effectively a support vector.
-    %   alphaHistory = vector recording the behaviour of aplhas during the
-    %                  iteration of the algorithm.
     %   kernelEvaluation = varable that records the number of kernel
     %                      evaluation carried out during the iteration of
     %                      the algorithm.    
@@ -44,7 +42,7 @@ classdef KeerthiSmo < handle
         y;
         N;
         alpha;
-        b;
+        bias;
         Fcache;
         i_up;
         i_down;
@@ -62,7 +60,6 @@ classdef KeerthiSmo < handle
         sigma = 1;
         
         isSupportVector;
-        alphaHistory;
         kernelEvaluation = 0;
     end
     
@@ -96,7 +93,7 @@ classdef KeerthiSmo < handle
             
             % Initialize all Lagrange multipliers (LMs) to 0
             obj.alpha = zeros(obj.N,1);
-            obj.b = 0;
+            obj.bias = 0;
             
             %Initialize b_up and b_down to assure violation is guaranteed
             obj.b_up = -1;
@@ -112,7 +109,6 @@ classdef KeerthiSmo < handle
             obj.Fcache(obj.i_down) = 1;
             
             obj.isSupportVector = zeros(obj.N,1);
-            obj.alphaHistory = zeros(obj.N,obj.maxiter);
         end
         
         function ker = kernel(smo,x1,x2)
@@ -424,8 +420,7 @@ classdef KeerthiSmo < handle
                     examineAll = 0;
                 elseif(examineAll == 0)
                     examineAll = 1;
-                end
-                smo.alphaHistory(:,smo.iter) = smo.alpha; 
+                end 
                 
             end
             
@@ -450,7 +445,7 @@ classdef KeerthiSmo < handle
                 end
                 bias(i) = smo.y(i) - sum( smo.y .* smo.alpha .* res);
             end
-            smo.b = mean(bias);
+            smo.bias = mean(bias);
             
         end
         
@@ -468,10 +463,20 @@ classdef KeerthiSmo < handle
                 
                 res = zeros(smo.N,1);
                 for k=1:smo.N
-                    res(k) = smo.kernel(smo.x(k,:),data(i,:));
+                    
+                    % Calculate the kernel only if the associated LM is greater than 0
+                    if smo.alpha(k) > 0
+                        res(k) = smo.kernel(smo.x(k,:),data(i,:));
+                    end
+                    
                 end
                 
-                output(i) = sum(smo.alpha .* smo.y .* res) + smo.b;
+                output(i) = sum(smo.alpha .* smo.y .* res) + smo.bias;
+                if output(i) > 0
+                    output(i) = 1;
+                elseif output(i) < 0
+                    output(i) = -1;
+                end
             end
             
         end

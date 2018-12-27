@@ -39,8 +39,6 @@ classdef Jsmo < handle
     %           it possible to modify it using setKernel method.
     %   isSupportVector = boolean vector that indicates which of the alpha
     %                     is effectively a support vector.
-    %   alphaHistory = vector recording the behaviour of aplhas during the
-    %                  iteration of the algorithm.
     %   kernelEvaluation = varable that records the number of kernel
     %                      evaluation carried out during the iteration of
     %                      the algorithm. 
@@ -86,7 +84,7 @@ classdef Jsmo < handle
         N;
         alpha;
         G;
-        b;
+        bias;
         q;
         C;
         orderedGradList;
@@ -100,7 +98,6 @@ classdef Jsmo < handle
         sigma = 1;
         
         isSupportVector;
-        alphaHistory;
         kernelEvaluation = 0;
     end
     
@@ -142,12 +139,11 @@ classdef Jsmo < handle
             % Initialize the gradient w.r.t. all alphas equal to -1
             obj.G = -ones(obj.N,1);
             % initialize threshold to zero
-            obj.b = 0;
+            obj.bias = 0;
             % sort in descending order of Yi*grad(i), the indexes of the dataset
             [~,obj.orderedGradList] = sort(obj.y .* obj.G,'descend');
             
             obj.isSupportVector = zeros(obj.N,1);
-            obj.alphaHistory = zeros(obj.N,obj.maxiter);
         end
         
         function ker = kernel(smo,x1,x2)
@@ -370,10 +366,8 @@ classdef Jsmo < handle
                     end
                 end
                 
-%------------- Reorder the list with the updated gradient -----------------
+                %------------- Reorder the list with the updated gradient -----------------
                 [~,smo.orderedGradList] = sort(smo.y .* smo.G,'descend');
-                
-                smo.alphaHistory(:,smo.iter) = smo.alpha;
                 
                 if smo.checkOpt()
                     break;
@@ -401,7 +395,7 @@ classdef Jsmo < handle
                 end
                 bias(k1) = smo.y(k1) - sum( smo.y .* smo.alpha .* res);
             end
-            smo.b = mean(bias);
+            smo.bias = mean(bias);
             
         end
         
@@ -419,10 +413,20 @@ classdef Jsmo < handle
                 
                 res = zeros(smo.N,1);
                 for k=1:smo.N
-                    res(k) = smo.kernel(smo.x(k,:),data(i,:));
+                    
+                    % Calculate the kernel only if the associated LM is greater than 0
+                    if smo.alpha(k) > 0
+                        res(k) = smo.kernel(smo.x(k,:),data(i,:));
+                    end
+                    
                 end
                 
-                output(i) = sum(smo.alpha .* smo.y .* res) + smo.b;
+                output(i) = sum(smo.alpha .* smo.y .* res) + smo.bias;
+                if output(i) > 0
+                    output(i) = 1;
+                elseif output(i) < 0
+                    output(i) = -1;
+                end
             end
             
         end

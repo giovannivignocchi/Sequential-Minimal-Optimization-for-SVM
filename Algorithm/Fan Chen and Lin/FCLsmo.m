@@ -6,7 +6,7 @@ classdef FCLsmo < handle
     %   selection using 2nd order information for traning support vector
     %   machine".
     %   An online free version of the paper is available at:
-    %   www.jmlr.org/papers/volume6/fan05a/fan05a.pdf>
+    %   www.jmlr.org/papers/volume6/fan05a/fan05a.pdf
     %   
     %   The authors propose a new Working set selection procedure that
     %   exploit 2nd order information of the objective function.
@@ -66,8 +66,6 @@ classdef FCLsmo < handle
     %           it possible to modify it using setKernel method.
     %   isSupportVector = boolean vector that indicates which of the alpha
     %                     is effectively a support vector.
-    %   alphaHistory = vector recording the behaviour of aplhas during the
-    %                  iteration of the algorithm.
     %   kernelEvaluation = varable that records the number of kernel
     %                      evaluation carried out during the iteration of
     %                      the algorithm.
@@ -91,7 +89,6 @@ classdef FCLsmo < handle
         sigma = 1;
         
         isSupportVector;
-        alphaHistory;
         kernelEvaluation = 0;
     end
     
@@ -131,7 +128,6 @@ classdef FCLsmo < handle
             obj.bias = 0;
             
             obj.isSupportVector = zeros(obj.N,1);
-            obj.alphaHistory = zeros(obj.N,obj.maxiter);
         end
         
         function ker = kernel(smo,x1,x2)
@@ -293,8 +289,6 @@ classdef FCLsmo < handle
                 end
                 
                 smo.iter = smo.iter + 1;
-                smo.alphaHistory(:,smo.iter) = smo.alpha;
-                
             end
             
             % Round LMs too close to 0 (numerical imprecision)
@@ -337,10 +331,22 @@ classdef FCLsmo < handle
                 
                 res = zeros(smo.N,1);
                 for k=1:smo.N
-                    res(k) = smo.kernel(smo.x(k,:),data(i,:));
+                    
+                    % Calculate the kernel only if the associated LM is greater than 0
+                    if smo.alpha(k) > 0
+                        res(k) = smo.kernel(smo.x(k,:),data(i,:));
+                    end
+                    
                 end
                 
                 output(i) = sum(smo.alpha .* smo.y .* res) + smo.bias;
+                
+                if output(i) > 0
+                    output(i) = 1;
+                elseif output(i) < 0
+                    output(i) = -1;
+                end
+                
             end
             
         end

@@ -38,8 +38,6 @@ classdef smoErrorCache < handle
     %           it possible to modify it using setKernel method.
     %   isSupportVector = boolean vector that indicates which of the alpha
     %                     is effectively a support vector.
-    %   alphaHistory = vector recording the behaviour of aplhas during the
-    %                  iteration of the algorithm.
     %   kernelEvaluation = varable that records the number of kernel
     %                      evaluation carried out during the iteration of
     %                      the algorithm.
@@ -49,7 +47,7 @@ classdef smoErrorCache < handle
         y;
         N;
         alpha;
-        b;
+        bias;
         C;
         errorCache;
         
@@ -63,7 +61,6 @@ classdef smoErrorCache < handle
         sigma = 1;
         
         isSupportVector;
-        alphaHistory;
         kernelEvaluation = 0;
     end
     
@@ -102,10 +99,9 @@ classdef smoErrorCache < handle
             obj.errorCache = - obj.y;
             
             % initialize threshold to zero
-            obj.b = 0;
+            obj.bias = 0;
             
             obj.isSupportVector = zeros(obj.N,1);
-            obj.alphaHistory = zeros(obj.N,obj.maxiter);
         end
         
         function Ei = calcEi(smo,i)
@@ -113,7 +109,7 @@ classdef smoErrorCache < handle
             for k=1:smo.N
                 res(k) = smo.kernel(smo.x(i,:),smo.x(k,:));
             end
-            u = sum ( smo.alpha .* smo.y .* res) - smo.b;
+            u = sum ( smo.alpha .* smo.y .* res) - smo.bias;
             Ei = u - smo.y(i);
         end
        
@@ -239,20 +235,20 @@ classdef smoErrorCache < handle
             end
             
             if (alphaNew1 > 0 && alphaNew1 < smo.C)
-                bNew = smo.b + E1 + smo.y(i1) * (alphaNew1 - alphaOld1) * k11 + smo.y(i2) * (alphaNew2 - alphaOld2) * k12;
+                bNew = smo.bias + E1 + smo.y(i1) * (alphaNew1 - alphaOld1) * k11 + smo.y(i2) * (alphaNew2 - alphaOld2) * k12;
             elseif (alphaNew2 > 0 && alphaNew2 < smo.C)
-                bNew = smo.b + E2 + smo.y(i2) * (alphaNew2 - alphaOld2) * k22 + smo.y(i1) * (alphaNew1 - alphaOld1) * k12;
+                bNew = smo.bias + E2 + smo.y(i2) * (alphaNew2 - alphaOld2) * k22 + smo.y(i1) * (alphaNew1 - alphaOld1) * k12;
             else
                 %If both a1 and a2 take values 0 or C, the original SMO algorithm computes
                 %two values of the new b for a1 and a2 and takes the average,
-                b1 = smo.b + E1 + smo.y(i1) * (alphaNew1 - alphaOld1) * k11 + smo.y(i2) * (alphaNew2 - alphaOld2) * k12;
-                b2 = smo.b + E2 + smo.y(i2) * (alphaNew2 - alphaOld2) * k22 + smo.y(i1) * (alphaNew1 - alphaOld1) * k12;
+                b1 = smo.bias + E1 + smo.y(i1) * (alphaNew1 - alphaOld1) * k11 + smo.y(i2) * (alphaNew2 - alphaOld2) * k12;
+                b2 = smo.bias + E2 + smo.y(i2) * (alphaNew2 - alphaOld2) * k22 + smo.y(i1) * (alphaNew1 - alphaOld1) * k12;
                 bNew = (b1 + b2) / 2;
             end
             
             %Update the treshold b
-            bOld = smo.b;
-            smo.b = bNew;
+            bOld = smo.bias;
+            smo.bias = bNew;
             
             %Update the vector of LMs
             smo.alpha(i1) = alphaNew1;
@@ -386,8 +382,6 @@ classdef smoErrorCache < handle
                     examineAll = 1;
                 end
                 
-                smo.alphaHistory(:,smo.iter) = smo.alpha;
-                
             end
             
             % Round LMs too close to 0 (numerical imprecision due to the error cache)
@@ -410,7 +404,7 @@ classdef smoErrorCache < handle
                 end
                 bias(i) = smo.y(i) - sum( smo.y .* smo.alpha .* res);
             end
-            smo.b = mean(bias);
+            smo.bias = mean(bias);
             
             
         end
@@ -426,13 +420,19 @@ classdef smoErrorCache < handle
             end
             
             for i=1:n(1)
-             
+                
                 res = zeros(smo.N,1);
                 for k=1:smo.N
-                    res(k) = smo.kernel(smo.x(k,:),data(i,:));
+                    
+                    % Calculate the kernel only if the associated LM is greater than 0
+                    if smo.alpha(k) > 0
+                        res(k) = smo.kernel(smo.x(k,:),data(i,:));
+                    end
+                    
                 end
                 
-            output(i) = sum(smo.alpha .* smo.y .* res) + smo.b;
+                output(i) = sum(smo.alpha .* smo.y .* res) + smo.bias;
+                
             end
             
         end

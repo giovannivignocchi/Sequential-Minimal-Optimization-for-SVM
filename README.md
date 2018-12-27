@@ -53,9 +53,15 @@ This series of test is performed using a slightly different version of the algor
 The way in which they were implemented led me to analyze how the Lagrange multipliers changes during the iterations of the algorithms.
 This approach was no more feasible as soon as the size of the dataset grows, since a big matrix needed to be stored in memory.
 
-A second series of test, is focused on 
+A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
+This tests are executed only for the SMO implentation proposed by [Joachims] (both with a working set of size 4 and 6) and  [Fan, Chem, Lin].
 
-The datasets used for this series of test are available in the [Dataset]()
+The datasets used for this series of test are available in the [Dataset](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Dataset/Data) folder. 
+
+- cod-rna (8 features, 59535 instances)
+- diabetes (8 features, 576 instances)
+- ringnorm (20 features, 6500 instances)
+- magic (10 features, 17118 instances)
 
 
 

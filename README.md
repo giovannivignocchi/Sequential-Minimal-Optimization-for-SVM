@@ -39,7 +39,16 @@ LINEARLY AND NON LINERLY SEPARABLE DATASET
 <img width="687" alt="mosaico" src="https://user-images.githubusercontent.com/32396630/50489264-fa7ba700-0a06-11e9-8595-23353999a8de.png">
 
 
-The results of the test performed are collected in the folder TEST RESULT, under the subpath 
+The results of these tests are collected in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20artificial%20dataset/TEST%20RESULTS). For each implementations different statistics are collected in the file stat. Among these:
+
+- The number of iteration performed
+- Training and prediction time
+- Avg number of kernel evaluation for iteration
+- Number of support vector
+
+To validate the results, another model is trained using the matlab function _fitcsvm_ and it is used as a baseline to check if the other models are consistent with it.
+
+This series f test is performed using a slightly different version of the algorithms implemented 
 
 
 

@@ -64,6 +64,12 @@ The datasets used for this series of test are available in the [Dataset](https:/
 - ringnorm (20 features, 6500 instances)
 - magic (10 features, 17118 instances)
 
+The training procedure is repeated, varying both the boxConstraint _C_ and the _sigma_ that control the gaussian kernel.
+Based on the size of the dataset under observation, a different number of iteration is performed.
+As for the previous series of test several statistics are collected and the results stored in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS).
+
+
+Note that, as the main scope of this project is to evaluate and compare the performances of this optimization methods, I do not investigate how the models generated work on the testing set. Even if the performance of the models are not investigated, I checked each model to be consistent with the one generated with the matlab function _fitcsvm_ (using the same parameter).
 
 
 ## Bibliography

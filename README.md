@@ -29,6 +29,7 @@ The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-
 ### Testing and analysis
 The last part of the project consisted in comparing the training of the various implementations on different dataset.
 <pre>
+FIRST SET OF TESTS
 </pre>
 A first set of tests was carried out on three different (bidimensional) dataset that were specially generated to test how the
 implementations approximate well known functions. A sample of the artificial dataset used, is shown in the images below:
@@ -56,6 +57,7 @@ This series of test is performed using a slightly different version of the algor
 The way in which they were implemented led me to analyze how the Lagrange multipliers changes during the iterations of the algorithms.
 This approach was no more feasible as soon as the size of the dataset grows, since a big matrix needed to be stored in memory.
 <pre>
+SECOND SET OF TESTS
 </pre>
 A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
 This tests are executed only for the SMO implentation proposed by [Joachims](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm/Joachims) (both with a working set of size 4 and 6) and  [Fan, Chem, Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm/Fan%20Chen%20and%20Lin).

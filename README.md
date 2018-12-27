@@ -16,14 +16,14 @@ to select the Lagrange multipliers that composed the working set
 The second stage of the project consisted in the implementation using Matlab of the algorithm proposed in the papers.
 
 For the sake of completeness two more version of the SMO were implemented
-1. A modified SMO proposed by Keerthi in "Improvements to Platt's SMO algorithm for SVM Classifier Design" 
+1. "Improvements to Platt's SMO algorithm for SVM Classifier Design",[Keerthi 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.5266&rep=rep1&type=pdf)
 2. The original version proposed by Platt without using an auxiliary cache to store Prediction error.
 
-This choice is due to the fact that the implementation proposed by keerthi employed a 1st order method to select the LMs that composed the
-working set as proposed by Joachims (article nr. 2), but since he used a working set that is always composed by only 2 LMs, it does not 
-rely on an external quadratic solver to solve the optimization step as done by the version proposed by Joachims.
+This choice is due to the fact that the implementation proposed by keerthi employed a 1st order method to select the LMs that composed the working set as proposed by Joachims (article nr. 2), but since he used a working set that is always composed by only 2 LMs, it does not rely on an external quadratic solver to solve the optimization step as done by the version proposed by Joachims.
 
-The folder Algorithms collects all the implementations cited above.
+While the choice to implemet the Platt's implementations that does not used any cache to temporarly store the prediction error is due  to the fact that could be intresting to analyze the effects of the cache on the training time.
+
+The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm) collects all the implementations cited above.
 
 The last part of the project consisted in comparing the training of the various implementations on different dataset.
 
@@ -48,12 +48,22 @@ The results of these tests are collected in the folder [TEST RESULT](https://git
 
 To validate the results, another model is trained using the matlab function _fitcsvm_ and it is used as a baseline to check if the other models are consistent with it.
 
-This series f test is performed using a slightly different version of the algorithms implemented 
+This series of test is performed using a slightly different version of the algorithms implemented in the final version of the project.
+The way in which they were implemented led me to analyze how the Lagrange multipliers changes during the iterations of the algorithms.
+This approach was no more feasible as soon as the size of the dataset grows, since a big matrix needed to be stored in memory.
 
 
 
-## Contributing
 
+
+## Bibliography
+
+1. Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines,   [Platt 1998](http://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/)
+2. Making Large-Scale SVM Learning Practical,   [Joachims 1998](http://www.cs.cornell.edu/people/tj/publications/joachims_99a.pdf)
+3. Working Set Selection Using Second Order Information for Training Support Vector Machines,   [Fan, Chem, Lin 2005](www.jmlr.org/papers/volume6/fan05a/fan05a.pdf)
+4. "Improvements to Platt's SMO algorithm for SVM Classifier Design" [Keerthi 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.5266&rep=rep1&type=pdf)
+5. [_SVMlight_ library documentation](http://svmlight.joachims.org/)
+6. Data Mining and Analysis: Fundamental Concepts and Algorithms (Wagner Meira, Mohammed J. Zaki)
 
 ## Authors
 

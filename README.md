@@ -54,7 +54,7 @@ The way in which they were implemented led me to analyze how the Lagrange multip
 This approach was no more feasible as soon as the size of the dataset grows, since a big matrix needed to be stored in memory.
 
 A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
-This tests are executed only for the SMO implentation proposed by [Joachims] (both with a working set of size 4 and 6) and  [Fan, Chem, Lin].
+This tests are executed only for the SMO implentation proposed by [Joachims](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm/Joachims) (both with a working set of size 4 and 6) and  [Fan, Chem, Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm/FanChemLin).
 
 The datasets used for this series of test are available in the [Dataset](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Dataset/Data) folder. 
 

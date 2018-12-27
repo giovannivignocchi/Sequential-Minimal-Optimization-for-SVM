@@ -1,9 +1,9 @@
-## Sequential minimal optimization
+# Sequential minimal optimization
 
 The main purpose of the project is to analyze the optimization methods, currently emplyed to perform 
 the training of the support vector machines (SVM).
 
-The first part of the project consisted in studing the three following paper :
+#### The first part of the project consisted in studing the three following paper :
 
 1. Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines,   [Platt 1998](http://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/)
 2. Making Large-Scale SVM Learning Practical,   [Joachims 1998](http://www.cs.cornell.edu/people/tj/publications/joachims_99a.pdf)
@@ -13,7 +13,7 @@ The first arictle discusses the sequential minimal optimization method (SMO) in 
 and the third, the authors proposed two different modifications of the SMO that employ, respectively, a 1st order and 2nd order method 
 to select the Lagrange multipliers that composed the working set
 
-The second stage of the project consisted in the implementation using Matlab of the algorithm proposed in the papers.
+#### The second stage of the project consisted in the implementation using Matlab of the algorithm proposed in the papers.
 
 For the sake of completeness two more version of the SMO were implemented
 1. "Improvements to Platt's SMO algorithm for SVM Classifier Design",[Keerthi 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.5266&rep=rep1&type=pdf)
@@ -25,7 +25,7 @@ While the choice to implemet the Platt's implementations that does not used any 
 
 The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm) collects all the implementations cited above.
 
-The last part of the project consisted in comparing the training of the various implementations on different dataset.
+#### The last part of the project consisted in comparing the training of the various implementations on different dataset.
 
 A first set of tests was carried out on three different (bidimensional) dataset that were specially generated to test how the
 implementations approximate well known functions. A sample of the artificial dataset used, is shown in the images below:
@@ -52,7 +52,7 @@ This series of test is performed using a slightly different version of the algor
 The way in which they were implemented led me to analyze how the Lagrange multipliers changes during the iterations of the algorithms.
 This approach was no more feasible as soon as the size of the dataset grows, since a big matrix needed to be stored in memory.
 
-
+A second series of test
 
 
 

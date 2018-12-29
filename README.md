@@ -56,9 +56,11 @@ To validate the results, another model is trained using the matlab function _fit
 This series of test is performed using a slightly different version of the algorithms implemented in the final version of the project.
 The way in which they were implemented led me to analyze how the Lagrange multipliers changes during the iterations of the algorithms.
 This approach was no more feasible as soon as the size of the dataset grows, since a big matrix needed to be stored in memory.
+
 <pre>
 SECOND SET OF TESTS
 </pre>
+
 A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
 This tests are executed only for the SMO implentation proposed by [Joachims](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm/Joachims) (both with a working set of size 4 and 6) and  [Fan, Chem, Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm/Fan%20Chen%20and%20Lin).
 
@@ -69,10 +71,19 @@ The datasets used for this series of test are available in the [Dataset](https:/
 - ringnorm (20 features, 6500 instances)
 - magic (10 features, 17118 instances)
 
-The training procedure is repeated, varying both the boxConstraint _C_ and the _sigma_ that control the gaussian kernel.
-Based on the size of the dataset under observation, a different number of iteration is performed.
-As for the previous series of test several statistics are collected and the results stored in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS).
+For each dataset the following step are executed:
 
+- Coarse grain grid search to estimate the best parameter (boxConstraint _C_ and the _sigma_ that control the gaussian kernel)
+- Fine grain grid search in the neighbour of the parameters, where the best model is found in the previous step.
+- The final model is trained with the best parameters find so far.
+
+These step are carried out in parallel for the three optimization method specified above.
+
+As for the previous series of test several statistics are collected during the three step mentioned above and the results stored in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). These staistics are then used to analyze how the different training procedure perform while the parameters of the model change.
+
+Before presenting the final results is important to specify two considerations 
+
+-Based on the size of the dataset under observation, a different number of iteration is performed during the grid search step.
 
 Note that, as the main scope of this project is to evaluate and compare the performances of this optimization methods, I do not investigate how the models generated work on the testing set. Even if the performance of the models are not investigated, I checked each model to be consistent with the one generated with the matlab function _fitcsvm_ (using the same parameter).
 

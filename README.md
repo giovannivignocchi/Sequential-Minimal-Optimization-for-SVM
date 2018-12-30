@@ -66,10 +66,10 @@ This tests are executed only for the SMO implentation proposed by [Joachims](htt
 
 The datasets used for this series of test are available in the [Dataset](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Dataset/Data) folder. 
 
-- cod-rna (8 features, 59535 instances)
 - diabetes (8 features, 576 instances)
 - ringnorm (20 features, 6500 instances)
 - magic (10 features, 17118 instances)
+- cod-rna (8 features, 59535 instances)
 
 For each dataset the following step are executed:
 
@@ -77,15 +77,13 @@ For each dataset the following step are executed:
 - Fine grain grid search in the neighbour of the parameters, where the best model is found in the previous step.
 - The final model is trained with the best parameters find so far.
 
-These step are carried out in parallel for the three optimization method specified above.
+These steps are carried out in parallel for the three optimization method specified above.
 
-As for the previous series of test several statistics are collected during the three step mentioned above and the results stored in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). These staistics are then used to analyze how the different training procedure perform while the parameters of the model change.
+As for the previous series of test several statistics are collected during the three steps mentioned above and the results stored in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). These staistics are then analyzed to show how the optimization methods respond to changes in the specified parameters.
 
 Before presenting the final results is important to specify two considerations 
-
 -Based on the size of the dataset under observation, a different number of iteration is performed during the grid search step.
 
-Note that, as the main scope of this project is to evaluate and compare the performances of this optimization methods, I do not investigate how the models generated work on the testing set. Even if the performance of the models are not investigated, I checked each model to be consistent with the one generated with the matlab function _fitcsvm_ (using the same parameter).
 
 
 ## Bibliography

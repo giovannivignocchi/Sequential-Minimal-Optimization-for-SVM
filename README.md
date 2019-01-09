@@ -32,7 +32,9 @@ The last part of the project consisted in comparing the training of the various 
 ----------------------------------------------- FIRST SET OF TESTS -----------------------------------------------
 </pre>
 A first set of tests was carried out on three different (bidimensional) dataset that were specially generated to test how the
-implementations approximate well known functions. A sample of the artificial dataset used, is shown in the images below:
+implementations approximate well known functions.
+
+A sample of the artificial dataset used, is shown in the images below:
 
 
 CORNERS DATASET

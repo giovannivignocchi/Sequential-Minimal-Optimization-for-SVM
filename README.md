@@ -37,11 +37,11 @@ implementations approximate well known functions.
 A sample of the artificial dataset used, is shown in the images below:
 
 
-CORNERS DATASET
+   CORNERS DATASET
 <p align="left">
 <img width="308" alt="corners" src="https://user-images.githubusercontent.com/32396630/50488895-ff3f5b80-0a04-11e9-8b38-b88c7de53a4a.PNG">
 
-LINEARLY AND NON LINERLY SEPARABLE DATASET
+ LINEARLY AND NON LINERLY SEPARABLE DATASET
 
 <img width="687" alt="mosaico" src="https://user-images.githubusercontent.com/32396630/50489264-fa7ba700-0a06-11e9-8595-23353999a8de.png">
 
@@ -53,11 +53,11 @@ The results of these tests are collected in the folder [TEST RESULT](https://git
 - Avg number of kernel evaluation for iteration
 - Number of support vector
 
-To validate the results, another model is trained using the matlab function _fitcsvm_ and it is used as a baseline to check if the other models are consistent with it.
+To check the results obtained, another model is trained using the matlab function _fitcsvm_ and it is used as a baseline to check if the other models are consistent with it.
 
 This series of test is performed using a slightly different version of the algorithms implemented in the final version of the project.
 The way in which they were implemented led me to analyze how the Lagrange multipliers changes during the iterations of the algorithms.
-This approach was no more feasible as soon as the size of the dataset grows, since a big matrix needed to be stored in memory.
+This approach was no more feasible as soon as the size of the dataset grows, hence this feature was deleted in the implementations used in the following test.
 
 <pre>
 ---------------------------------------------- SECOND SET OF TESTS ----------------------------------------------

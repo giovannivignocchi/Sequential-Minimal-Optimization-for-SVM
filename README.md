@@ -29,7 +29,7 @@ The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-
 ### Testing and analysis
 The last part of the project consisted in comparing the training of the various implementations on different dataset.
 <pre>
-FIRST SET OF TESTS
+----------------------------------------------- FIRST SET OF TESTS -----------------------------------------------
 </pre>
 A first set of tests was carried out on three different (bidimensional) dataset that were specially generated to test how the
 implementations approximate well known functions. A sample of the artificial dataset used, is shown in the images below:
@@ -58,7 +58,7 @@ The way in which they were implemented led me to analyze how the Lagrange multip
 This approach was no more feasible as soon as the size of the dataset grows, since a big matrix needed to be stored in memory.
 
 <pre>
-SECOND SET OF TESTS
+---------------------------------------------- SECOND SET OF TESTS ----------------------------------------------
 </pre>
 
 A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
@@ -71,18 +71,20 @@ The datasets used for this series of test are available in the [Dataset](https:/
 - magic (10 features, 17118 instances)
 - cod-rna (8 features, 59535 instances)
 
-For each dataset the following step are executed:
+In order to test how the different implementations perform in response to changes in parameters, a grid search over the parameter _C_ and _sigma_ is carried out, for each of the data set. 
+Based on the size of the dataset under observation, a different number of change in parameters are applied during grid search.
+The models generated are tested on the relative tests set. However this should be considered as a bad practice (validating model using test set), the main porpouse of this project is not to generate good models, but to analyze the performance of the different implementations under analysis. 
 
-- Coarse grain grid search to estimate the best parameter (boxConstraint _C_ and the _sigma_ that control the gaussian kernel)
-- Fine grain grid search in the neighbour of the parameters, where the best model is found in the previous step.
-- The final model is trained with the best parameters find so far.
+As for the previous series of test several statistics are collected and the results stored in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). These staistics are then analyzed to show how the optimization methods respond to changes in the specified parameters.
 
-These steps are carried out in parallel for the three optimization method specified above.
+Statistics collected:
+- Total number of iteration
+- Training time
+- Total number of kernel evaluation
+- Number of support vector generated
+- Several metrics about the performance of the model generated (accuracy, sensitivity, specificity, precision, recall, f_measure, gmean).
 
-As for the previous series of test several statistics are collected during the three steps mentioned above and the results stored in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). These staistics are then analyzed to show how the optimization methods respond to changes in the specified parameters.
-
-Before presenting the final results is important to specify two considerations 
--Based on the size of the dataset under observation, a different number of iteration is performed during the grid search step.
+The following pictures collect the results obtained during this test
 
 
 

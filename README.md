@@ -88,6 +88,7 @@ Statistics collected:
 
 The following pictures collect the results obtained during this test
 
+![flccomplessivo](https://user-images.githubusercontent.com/32396630/51791861-05625c80-21aa-11e9-80e3-4301430de884.jpg)
 
 
 ## Bibliography

@@ -88,7 +88,13 @@ Statistics collected:
 
 The following pictures collect the results obtained during this test
 
+Fan Chen and Lin
 ![flccomplessivo](https://user-images.githubusercontent.com/32396630/51791861-05625c80-21aa-11e9-80e3-4301430de884.jpg)
+
+JOACHIMS with working set size equal 4
+![iterj4](https://user-images.githubusercontent.com/32396630/51791963-5e7ec000-21ab-11e9-9a11-97593fcff93e.jpg)
+
+JOACHIMS with working set size equal 6
 
 
 ## Bibliography

@@ -3,7 +3,7 @@
 The main purpose of the project is to analyze the optimization methods, currently emplyed to perform 
 the training of the support vector machines (SVM).
 
-### The scope of the project
+## The scope of the project
 
 The first part of the project consisted in studing the three following paper :
 1. Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines,   [Platt 1998](http://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/)
@@ -14,7 +14,7 @@ The first arictle discusses the sequential minimal optimization method (SMO) in 
 and the third, the authors proposed two different modifications of the SMO that employ, respectively, a 1st order and 2nd order method 
 to select the Lagrange multipliers that composed the working set
 
-### Implementation
+## Implementation
 The second stage of the project consisted in the implementation using Matlab of the algorithm proposed in the papers.
 For the sake of completeness two more version of the SMO were implemented
 1. "Improvements to Platt's SMO algorithm for SVM Classifier Design",[Keerthi 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.5266&rep=rep1&type=pdf)
@@ -26,7 +26,7 @@ While the choice to implemet the Platt's implementations that does not used any 
 
 The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm) collects all the implementations cited above.
 
-### Testing and analysis
+## Testing and analysis
 The last part of the project consisted in comparing the training of the various implementations on different dataset.
 <pre>
 ----------------------------------------------- FIRST SET OF TESTS -----------------------------------------------
@@ -87,6 +87,7 @@ Statistics collected:
 - Several metrics about the performance of the model generated (accuracy, sensitivity, specificity, precision, recall, f_measure, gmean).
 
 The following pictures collect the results obtained during this test
+### DIABETES 
 
 Fan Chen and Lin
 ![flccomplessivo](https://user-images.githubusercontent.com/32396630/51791861-05625c80-21aa-11e9-80e3-4301430de884.jpg)

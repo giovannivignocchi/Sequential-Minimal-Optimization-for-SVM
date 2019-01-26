@@ -98,7 +98,28 @@ JOACHIMS with working set size equal 4
 JOACHIMS with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
 
+### RINGNORM
+Fan Chen and Lin
 
+
+JOACHIMS with working set size equal 4
+
+
+JOACHIMS with working set size equal 6
+
+### MAGIC
+Fan Chen and Lin
+
+
+JOACHIMS with working set size equal 4
+
+
+JOACHIMS with working set size equal 6
+
+
+During the grid search, I noted the presence of several combinatin of parameters (_C_ and _sigma_) that severely slow down the convergence of the Joachims' implementation.
+
+As a consequence I repeat the training for such combination of parameter, using a different seed to shuffle the dataset. 
 
 
 ## Bibliography

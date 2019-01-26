@@ -86,9 +86,9 @@ Statistics collected:
 - Number of support vector generated
 - Several metrics about the performance of the model generated (accuracy, sensitivity, specificity, precision, recall, f_measure, gmean).
 
-The following pictures collect the results obtained during this test
-### DIABETES 
+The following pictures collect the results obtained during this serie of tests:
 
+### DIABETES 
 Fan Chen and Lin
 ![flccomplessivo](https://user-images.githubusercontent.com/32396630/51791861-05625c80-21aa-11e9-80e3-4301430de884.jpg)
 
@@ -97,6 +97,8 @@ JOACHIMS with working set size equal 4
 
 JOACHIMS with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
+
+
 
 
 ## Bibliography

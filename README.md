@@ -95,6 +95,7 @@ JOACHIMS with working set size equal 4
 ![iterj4](https://user-images.githubusercontent.com/32396630/51791963-5e7ec000-21ab-11e9-9a11-97593fcff93e.jpg)
 
 JOACHIMS with working set size equal 6
+![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
 
 
 ## Bibliography

@@ -100,12 +100,13 @@ JOACHIMS with working set size equal 6
 
 ### RINGNORM
 Fan Chen and Lin
-
+![fclcomplete](https://user-images.githubusercontent.com/32396630/51843395-26928c80-2313-11e9-8396-32a6712e0219.jpg)
 
 JOACHIMS with working set size equal 4
-
+![j4complessivo](https://user-images.githubusercontent.com/32396630/51843397-285c5000-2313-11e9-874f-99940b03f7cf.jpg)
 
 JOACHIMS with working set size equal 6
+![j6complessivo](https://user-images.githubusercontent.com/32396630/51843398-285c5000-2313-11e9-9e89-e371c6ea4c04.jpg)
 
 ### MAGIC
 Fan Chen and Lin

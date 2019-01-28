@@ -123,7 +123,10 @@ During the grid search, I detected the presence of some parameter combinations (
 To further analyze the reason behind such a behaivour, I repeated the training phase using a different seed to shuffle the dataset.
 What I noticed, was that the way in which the data were shuffled could have a strong impact on the speed of convergence for the Joachims implementation. On the other hand, the Fan Chen and Lin implementation does not suffer of the same issue.
 
-*it is noteworthy that this issue is hidden in the graphs presented above, because in the points where this effect was visible I repeated the training with different shuffle of the data and plotted the statistics for the configuration where I obtained convergence.  
+
+NOTE how this issue is hidden in the graphs presented above, because in the points where this effect was visible I repeated the training with different shuffle of the data and plotted the statistics for the configuration where I obtained convergence.  
+
+
 
 The following graphs show how for a lot of parameters combinations was possible to identify a _seed_ (use to shuffle the data), that causes the Joachims' implementation to do not converge.
 
@@ -141,7 +144,7 @@ The following graphs show how for a lot of parameters combinations was possible 
 7. Data Mining and Analysis: Fundamental Concepts and Algorithms (Wagner Meira, Mohammed J. Zaki)
 8. A Practical Guide to Support Vector Classification [Chih-Wei Hsu, Chih-Chung Chang, and Chih-Jen Lin](https://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf)
 
-## Authors
+## Author
 
     Giovanni Vignocchi
 

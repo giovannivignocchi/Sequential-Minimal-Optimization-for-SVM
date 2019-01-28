@@ -118,20 +118,6 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
 
-During the grid search, I detected the presence of some parameter combinations (_C_ and _sigma_) that severely slow down the Joachims' implementations, to such an extent that they did not even reach convergence.
-
-To further analyze the reason behind such a behaivour, I repeated the training phase using a different seed to shuffle the dataset.
-What I noticed, was that the way in which the data were shuffled could have a strong impact on the speed of convergence for the Joachims implementation. On the other hand, the Fan Chen and Lin implementation does not suffer of the same issue.
-
-
-NOTE how this issue is hidden in the graphs presented above, because in the points where this effect was visible I repeated the training with different shuffle of the data and plotted the statistics for the configuration where I obtained convergence.  
-
-
-
-The following graphs show how for a lot of parameters combinations was possible to identify a _seed_ (use to shuffle the data), that causes the Joachims' implementation to do not converge.
-
-
-
 
 ## Bibliography
 

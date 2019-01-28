@@ -110,13 +110,13 @@ JOACHIMS with working set size equal 6
 
 ### MAGIC
 Fan Chen and Lin
-
+![complessivofcl](https://user-images.githubusercontent.com/32396630/51862186-54d99180-233e-11e9-85eb-5d94a1068e9d.jpg)
 
 JOACHIMS with working set size equal 4
-
+![complessivoj4](https://user-images.githubusercontent.com/32396630/51862187-55722800-233e-11e9-9c6e-2f1db1adb9d4.jpg)
 
 JOACHIMS with working set size equal 6
-
+![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
 
 During the grid search, I detected the presence of some parameter combinations (_C_ and _sigma_) that severely slow down the Joachims' implementations, to such an extent that they did not even reach convergence.
 

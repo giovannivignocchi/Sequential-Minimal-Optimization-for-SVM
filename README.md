@@ -86,7 +86,7 @@ Statistics collected:
 - Number of support vector generated
 - Several metrics about the performance of the model generated (accuracy, sensitivity, specificity, precision, recall, f_measure, gmean).
 
-The following pictures collect the results obtained during this serie of tests:
+The following pictures collect the results obtained during this series of tests:
 
 ### DIABETES 
 Fan Chen and Lin
@@ -118,9 +118,14 @@ JOACHIMS with working set size equal 4
 JOACHIMS with working set size equal 6
 
 
-During the grid search, I noted the presence of several combinatin of parameters (_C_ and _sigma_) that severely slow down the convergence of the Joachims' implementation.
+During the grid search, I detected the presence of some parameter combinations (_C_ and _sigma_) that severely slow down the Joachims' implementations, to such an extent that they did not even reach convergence.
 
-As a consequence I repeat the training for such combination of parameter, using a different seed to shuffle the dataset. 
+To further analyze the reason behind such a behaivour, I repeated the training phase using a different seed to shuffle the dataset.
+What I noticed, was that the way in which the data were shuffled could have a strong impact on the speed of convergence for the Joachims implementation. On the other hand, the Fan Chen and Lin implementation does not suffer of the same issue.
+
+The following graphs show how for a lot of parameters combinations was possible to identify a _seed_ (use to shuffle the data), that causes the Joachims' implementation to not converge.
+
+
 
 
 ## Bibliography

@@ -92,30 +92,30 @@ The following pictures collect the results obtained during this series of tests:
 Fan Chen and Lin
 ![flccomplessivo](https://user-images.githubusercontent.com/32396630/51791861-05625c80-21aa-11e9-80e3-4301430de884.jpg)
 
-JOACHIMS with working set size equal 4
+Joachims with working set size equal 4
 ![iterj4](https://user-images.githubusercontent.com/32396630/51791963-5e7ec000-21ab-11e9-9a11-97593fcff93e.jpg)
 
-JOACHIMS with working set size equal 6
+Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
 
 ### RINGNORM
 Fan Chen and Lin
 ![fclcomplete](https://user-images.githubusercontent.com/32396630/51843395-26928c80-2313-11e9-8396-32a6712e0219.jpg)
 
-JOACHIMS with working set size equal 4
+Joachims with working set size equal 4
 ![j4complessivo](https://user-images.githubusercontent.com/32396630/51843397-285c5000-2313-11e9-874f-99940b03f7cf.jpg)
 
-JOACHIMS with working set size equal 6
+Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51843398-285c5000-2313-11e9-9e89-e371c6ea4c04.jpg)
 
 ### MAGIC
 Fan Chen and Lin
 ![complessivofcl](https://user-images.githubusercontent.com/32396630/51862186-54d99180-233e-11e9-85eb-5d94a1068e9d.jpg)
 
-JOACHIMS with working set size equal 4
+Joachims with working set size equal 4
 ![complessivoj4](https://user-images.githubusercontent.com/32396630/51862187-55722800-233e-11e9-9c6e-2f1db1adb9d4.jpg)
 
-JOACHIMS with working set size equal 6
+Joachims with working set size equal 6
 ![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
 
 During the grid search, I detected the presence of some parameter combinations (_C_ and _sigma_) that severely slow down the Joachims' implementations, to such an extent that they did not even reach convergence.
@@ -123,7 +123,9 @@ During the grid search, I detected the presence of some parameter combinations (
 To further analyze the reason behind such a behaivour, I repeated the training phase using a different seed to shuffle the dataset.
 What I noticed, was that the way in which the data were shuffled could have a strong impact on the speed of convergence for the Joachims implementation. On the other hand, the Fan Chen and Lin implementation does not suffer of the same issue.
 
-The following graphs show how for a lot of parameters combinations was possible to identify a _seed_ (use to shuffle the data), that causes the Joachims' implementation to not converge.
+*it is noteworthy that this issue is hidden in the graphs presented above, because in the points where this effect was visible I repeated the training with different shuffle of the data and plotted the statistics for the configuration where I obtained convergence.  
+
+The following graphs show how for a lot of parameters combinations was possible to identify a _seed_ (use to shuffle the data), that causes the Joachims' implementation to do not converge.
 
 
 

@@ -60,13 +60,16 @@ The statistics collected in this second series of test were used to gain a bette
 A sample of the artificial dataset used, is shown in the images below:
 
 
-CORNERS DATASET
-<p align="left">
-<img width="308" alt="corners" src="https://user-images.githubusercontent.com/32396630/50488895-ff3f5b80-0a04-11e9-8b38-b88c7de53a4a.PNG">
 
- LINEARLY AND NON LINERLY SEPARABLE DATASET
 
-<img width="687" alt="mosaico" src="https://user-images.githubusercontent.com/32396630/50489264-fa7ba700-0a06-11e9-8595-23353999a8de.png">
+
+AAAAAAA
+
+![ls](https://user-images.githubusercontent.com/32396630/51924100-b3f5df80-23ec-11e9-923a-da9758542e3d.jpg
+
+NON LINERLY SEPARABLE DATASET
+
+![nls](https://user-images.githubusercontent.com/32396630/51924099-b3f5df80-23ec-11e9-8a44-17641528ce0c.jpg)
 
 
 The results of these tests are collected in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20artificial%20dataset/TEST%20RESULTS). For each implementations different statistics are collected in the file stat. Among these:

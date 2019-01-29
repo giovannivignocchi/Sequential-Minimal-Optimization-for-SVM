@@ -57,27 +57,24 @@ To do so, the training phase is repeated in three different settings:
 The statistics collected in this second series of test were used to gain a better understanding on how these different training techniques behave.
 
 ## First series of tests
-In this phase the algorithms were tested both on perfectly separable and non-perfcetly separable data.
-
-A sample of the artificial dataset used, is shown in the images below:
+In this phase the algorithms were tested both on perfectly separable and non-perfcetly separable data. 
+<br />A sample of the artificial dataset used, is shown in the images below:
 
 ![ls](https://user-images.githubusercontent.com/32396630/51924433-501fe680-23ed-11e9-8198-e81da13399dd.jpg)
 
 ![nls](https://user-images.githubusercontent.com/32396630/51924099-b3f5df80-23ec-11e9-8a44-17641528ce0c.jpg)
 
+The model obtained, training the algorithms on these artificial dataset, confirm the overall correctness of the implementations build in the project.
+<br />To do so, another model is trained using the matlab function _fitcsvm_ (with parameters consistent with those used by the implementation under testing). This modle is then used as a baseline to check if the other models are consistent with it.
 
-The results of these tests are collected in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20artificial%20dataset/TEST%20RESULTS). For each implementations different statistics are collected in the file stat. Among these:
-
+Furthermore during the training phase different statistics are collected. Among these:
 - The number of iteration performed
 - Training and prediction time
 - Avg number of kernel evaluation for iteration
 - Number of support vector
 
-To check the results obtained, another model is trained using the matlab function _fitcsvm_ and it is used as a baseline to check if the other models are consistent with it.
-
-This series of test is performed using a slightly different version of the algorithms implemented in the final version of the project.
-The way in which they were implemented led me to analyze how the Lagrange multipliers changes during the iterations of the algorithms.
-This approach was no more feasible as soon as the size of the dataset grows, hence this feature was deleted in the implementations used in the following test.
+Since these tests are more focused on testing the overall correctness of the algorithms the results obtained are not presented here.
+<br />Anyhow, the interested reader can find all the results and statistics concerning this serie of tests in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20artificial%20dataset/TEST%20RESULTS).
 
 ## Second series of tests
 

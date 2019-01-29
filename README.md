@@ -28,9 +28,8 @@ The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-
 
 ## Testing and analysis
 The last part of the project consisted in comparing the training of the various implementations on different dataset.
-<pre>
------------------------------------------------ FIRST SET OF TESTS -----------------------------------------------
-</pre>
+
+## First series of tests
 A first set of tests was carried out on three different (bidimensional) dataset that were specially generated to test how the
 implementations approximate well known functions.
 
@@ -59,9 +58,7 @@ This series of test is performed using a slightly different version of the algor
 The way in which they were implemented led me to analyze how the Lagrange multipliers changes during the iterations of the algorithms.
 This approach was no more feasible as soon as the size of the dataset grows, hence this feature was deleted in the implementations used in the following test.
 
-<pre>
----------------------------------------------- SECOND SET OF TESTS ----------------------------------------------
-</pre>
+## Second series of tests
 
 A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
 This tests are executed only for the SMO implentation proposed by [Joachims](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm/Joachims) (both with a working set of size 4 and 6) and  [Fan, Chem, Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm/Fan%20Chen%20and%20Lin).
@@ -98,6 +95,7 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
 
+<p>Some Markdown text with <span style="color:blue">some <em>blue</em> text</span>.</p>
 
                                                          C = 2^-5
 ![diab1](https://user-images.githubusercontent.com/32396630/51906444-6796a980-23c4-11e9-9f6b-391661763e64.jpg)
@@ -122,10 +120,15 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51843398-285c5000-2313-11e9-9e89-e371c6ea4c04.jpg)
 
+                                                         C = 2^-5
 ![ring1](https://user-images.githubusercontent.com/32396630/51906430-66fe1300-23c4-11e9-8438-7332fbc118c2.jpg)
+<pre>                                                    C = 2^-3 </pre>
 ![ring2](https://user-images.githubusercontent.com/32396630/51906434-66fe1300-23c4-11e9-8799-9e9ff7e422f3.jpg)
+<pre>                                                    C = 2  </pre>
 ![ring3](https://user-images.githubusercontent.com/32396630/51906437-66fe1300-23c4-11e9-9712-37ee92c3440d.jpg)
+<pre>                                                    C = 2^7  </pre>           
 ![ring4](https://user-images.githubusercontent.com/32396630/51906439-6796a980-23c4-11e9-90cf-feb56df5cfac.jpg)
+<pre>                                                    C = 2^9  </pre>                          
 ![ring5](https://user-images.githubusercontent.com/32396630/51906441-6796a980-23c4-11e9-95d8-42da8b43fa87.jpg)
 
 ### MAGIC

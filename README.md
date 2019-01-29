@@ -57,17 +57,10 @@ To do so, the training phase is repeated in three different settings:
 The statistics collected in this second series of test were used to gain a better understanding on how these different training techniques behave.
 
 ## First series of tests
+In this phase the algorithms were tested both on perfectly separable and non-perfcetly separable data.
 A sample of the artificial dataset used, is shown in the images below:
 
-
-
-
-
-AAAAAAA
-
-![ls](https://user-images.githubusercontent.com/32396630/51924100-b3f5df80-23ec-11e9-923a-da9758542e3d.jpg
-
-NON LINERLY SEPARABLE DATASET
+![ls](https://user-images.githubusercontent.com/32396630/51924433-501fe680-23ed-11e9-8198-e81da13399dd.jpg)
 
 ![nls](https://user-images.githubusercontent.com/32396630/51924099-b3f5df80-23ec-11e9-8a44-17641528ce0c.jpg)
 

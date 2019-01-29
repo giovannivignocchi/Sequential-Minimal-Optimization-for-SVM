@@ -64,8 +64,8 @@ In this phase the algorithms were tested both on perfectly separable and non-per
 
 ![nls](https://user-images.githubusercontent.com/32396630/51924099-b3f5df80-23ec-11e9-8a44-17641528ce0c.jpg)
 
-The model obtained, training the algorithms on these artificial dataset, confirm the overall correctness of the implementations build in the project.
-<br />To do so, another model is trained using the matlab function _fitcsvm_ (with parameters consistent with those used by the implementation under testing). This modle is then used as a baseline to check if the other models are consistent with it.
+The models obtained, training the algorithms on these artificial datasets, confirm the the overall correctness of their implementation.
+<br />To do so, another model is trained using the matlab function _fitcsvm_ (with parameters consistent with those used by the implementations under testing). This model is then used as a baseline to check if the other models are consistent with it.
 
 Furthermore during the training phase different statistics are collected. Among these:
 - The number of iteration performed

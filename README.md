@@ -30,7 +30,7 @@ Although it might be interesting to further analyze both:
 - The performance of the Keerthi's SMO with respect to th Joachims' SMO  that use a working set with size equals 2.
 These considerations will not be taken into account in the continuation of the project. 
 
-The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm) collects all the implementations cited above.
+The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm) collects all the implementations cited below:
 
 - [Platt's version without Error Cache](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Platt/smo.m)
 - [Platt's version with Error Cache](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Platt/smoErrorCache.m)
@@ -39,16 +39,26 @@ The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-
 - [Fan Chen and Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Fan%20Chen%20and%20Lin/FCLsmo.m) (2nd order method) 
 
 ## Testing and analysis
-The last part of the project consisted in comparing the training of the various implementations on different dataset.
+The third part of the project is testing and analysis stage. 
+This phase is clearly divided in two sub-step:
+
+1. A first set of tests is focused on three different (bidimensional) dataset that were artificially generated.
+The main goal of this firts test phase is to assert the correctness of all the implementations. 
+In fact, it was easy to detect errors an imprecisons in the implementations, testing the algorithms against this small-size and known datasets.
+
+2. A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
+The aim of this second set of tests is to compare how a 1st order SMO and a 2nd order SMO perform in the training phase.
+To do so, the training phase is repeated in three different settings:
+- Joachims'version with Working Set Size (WSS) equals 4
+- Joachims'version with WSS equals 6
+- Fan Chen and Lin
+The statistics collected in this second series of test were used to gain a better understanding on how these different training techniques behave.
 
 ## First series of tests
-A first set of tests was carried out on three different (bidimensional) dataset that were specially generated to test how the
-implementations approximate well known functions.
-
 A sample of the artificial dataset used, is shown in the images below:
 
 
-   CORNERS DATASET
+CORNERS DATASET
 <p align="left">
 <img width="308" alt="corners" src="https://user-images.githubusercontent.com/32396630/50488895-ff3f5b80-0a04-11e9-8b38-b88c7de53a4a.PNG">
 

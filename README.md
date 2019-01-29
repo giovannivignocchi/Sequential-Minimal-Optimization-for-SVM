@@ -49,9 +49,11 @@ In fact, it was easy to detect errors an imprecisons in the implementations, tes
 2. A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
 The aim of this second set of tests is to compare how a 1st order SMO and a 2nd order SMO perform in the training phase.
 To do so, the training phase is repeated in three different settings:
+
 - Joachims'version with Working Set Size (WSS) equals 4
 - Joachims'version with WSS equals 6
 - Fan Chen and Lin
+
 The statistics collected in this second series of test were used to gain a better understanding on how these different training techniques behave.
 
 ## First series of tests
@@ -125,17 +127,17 @@ The following graphs compare how the differenet implementations perform as _sigm
 
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
-                                                         C = 2^-5
+                                                         C = 2<sup>-5</sup>
 ![diab1](https://user-images.githubusercontent.com/32396630/51906444-6796a980-23c4-11e9-9f6b-391661763e64.jpg)
-<pre>                                                    C = 2^-3 </pre>
+<pre>                                                    C = 2<sup>-3</sup> </pre>
 ![diab2](https://user-images.githubusercontent.com/32396630/51906447-6796a980-23c4-11e9-9aa7-ea162a46c727.jpg)   
 <pre>                                                    C = 2  </pre>
 ![diab3](https://user-images.githubusercontent.com/32396630/51906449-682f4000-23c4-11e9-8649-ca94b19c0518.jpg)
-<pre>                                                    C = 2^7  </pre>                                                          
+<pre>                                                    C = 2<sup>7</sup>  </pre>                                                          
 ![diab4](https://user-images.githubusercontent.com/32396630/51906450-682f4000-23c4-11e9-80ef-61ee3f7db269.jpg)
-<pre>                                                    C = 2^9  </pre>                                                          
+<pre>                                                    C = 2<sup>9</sup>  </pre>                                                          
 ![diab5](https://user-images.githubusercontent.com/32396630/51906452-682f4000-23c4-11e9-95ec-cbd4834e529d.jpg)
-<pre>                                                    C = 2^15  </pre>                                                          
+<pre>                                                    C = 2<sup>15</sup>  </pre>                                                          
 ![diab6](https://user-images.githubusercontent.com/32396630/51906455-682f4000-23c4-11e9-917e-06f2d81eacef.jpg)
 
 ###                                                      RINGNORM
@@ -148,15 +150,15 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51843398-285c5000-2313-11e9-9e89-e371c6ea4c04.jpg)
 
-                                                         C = 2^-5
+                                                         C = 2<sup>-5</sup>
 ![ring1](https://user-images.githubusercontent.com/32396630/51906430-66fe1300-23c4-11e9-8438-7332fbc118c2.jpg)
-<pre>                                                    C = 2^-3 </pre>
+<pre>                                                    C = 2<sup>-3</sup></pre>
 ![ring2](https://user-images.githubusercontent.com/32396630/51906434-66fe1300-23c4-11e9-8799-9e9ff7e422f3.jpg)
 <pre>                                                    C = 2  </pre>
 ![ring3](https://user-images.githubusercontent.com/32396630/51906437-66fe1300-23c4-11e9-9712-37ee92c3440d.jpg)
-<pre>                                                    C = 2^7  </pre>           
+<pre>                                                    C = 2<sup>7</sup>  </pre>           
 ![ring4](https://user-images.githubusercontent.com/32396630/51906439-6796a980-23c4-11e9-90cf-feb56df5cfac.jpg)
-<pre>                                                    C = 2^9  </pre>                          
+<pre>                                                    C = 2<sup>9</sup>  </pre>                          
 ![ring5](https://user-images.githubusercontent.com/32396630/51906441-6796a980-23c4-11e9-95d8-42da8b43fa87.jpg)
 
 ###                                                         MAGIC
@@ -169,11 +171,11 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
 
-<pre>                                                    C = 2^-3 </pre>
+<pre>                                                    C = 2<sup>-3</sup> </pre>
 ![mag1](https://user-images.githubusercontent.com/32396630/51906425-66657c80-23c4-11e9-95c8-5a03d9eb0d30.jpg)
 <pre>                                                    C = 2  </pre>
 ![magic2](https://user-images.githubusercontent.com/32396630/51906428-66657c80-23c4-11e9-8e3b-42a73b7711d6.jpg)
-<pre>                                                    C = 2^9  </pre>                       
+<pre>                                                    C = 2<sup>9</sup>  </pre>                       
 ![mag3](https://user-images.githubusercontent.com/32396630/51906427-66657c80-23c4-11e9-9d43-155f6507ad23.jpg)
 
 

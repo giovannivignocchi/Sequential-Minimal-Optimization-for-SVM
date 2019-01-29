@@ -58,6 +58,7 @@ The statistics collected in this second series of test were used to gain a bette
 
 ## First series of tests
 In this phase the algorithms were tested both on perfectly separable and non-perfcetly separable data.
+
 A sample of the artificial dataset used, is shown in the images below:
 
 ![ls](https://user-images.githubusercontent.com/32396630/51924433-501fe680-23ed-11e9-8198-e81da13399dd.jpg)

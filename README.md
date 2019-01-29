@@ -98,6 +98,23 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
 
+
+<pre>
+---------------------------------------------- C = 2^-5 ----------------------------------------------
+</pre>
+![diab1](https://user-images.githubusercontent.com/32396630/51905177-dbcf4e00-23c0-11e9-9d07-30e6ef14cf0d.jpg)
+<pre>
+---------------------------------------------- C = 2^-3 ----------------------------------------------
+</pre>
+![diab2](https://user-images.githubusercontent.com/32396630/51905178-dbcf4e00-23c0-11e9-9c1a-b931ad4567b4.jpg)
+<pre>
+----------------------------------------------  C = 2 ----------------------------------------------
+</pre>
+![diab3](https://user-images.githubusercontent.com/32396630/51905180-dbcf4e00-23c0-11e9-9b4f-d795057f01b4.jpg)
+![diab4](https://user-images.githubusercontent.com/32396630/51905181-dbcf4e00-23c0-11e9-9f5e-17a1365eb9ee.jpg)
+![diab5](https://user-images.githubusercontent.com/32396630/51905182-dc67e480-23c0-11e9-9575-6ab8b7245fe1.jpg)
+![diab6](https://user-images.githubusercontent.com/32396630/51905168-da9e2100-23c0-11e9-8c2f-f83befe36429.jpg)
+
 ### RINGNORM
 Fan Chen and Lin
 ![fclcomplete](https://user-images.githubusercontent.com/32396630/51843395-26928c80-2313-11e9-8396-32a6712e0219.jpg)
@@ -107,6 +124,12 @@ Joachims with working set size equal 4
 
 Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51843398-285c5000-2313-11e9-9e89-e371c6ea4c04.jpg)
+
+![ring1](https://user-images.githubusercontent.com/32396630/51905172-da9e2100-23c0-11e9-861a-d72a1dd03d65.jpg)
+![ring2](https://user-images.githubusercontent.com/32396630/51905173-db36b780-23c0-11e9-986a-2ec30db30024.jpg)
+![ring3](https://user-images.githubusercontent.com/32396630/51905174-db36b780-23c0-11e9-8701-eb7087e3b13a.jpg)
+![ring4](https://user-images.githubusercontent.com/32396630/51905175-db36b780-23c0-11e9-9136-977b4adda431.jpg)
+![ring5](https://user-images.githubusercontent.com/32396630/51905176-db36b780-23c0-11e9-9d60-5295c02b4dd8.jpg)
 
 ### MAGIC
 Fan Chen and Lin
@@ -118,6 +141,9 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
 
+![mag1](https://user-images.githubusercontent.com/32396630/51905169-da9e2100-23c0-11e9-8066-d9f9e0ca0a38.jpg)
+![magic2](https://user-images.githubusercontent.com/32396630/51905171-da9e2100-23c0-11e9-8431-b3024e7296f1.jpg)
+![mag3](https://user-images.githubusercontent.com/32396630/51905170-da9e2100-23c0-11e9-8bf5-f76d69e23a5c.jpg)
 
 ## Bibliography
 

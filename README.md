@@ -34,7 +34,7 @@ The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-
 
 - Platt's version without Error Cache
 - Platt's version with Error Cache
-- Keerthi's version (1st order method)
+- [Keerthi](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Keerthi/KeerthiSmo.m) (1st order method)
 - [Joachims](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Joachims/Jsmo.m) (1st order method)
 - [Fan Chen and Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Fan%20Chen%20and%20Lin/FCLsmo.m) (2nd order method) 
 

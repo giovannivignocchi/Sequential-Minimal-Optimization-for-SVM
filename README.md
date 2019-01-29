@@ -87,17 +87,23 @@ The following statistics briefly describe the datasets used during this phase:
 
 The complete datasets used, are available in the [Dataset](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Dataset/Data) folder. 
 
-To analyze the performances of the 1<sup>st</sup> and 2<sup>nd</sup> order Sequential Minimal Optimization techniques, I thought that should be usefull to test the methods under the greates number of training settings (different dataset as well as different training parameters).
-<br />To do so I repeated a **Grid search** over the parameters _C_ (Box constraint) and _sigma_ (gaussian kernel variation) for each implementation and each dataset.
+To analyze the performances of the 1<sup>st</sup> and 2<sup>nd</sup> order Sequential Minimal Optimization techniques, I thought that should be usefull to test the methods under the greates number of training settings (different dataset as well as different training parameters). To do so I repeated a **Grid search** over the parameters _C_ (Box constraint) and _sigma_ (gaussian kernel variation) for each implementation and each dataset.
 
 As for the previous series of test, I collected several statistics that are available in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). 
 
 Statistics collected:
-- Total number of iteration
-- Training time
-- Total number of kernel evaluation
-- Number of support vector generated
-- Several metrics about the performance of the model generated (accuracy, sensitivity, specificity, precision, recall, f_measure).
+* Total number of iteration
+* Training time
+* Total number of kernel evaluation
+* Number of support vector generated
+* Several metrics about the performance of the models generated 
+    * Accuracy
+    * Sensitivity
+    * Specificity
+    * Precision
+    * Recall
+    * Fmeasure
+    * Gmean
 
 <br />These statistics are then analyzed to show how the optimization methods respond to changes in the specified parameters.
 

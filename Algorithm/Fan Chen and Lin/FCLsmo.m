@@ -52,11 +52,15 @@ classdef FCLsmo < handle
     %   bias = bias of the solution provided.
     %   tau = (default 1e-12) value used when H >= 0 in order to make the
     %          objective function strictly convex.
+    %   C = determines the tradeoff between increasing the margin-size and 
+    %       ensuring that the x lie on the correct side of the margin.
     %   tolerance = (default 1e-3) tolerance in the strenght thee KKT
     %               condition are fullfil.
     %   iter = number of iterations the training last.
-    %   maxiter = (default 200) maximum number of iteration that the training
+    %   maxiter = (default 10000) maximum number of iteration that the training
     %              algorithm is allow to run.
+    %   violation = collects the degree of violation of the KKT conditions for
+    %               each iteration.
     %   kernelType = (default 'linear') indicate which kind of kernel is used
     %                during the training procedure. It is possible to set
     %                anoter type of kernal via setKernel method.
@@ -69,6 +73,37 @@ classdef FCLsmo < handle
     %   kernelEvaluation = varable that records the number of kernel
     %                      evaluation carried out during the iteration of
     %                      the algorithm.
+    %
+    %
+    %   METHODS:
+    %
+    %   FCLsmo = constructor; the folllowing values are required as input parameter:
+    %          -data 
+    %          -classLabels 
+    %          -C 
+    %          As optional parameters it can also take the tolerance allowded in the
+    %          violation of the KKT condition (tolerance), the value of the tau
+    %          used to enforced convexity (tau) and the maximum number of 
+    %          iterations that the algorithm can loops (maxiter)
+    %
+    %   kernel = It returns the value of the kernel K(Xi,Xj)
+    %
+    %   setKernel = It sets the type of kernel. take as required input the type
+    %               of kernel ('gaussian', 'polynomial' and 'linear'). If
+    %               the choice of the kernel is either polynomial or
+    %               gaussian, is also possible to specify an optional
+    %               parameter that modify rispectively the deegre of the
+    %               polynomial kernel or the sigma of the gaussian kernel.
+    %
+    %   WorkingSetSelection = it retuns the indexes of the LMs that compose
+    %                         the working set during the current iteration.
+    %
+    %   train = train the SVM
+    %
+    %
+    %   predict = given a set of data points as input returns the prediction
+    %             using the model generated.
+    
     
     properties
         x;
@@ -82,7 +117,8 @@ classdef FCLsmo < handle
         
         tolerance = 1e-3;
         iter = 0;
-        maxiter = 200;
+        maxiter = 10000;
+        violation;
         
         kernelType = 'linear';
         degree = 2;
@@ -128,6 +164,7 @@ classdef FCLsmo < handle
             obj.bias = 0;
             
             obj.isSupportVector = zeros(obj.N,1);
+            obj.violation = zeros(obj.maxiter,1);
         end
         
         function ker = kernel(smo,x1,x2)
@@ -228,6 +265,7 @@ classdef FCLsmo < handle
             % If the values of G_max e G_min are closed enough it
             % means that there are no (i,j) violating the kkt
             % condition and the solution found so far is optimal.
+            smo.violation(smo.iter+1) = G_max - G_min; 
             if(G_max - G_min < smo.tolerance)
                 i = -1;
                 j = -1;
@@ -299,19 +337,19 @@ classdef FCLsmo < handle
             end
             
             smo.isSupportVector = smo.alpha > 0;
+            smo.violation = smo.violation(1:smo.iter,1);
             
-            % Calculate the final bias of the model.
-            % For numerical stability average over all support vectors.
-            % To simplify the code average over all alpha (inefficient).
+            %Calculate the final bias of the model.
+            % For numerical stability average over all support vectors, to
             Allbias = zeros(smo.N,1);
             for i=1:smo.N
                 res = zeros(smo.N,1);
                 for k=1:smo.N
-                    res(k) = smo.kernel(smo.x(i,:),smo.x(k,:));
+                    if smo.alpha(k) > 0
+                        res(k) = smo.kernel(smo.x(i,:),smo.x(k,:));
+                    end
                 end
-                
-                Allbias(i) = smo.y(i) - sum(smo.y .* smo.alpha .* res);
-                
+                Allbias(i) = smo.y(i) - sum( smo.y .* smo.alpha .* res);
             end
             smo.bias = mean(Allbias);
             

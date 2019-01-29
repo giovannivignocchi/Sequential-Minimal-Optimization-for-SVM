@@ -1,0 +1,63 @@
+CORNER TEST 27-Dec-2018 rng(100)
+
+DataSet parameter:
+trainingSize: 250
+Model parameter:
+C = Inf
+Working set used in Joachims version = 4
+tolerance = 1.000000e-04
+tau = 1.000000e-12
+eps = 1.000000e-04
+maxiter = 500
+kernel = gaussian
+
+------------------------------------------ PLATT version ------------------------------------------
+Training time 135.643161 sec
+Prediction time 23.107292 sec
+Number of iteration 93
+Average iteration time 1.458529 sec
+Total number of kernel evaluation 50620194
+Average kernel evaluation per iteration 5.443032e+05
+Number of support vector generated: 17
+Number of SV shared with fitcsvm model: 17
+
+------------------------------------------ PLATT version with Error cache ------------------------------------------
+Training time 18.832415 sec
+Prediction time 23.674953 sec
+Number of iteration 79
+Average iteration time 0.238385 sec
+Total number of kernel evaluation 6794477
+Average kernel evaluation per iteration 8.600604e+04
+Number of support vector generated: 17
+Number of SV shared with fitcsvm model: 17
+
+------------------------------------------ Fan Chen and Lin version ------------------------------------------
+Training time 0.750076 sec
+Prediction time 23.515306 sec
+Number of iteration 222
+Average iteration time 0.003379 sec
+Total number of kernel evaluation 192792
+Average kernel evaluation per iteration 8.684324e+02
+Number of support vector generated: 17
+Number of SV shared with fitcsvm model: 17
+
+------------------------------------------ Keerthi version ------------------------------------------
+Training time 3.631631 sec
+Prediction time 23.653723 sec
+Number of iteration 17
+Average iteration time 0.213625 sec
+Total number of kernel evaluation 1231632
+Average kernel evaluation per iteration 7.244894e+04
+Number of support vector generated: 69
+Number of SV shared with fitcsvm model: 16
+
+------------------------------------------ Joachims version with q = 4 ------------------------------------------
+Training time 1.182445 sec
+Prediction time 23.181446 sec
+Number of iteration 137
+Average iteration time 0.008631 sec
+Total number of kernel evaluation 201600
+Average kernel evaluation per iteration 1.471533e+03
+Number of support vector generated: 17
+Number of SV shared with fitcsvm model: 17
+

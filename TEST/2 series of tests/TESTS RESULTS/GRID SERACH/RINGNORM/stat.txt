@@ -1,0 +1,2 @@
+RINGNORM 29-Dec-2018 rng(32)
+

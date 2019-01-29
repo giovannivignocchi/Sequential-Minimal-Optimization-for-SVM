@@ -28,8 +28,10 @@ classdef Jsmo < handle
     %   eps = (default 10e-5) treshold that has to be reached for an update
     %         (in the function takeStep) to be valid. [alphaNew - alphaOld > eps]
     %   iter = number of iterations the training last.
-    %   maxiter = (default 200) maximum number of iteration that the training
+    %   maxiter = (default 10000) maximum number of iteration that the training
     %              algorithm is allow to run.
+    %   violation = collects the degree of violation of the KKT conditions for
+    %               each iteration.
     %   kernelType = (default 'linear') indicate which kind of kernel is used
     %                during the training procedure. It is possible to set
     %                anoter type of kernal via setKernel method.
@@ -91,7 +93,8 @@ classdef Jsmo < handle
         
         tolerance = 1e-3;
         iter = 0;
-        maxiter = 200;
+        maxiter = 10000;
+        violation;
         
         kernelType = 'linear';
         degree = 2;
@@ -144,6 +147,7 @@ classdef Jsmo < handle
             [~,obj.orderedGradList] = sort(obj.y .* obj.G,'descend');
             
             obj.isSupportVector = zeros(obj.N,1);
+            obj.violation = zeros(obj.maxiter,1);
         end
         
         function ker = kernel(smo,x1,x2)
@@ -207,12 +211,13 @@ classdef Jsmo < handle
                 end
             end
             
+            smo.violation(smo.iter+1) = b_down - b_up;
             if b_down < b_up + smo.tolerance
                 opt = 1;
             end
         end
         
-        function [qSelected,B] = WorkingSetSelection(smo)
+        function [check,B] = WorkingSetSelection(smo)
             
             B = zeros(smo.N,1);
             qSelected = 0;
@@ -257,9 +262,9 @@ classdef Jsmo < handle
             % from the top is the same that the number coming from the
             % bottom.
             if size(qSelDown,2) > size(qSelTop,2)
-                qSelDown = qSelDown(1,size(qSelTop,2));
+                qSelDown = qSelDown(1,1:size(qSelTop,2));
             elseif size(qSelTop,2) > size(qSelDown,2)
-                qSelTop = qSelTop(1,size(qSelDown,2));
+                qSelTop = qSelTop(1,1:size(qSelDown,2));
             end
             
             % set the working set with both elements choosen from the top and
@@ -273,7 +278,10 @@ classdef Jsmo < handle
                 index = qSelDown(1,k);
                 B(index) = 1;
             end
-
+            
+            % if the size of the working set is zero, return 0 and signal
+            % that the algorithm has already reached convergence.
+            check = size(qSelDown,2) + size(qSelTop,2);
         end
         
         function train(smo)
@@ -284,7 +292,7 @@ classdef Jsmo < handle
                 [check,B] = WorkingSetSelection(smo);
                 
                 % In case is not possible to select an even number > 0 of
-                % LM to build the working set, exit from the loop.
+                % LM (to build the working set) exit from the loop.
                 if check == 0
                     break;
                 end
@@ -383,19 +391,21 @@ classdef Jsmo < handle
             end
             
             smo.isSupportVector = smo.alpha > 0;
+            smo.violation = smo.violation(1:smo.iter,1);
             
             %Calculate the final bias of the model.
             % For numerical stability average over all support vectors, to
-            % simplify the code average over all alpha (inefficient).
-            bias = zeros(smo.N,1);
-            for k1=1:smo.N
+            Allbias = zeros(smo.N,1);
+            for i=1:smo.N
                 res = zeros(smo.N,1);
-                for k2=1:smo.N
-                    res(k2) = smo.kernel(smo.x(k1,:),smo.x(k2,:));
+                for k=1:smo.N
+                    if smo.alpha(k) > 0
+                        res(k) = smo.kernel(smo.x(i,:),smo.x(k,:));
+                    end
                 end
-                bias(k1) = smo.y(k1) - sum( smo.y .* smo.alpha .* res);
+                Allbias(i) = smo.y(i) - sum( smo.y .* smo.alpha .* res);
             end
-            smo.bias = mean(bias);
+            smo.bias = mean(Allbias);
             
         end
         

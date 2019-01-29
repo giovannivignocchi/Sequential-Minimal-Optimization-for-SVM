@@ -1,0 +1,4 @@
+J6 per prima iterazione
+
+b_down = 0.773422831256899
+b_up = -0.792293622401455

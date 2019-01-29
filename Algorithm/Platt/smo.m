@@ -31,7 +31,7 @@ classdef smo < handle
     %   eps = (default 10e-5) treshold that has to be reached for an update
     %         (in the function takeStep) to be valid. [alphaNew - alphaOld > eps]
     %   iter = number of iterations the training last.
-    %   maxiter = (default 200) maximum number of iteration that the training
+    %   maxiter = (default 10000) maximum number of iteration that the training
     %              algorithm is allow to run.
     %   kernelType = (default 'linear') indicate which kind of kernel is used
     %                during the training procedure. It is possible to set
@@ -57,7 +57,7 @@ classdef smo < handle
         tolerance = 1e-5;
         eps = 10e-5;
         iter = 0;
-        maxiter = 200;
+        maxiter = 10000;
         
         kernelType = 'linear';
         degree = 2;
@@ -385,18 +385,20 @@ classdef smo < handle
             end
             
             smo.isSupportVector = smo.alpha > 0;
+           
             %Calculate the final bias of the model.
             % For numerical stability average over all support vectors, to
-            % simplify the code average over all alpha (inefficient).
-            bias = zeros(smo.N,1);
+            Allbias = zeros(smo.N,1);
             for i=1:smo.N
                 res = zeros(smo.N,1);
                 for k=1:smo.N
-                    res(k) = smo.kernel(smo.x(i,:),smo.x(k,:));
+                    if smo.alpha(k) > 0
+                        res(k) = smo.kernel(smo.x(i,:),smo.x(k,:));
+                    end
                 end
-                bias(i) = smo.y(i) - sum( smo.y .* smo.alpha .* res);
+                Allbias(i) = smo.y(i) - sum( smo.y .* smo.alpha .* res);
             end
-            smo.bias = mean(bias);
+            smo.bias = mean(Allbias);
             
             
         end

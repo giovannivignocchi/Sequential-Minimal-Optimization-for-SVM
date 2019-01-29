@@ -90,7 +90,7 @@ The complete datasets used, are available in the [Dataset](https://github.com/gi
 To analyze the performances of the 1<sup>st</sup> and 2<sup>nd</sup> order Sequential Minimal Optimization techniques, I thought that should be usefull to test the methods under the greates number of training settings (different dataset as well as different training parameters).
 <br />To do so I repeated a **Grid search** over the parameters _C_ (Box constraint) and _sigma_ (gaussian kernel variation) for each implementation and each dataset.
 
-As for the previous series of test, I collected several statistics that are avialble in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). 
+As for the previous series of test, I collected several statistics that are available in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). 
 
 Statistics collected:
 - Total number of iteration

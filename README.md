@@ -99,20 +99,20 @@ Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
 
 
-<pre>
----------------------------------------------- C = 2^-5 ----------------------------------------------
-</pre>
+                                               C = 2^-5
 ![diab1](https://user-images.githubusercontent.com/32396630/51906444-6796a980-23c4-11e9-9f6b-391661763e64.jpg)
-<pre>
----------------------------------------------- C = 2^-3 ----------------------------------------------
-</pre>
+***
+                                               C = 2^-3
 ![diab2](https://user-images.githubusercontent.com/32396630/51906447-6796a980-23c4-11e9-9aa7-ea162a46c727.jpg)
 <pre>
 ----------------------------------------------  C = 2 ----------------------------------------------
 </pre>
 ![diab3](https://user-images.githubusercontent.com/32396630/51906449-682f4000-23c4-11e9-8649-ca94b19c0518.jpg)
+***
 ![diab4](https://user-images.githubusercontent.com/32396630/51906450-682f4000-23c4-11e9-80ef-61ee3f7db269.jpg)
+***
 ![diab5](https://user-images.githubusercontent.com/32396630/51906452-682f4000-23c4-11e9-95ec-cbd4834e529d.jpg)
+***
 ![diab6](https://user-images.githubusercontent.com/32396630/51906455-682f4000-23c4-11e9-917e-06f2d81eacef.jpg)
 
 ### RINGNORM
@@ -141,6 +141,7 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
 
+       ---
 ![mag1](https://user-images.githubusercontent.com/32396630/51906425-66657c80-23c4-11e9-95c8-5a03d9eb0d30.jpg)
 ![magic2](https://user-images.githubusercontent.com/32396630/51906428-66657c80-23c4-11e9-8e3b-42a73b7711d6.jpg)
 ![mag3](https://user-images.githubusercontent.com/32396630/51906427-66657c80-23c4-11e9-9d43-155f6507ad23.jpg)

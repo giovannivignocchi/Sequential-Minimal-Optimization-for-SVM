@@ -10,7 +10,7 @@ The first part of the project consisted in studing the three following paper :
 2. Making Large-Scale SVM Learning Practical,   [Joachims 1998](http://www.cs.cornell.edu/people/tj/publications/joachims_99a.pdf)
 3. Working Set Selection Using Second Order Information for Training Support Vector Machines,   [Fan, Chem, Lin 2005](www.jmlr.org/papers/volume6/fan05a/fan05a.pdf)
 
-The first arictle discusses the Sequential Minimal Optimization method (SMO) in its first version proposed by Platt, whereas in the second and the third, the authors proposed two different modifications of the SMO that employ, respectively, a 1st order and 2nd order method to select the Lagrange multipliers that composed the working set
+The first arictle discusses the Sequential Minimal Optimization method (SMO) in its first version proposed by Platt, whereas in the second and the third, the authors proposed two different modifications of the SMO that employ, respectively, a 1<sup>st</sup> order and 2<sup>nd</sup> order method to select the Lagrange multipliers that composed the working set
 
 ## Implementation
 The second stage of the project consisted in the implementation, using Matlab, of the algorithms proposed in the papers.
@@ -34,9 +34,9 @@ The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-
 
 - [Platt's version without Error Cache](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Platt/smo.m)
 - [Platt's version with Error Cache](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Platt/smoErrorCache.m)
-- [Keerthi](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Keerthi/KeerthiSmo.m) (1st order method)
-- [Joachims](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Joachims/Jsmo.m) (1st order method)
-- [Fan Chen and Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Fan%20Chen%20and%20Lin/FCLsmo.m) (2nd order method) 
+- [Keerthi](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Keerthi/KeerthiSmo.m) (1<sup>st</sup> order method)
+- [Joachims](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Joachims/Jsmo.m) (1<sup>st</sup> order method)
+- [Fan Chen and Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Fan%20Chen%20and%20Lin/FCLsmo.m) (2<sup>nd</sup> order method) 
 
 ## Testing and analysis
 The third part of the project is testing and analysis stage. 
@@ -47,7 +47,7 @@ The main goal of this firts test phase is to assert the correctness of all the i
 In fact, it was easy to detect errors an imprecisons in the implementations, testing the algorithms against this small-size and known datasets.
 
 2. A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
-The aim of this second set of tests is to compare how a 1st order SMO and a 2nd order SMO perform in the training phase.
+The aim of this second set of tests is to compare how a 1<sup>st</sup> order SMO and a 2<sup>nd</sup> order SMO perform in the training phase.
 To do so, the training phase is repeated in three different settings:
 
 - Joachims'version with Working Set Size (WSS) equals 4
@@ -78,15 +78,13 @@ Since these tests are more focused on testing the overall correctness of the alg
 
 ## Second series of tests
 
-A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
-This tests are executed only for the SMO implentation proposed by [Joachims](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm/Joachims) (both with a working set of size 4 and 6) and  [Fan, Chem, Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm/Fan%20Chen%20and%20Lin).
-
-The datasets used for this series of test are available in the [Dataset](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Dataset/Data) folder. 
+The following statistics briefly describe the datasets used during this phase:
 
 - diabetes (8 features, 576 instances)
 - ringnorm (20 features, 6500 instances)
 - magic (10 features, 17118 instances)
-- cod-rna (8 features, 59535 instances)
+
+The complete datasets used, are available in the [Dataset](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Dataset/Data) folder. 
 
 In order to test how the different implementations perform in response to changes in parameters, a grid search over the parameter _C_ and _sigma_ is carried out, for each of the data set. 
 Based on the size of the dataset under observation, a different number of change in parameters are applied during grid search.

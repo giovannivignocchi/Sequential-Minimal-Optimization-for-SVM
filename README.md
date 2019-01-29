@@ -31,21 +31,21 @@ These considerations will not be taken into account in the continuation of the p
 
 The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm) collects all the implementations cited below:
 
-- [Platt's version without Error Cache](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Platt/smo.m)
-- [Platt's version with Error Cache](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Platt/smoErrorCache.m)
-- [Keerthi](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Keerthi/KeerthiSmo.m) (1<sup>st</sup> order method)
-- [Joachims](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Joachims/Jsmo.m) (1<sup>st</sup> order method)
-- [Fan Chen and Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Fan%20Chen%20and%20Lin/FCLsmo.m) (2<sup>nd</sup> order method) 
+- [Platt's version without Error Cache](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Platt/smo.m);
+- [Platt's version with Error Cache](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Platt/smoErrorCache.m);
+- [Keerthi](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Keerthi/KeerthiSmo.m) (1<sup>st</sup> order method);
+- [Joachims](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Joachims/Jsmo.m) (1<sup>st</sup> order method);
+- [Fan Chen and Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Fan%20Chen%20and%20Lin/FCLsmo.m) (2<sup>nd</sup> order method);
 
 ## Testing and analysis
 The third part of the project is testing and analysis stage. 
-This phase is clearly divided in two sub-step:
+This phase is clearly divided in two sub-steps:
 
-1. A first set of tests is focused on three different (bidimensional) dataset that were artificially generated.
-The main goal of this firts test phase is to assert the correctness of all the implementations. 
-In fact, it was easy to detect errors an imprecisons in the implementations, testing the algorithms against this small-size and known datasets.
+1. A first set of tests is focused on three different (bi-dimensional) datasets that were artificially generated.
+The main goal of this first test phase is to assess the correctness of the implementations.
+Indeed, it was easy to detect errors and imprecisions in the implementations, testing the algorithms against this small-size and known datasets.
 
-2. A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
+2. A second series of tests is focused on four datasets of more substantial size and with a number of features greater than two.
 The aim of this second set of tests is to compare how a 1<sup>st</sup> order SMO and a 2<sup>nd</sup> order SMO perform in the training phase.
 
 To do so, the training phase is repeated using 3 different Sequental minimal Optimization implementations:
@@ -54,27 +54,28 @@ To do so, the training phase is repeated using 3 different Sequental minimal Opt
 - Joachims'version with WSS equals 6
 - Fan Chen and Lin
 
-The statistics collected in this second series of test were used to gain a better understanding on how these different training techniques behave.
+The statistics collected in the second series of test were used to gain a better understanding on how these different training techniques behave.
 
 ## First series of tests
 In this phase the algorithms were tested both on perfectly separable and non-perfcetly separable data. 
-<br />A sample of the artificial dataset used, is shown in the images below:
+<br />A sample of the artificial dataset used is shown in the images below:
 
 Perfectly separable data:
 ![ls](https://user-images.githubusercontent.com/32396630/51924433-501fe680-23ed-11e9-8198-e81da13399dd.jpg)
 Non-perfcetly separable data:
 ![nls](https://user-images.githubusercontent.com/32396630/51924099-b3f5df80-23ec-11e9-8a44-17641528ce0c.jpg)
 
-The models obtained, training the algorithms on these artificial datasets, confirm the the overall correctness of their implementation.
-<br />To do so, another model is trained using the matlab function _fitcsvm_ (with parameters consistent with those used by the implementations under testing). This model is then used as a baseline to check if the other models are consistent with it.
+The results obtained, training the algorithms on these artificial datasets, confirm the correctness of their implementation.
+<br /> To check the results, another model was trained using the Matlab function _fitcsvm_.
+To be coherent all the relevant parameters (training algorithm, tolerance, maxIter, BoxConstraint, sigma) were set to be consistent with those used by the implementations under testing. The model generated is then used as baseline to check if the other models are consistent with it.
 
 Furthermore during the training phase different statistics are collected. Among these:
 - The number of iteration performed
 - Training and prediction time
-- Avg number of kernel evaluation for iteration
-- Number of support vector
+- Average number of kernel evaluation per iteration
+- Number of support vector generated
 
-Since these tests are more focused on testing the overall correctness of the algorithms the results obtained are not presented here.
+Since these tests are more focused on testing the overall correctness of the algorithms the results obtained are not show here.
 <br />Anyhow, the interested reader can find all the results and statistics concerning this serie of tests in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20artificial%20dataset/TEST%20RESULTS).
 
 ## Second series of tests
@@ -157,6 +158,8 @@ The following graphs compare how the differenet implementations perform as _sigm
 **Joachims with working set size equal 6**
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51843398-285c5000-2313-11e9-9e89-e371c6ea4c04.jpg)
 
+The following graphs compare how the differenet implementations perform as _sigma_ changes
+![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
 <pre>                                                    C = 2<sup>-5</sup></pre>
 ![ring1](https://user-images.githubusercontent.com/32396630/51906430-66fe1300-23c4-11e9-8438-7332fbc118c2.jpg)
@@ -178,6 +181,9 @@ The following graphs compare how the differenet implementations perform as _sigm
 
 **Joachims with working set size equal 6**
 ![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
+
+The following graphs compare how the differenet implementations perform as _sigma_ changes
+![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
 <pre>                                                    C = 2<sup>-3</sup> </pre>
 ![mag1](https://user-images.githubusercontent.com/32396630/51906425-66657c80-23c4-11e9-95c8-5a03d9eb0d30.jpg)

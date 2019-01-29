@@ -61,8 +61,9 @@ The statistics collected in this second series of test were used to gain a bette
 In this phase the algorithms were tested both on perfectly separable and non-perfcetly separable data. 
 <br />A sample of the artificial dataset used, is shown in the images below:
 
+Perfectly separable data
 ![ls](https://user-images.githubusercontent.com/32396630/51924433-501fe680-23ed-11e9-8198-e81da13399dd.jpg)
-
+Non-perfcetly separable data
 ![nls](https://user-images.githubusercontent.com/32396630/51924099-b3f5df80-23ec-11e9-8a44-17641528ce0c.jpg)
 
 The models obtained, training the algorithms on these artificial datasets, confirm the the overall correctness of their implementation.
@@ -148,13 +149,13 @@ The following graphs compare how the differenet implementations perform as _sigm
 ![diab6](https://user-images.githubusercontent.com/32396630/51906455-682f4000-23c4-11e9-917e-06f2d81eacef.jpg)
 
 ###                                                      RINGNORM
-Fan Chen and Lin
+**Fan Chen and Lin**
 ![fclcomplete](https://user-images.githubusercontent.com/32396630/51843395-26928c80-2313-11e9-8396-32a6712e0219.jpg)
 
-Joachims with working set size equal 4
+**Joachims with working set size equal 4**
 ![j4complessivo](https://user-images.githubusercontent.com/32396630/51843397-285c5000-2313-11e9-874f-99940b03f7cf.jpg)
 
-Joachims with working set size equal 6
+**Joachims with working set size equal 6**
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51843398-285c5000-2313-11e9-9e89-e371c6ea4c04.jpg)
 
 
@@ -170,13 +171,13 @@ Joachims with working set size equal 6
 ![ring5](https://user-images.githubusercontent.com/32396630/51906441-6796a980-23c4-11e9-95d8-42da8b43fa87.jpg)
 
 ###                                                         MAGIC
-Fan Chen and Lin
+**Fan Chen and Lin**
 ![complessivofcl](https://user-images.githubusercontent.com/32396630/51862186-54d99180-233e-11e9-85eb-5d94a1068e9d.jpg)
 
-Joachims with working set size equal 4
+**Joachims with working set size equal 4**
 ![complessivoj4](https://user-images.githubusercontent.com/32396630/51862187-55722800-233e-11e9-9c6e-2f1db1adb9d4.jpg)
 
-Joachims with working set size equal 6
+**Joachims with working set size equal 6**
 ![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
 
 <pre>                                                    C = 2<sup>-3</sup> </pre>

@@ -87,9 +87,9 @@ The following pictures collect the results obtained during this series of tests.
 For each dataset two different kind of graph:
 
 - A 3D plot that individually summarize, the performace of each implementation during the grid search phase 
-- A set of plots for each value of _C_ (used in the grid search) that compare how the differenet implementation perform as _sigma_ changes
+- A set of plots for each value of _C_ (used in the grid search) that compare how the differenet implementations perform as _sigma_ changes
 
-### DIABETES 
+###                                                      DIABETES 
 Fan Chen and Lin
 ![flccomplessivo](https://user-images.githubusercontent.com/32396630/51791861-05625c80-21aa-11e9-80e3-4301430de884.jpg)
 
@@ -99,9 +99,11 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
 
+The following graphs compare how the differenet implementations perform as _sigma_ changes
 
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
-                                                C = 2^-5
+
+                                                         C = 2^-5
 ![diab1](https://user-images.githubusercontent.com/32396630/51906444-6796a980-23c4-11e9-9f6b-391661763e64.jpg)
 <pre>                                                    C = 2^-3 </pre>
 ![diab2](https://user-images.githubusercontent.com/32396630/51906447-6796a980-23c4-11e9-9aa7-ea162a46c727.jpg)   
@@ -114,7 +116,7 @@ Joachims with working set size equal 6
 <pre>                                                    C = 2^15  </pre>                                                          
 ![diab6](https://user-images.githubusercontent.com/32396630/51906455-682f4000-23c4-11e9-917e-06f2d81eacef.jpg)
 
-### RINGNORM
+###                                                      RINGNORM
 Fan Chen and Lin
 ![fclcomplete](https://user-images.githubusercontent.com/32396630/51843395-26928c80-2313-11e9-8396-32a6712e0219.jpg)
 
@@ -135,7 +137,7 @@ Joachims with working set size equal 6
 <pre>                                                    C = 2^9  </pre>                          
 ![ring5](https://user-images.githubusercontent.com/32396630/51906441-6796a980-23c4-11e9-95d8-42da8b43fa87.jpg)
 
-### MAGIC
+###                                                         MAGIC
 Fan Chen and Lin
 ![complessivofcl](https://user-images.githubusercontent.com/32396630/51862186-54d99180-233e-11e9-85eb-5d94a1068e9d.jpg)
 
@@ -145,9 +147,11 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
 
-       ---
+<pre>                                                    C = 2^-3 </pre>
 ![mag1](https://user-images.githubusercontent.com/32396630/51906425-66657c80-23c4-11e9-95c8-5a03d9eb0d30.jpg)
+<pre>                                                    C = 2  </pre>
 ![magic2](https://user-images.githubusercontent.com/32396630/51906428-66657c80-23c4-11e9-8e3b-42a73b7711d6.jpg)
+<pre>                                                    C = 2^9  </pre>                       
 ![mag3](https://user-images.githubusercontent.com/32396630/51906427-66657c80-23c4-11e9-9d43-155f6507ad23.jpg)
 
 

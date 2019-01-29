@@ -90,17 +90,26 @@ The complete datasets used, are available in the [Dataset](https://github.com/gi
 To analyze the performances of the 1<sup>st</sup> and 2<sup>nd</sup> order Sequential Minimal Optimization techniques, I thought that should be usefull to test the methods under the greates number of training settings (different dataset as well as different training parameters).
 <br />To do so I repeated a **Grid search** over the parameters _C_ (Box constraint) and _sigma_ (gaussian kernel variation) for each implementation and each dataset.
 
-Based on the size of the dataset under observation, a different number of change in parameters are applied during grid search.
-The models generated are tested on the relative tests set. However this should be considered as a bad practice (validating model using test set), the main porpouse of this project is not to generate good models, but to analyze the performance of the different implementations under analysis. 
-
-As for the previous series of test several statistics are collected and the results stored in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). These staistics are then analyzed to show how the optimization methods respond to changes in the specified parameters.
+As for the previous series of test, I collected several statistics in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). 
 
 Statistics collected:
 - Total number of iteration
 - Training time
 - Total number of kernel evaluation
 - Number of support vector generated
-- Several metrics about the performance of the model generated (accuracy, sensitivity, specificity, precision, recall, f_measure, gmean).
+- Several metrics about the performance of the model generated (accuracy, sensitivity, specificity, precision, recall, f_measure).
+
+<br />These statistics are then analyzed to show how the optimization methods respond to changes in the specified parameters.
+
+<br />Before showing the results of the analysis, I want to stress 2 consideration about how these tests were carried out, in order to better understand the results presented in the graphs below:
+
+1. Based on the size of the dataset under consideration, a different number of combinations of parameters is analyzed during grid search.
+
+2. To obtained statistics concerning the performances of the models generated. I tested these on the relative tests set. 
+What I want to underline is that, however validating models using test set, should be considered as a bad practice; the main porpouse of this project is not to generate the best possible model for a given set of data, but to analyze the performance of the different implementations under analysis (note how the latters are not affected by the way we validate the models).
+
+<br />On the other hand, this choice, gave me an unbiased way to evaluate the models generated, without the burden to repeat the training procedure to perform cross-validation. Note how this choice allowed me to significantly shorten the overall training procedure time. 
+
 
 The following pictures collect the results obtained during this series of tests.
 <br />For each dataset two different kind of graph:

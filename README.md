@@ -83,7 +83,11 @@ Statistics collected:
 - Number of support vector generated
 - Several metrics about the performance of the model generated (accuracy, sensitivity, specificity, precision, recall, f_measure, gmean).
 
-The following pictures collect the results obtained during this series of tests:
+The following pictures collect the results obtained during this series of tests.<\n>
+For each dataset two different kind of graph:
+
+- A 3D plot that individually summarize, the performace of each implementation during the grid search phase 
+- A set of plots for each value of _C_ (used in the grid search) that compare how the differenet implementation perform as _sigma_ changes
 
 ### DIABETES 
 Fan Chen and Lin
@@ -95,9 +99,9 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
 
-<p>Some Markdown text with <span style="color:blue">some <em>blue</em> text</span>.</p>
 
-                                                         C = 2^-5
+![legnd](https://user-images.githubusercontent.com/32396630/51909336-acbed980-23cc-11e9-9e8c-47ec4f29aa11.jpg)
+                                                C = 2^-5
 ![diab1](https://user-images.githubusercontent.com/32396630/51906444-6796a980-23c4-11e9-9f6b-391661763e64.jpg)
 <pre>                                                    C = 2^-3 </pre>
 ![diab2](https://user-images.githubusercontent.com/32396630/51906447-6796a980-23c4-11e9-9aa7-ea162a46c727.jpg)   

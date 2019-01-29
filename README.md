@@ -102,7 +102,7 @@ Joachims with working set size equal 6
 <pre>
 ---------------------------------------------- C = 2^-5 ----------------------------------------------
 </pre>
-![diab1](https://user-images.githubusercontent.com/32396630/51905177-dbcf4e00-23c0-11e9-9d07-30e6ef14cf0d.jpg)
+![immagine](https://user-images.githubusercontent.com/32396630/51905985-1cc86200-23c3-11e9-98a1-86242cdc7a26.jpg)
 <pre>
 ---------------------------------------------- C = 2^-3 ----------------------------------------------
 </pre>

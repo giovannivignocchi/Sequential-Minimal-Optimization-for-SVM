@@ -13,7 +13,8 @@ The first part of the project consisted in studing the three following papers:
 The first arictle discusses the Sequential Minimal Optimization method (SMO) in its first version proposed by Platt, whereas in the second and the third, the authors proposed two different modifications of the SMO that employ, respectively, a 1<sup>st</sup> order and 2<sup>nd</sup> order method to select the Lagrange multipliers that composed the working set.
 
 ## Implementation
-The second stage of the project consisted in the implementation of the algorithms proposed in the papers.
+In the second stage of the project, the algorithms proposed in the papers have been implemented, by using Matlab. 
+
 For the sake of completeness, in addition to the Sequential Minimal Optimization methods proposed in the papers, two more version of the SMO were implemented, In particular:
 
 1. "Improvements to Platt's SMO algorithm for SVM Classifier Design", [Keerthi 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.5266&rep=rep1&type=pdf);

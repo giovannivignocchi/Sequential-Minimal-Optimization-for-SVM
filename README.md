@@ -48,7 +48,8 @@ In fact, it was easy to detect errors an imprecisons in the implementations, tes
 
 2. A second series of tests is focused on four datasets of more substantial size and with a number of featues greater than two.
 The aim of this second set of tests is to compare how a 1<sup>st</sup> order SMO and a 2<sup>nd</sup> order SMO perform in the training phase.
-To do so, the training phase is repeated in three different settings:
+
+To do so, the training phase is repeated using 3 different Sequental minimal Optimization implementations:
 
 - Joachims'version with Working Set Size (WSS) equals 4
 - Joachims'version with WSS equals 6
@@ -86,7 +87,9 @@ The following statistics briefly describe the datasets used during this phase:
 
 The complete datasets used, are available in the [Dataset](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Dataset/Data) folder. 
 
-In order to test how the different implementations perform in response to changes in parameters, a grid search over the parameter _C_ and _sigma_ is carried out, for each of the data set. 
+To analyze the performances of the 1<sup>st</sup> and 2<sup>nd</sup> order Sequential Minimal Optimization techniques, I thought that should be usefull to test the methods under the greates number of training settings (different dataset as well as different training parameters).
+<br />To do so I repeated a **Grid search** over the parameters _C_ (Box constraint) and _sigma_ (gaussian kernel variation) for each implementation and each dataset.
+
 Based on the size of the dataset under observation, a different number of change in parameters are applied during grid search.
 The models generated are tested on the relative tests set. However this should be considered as a bad practice (validating model using test set), the main porpouse of this project is not to generate good models, but to analyze the performance of the different implementations under analysis. 
 
@@ -99,9 +102,8 @@ Statistics collected:
 - Number of support vector generated
 - Several metrics about the performance of the model generated (accuracy, sensitivity, specificity, precision, recall, f_measure, gmean).
 
-The following pictures collect the results obtained during this series of tests.<\n>
-For each dataset two different kind of graph:
-
+The following pictures collect the results obtained during this series of tests.
+<br />For each dataset two different kind of graph:
 - A 3D plot that individually summarize, the performace of each implementation during the grid search phase 
 - A set of plots for each value of _C_ (used in the grid search) that compare how the differenet implementations perform as _sigma_ changes
 

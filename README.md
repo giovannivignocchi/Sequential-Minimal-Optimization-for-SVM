@@ -112,14 +112,13 @@ These statistics are then analyzed to show how the optimization methods respond 
 
 2. To obtained statistics concerning the performances of the models generated. I tested these on the relative tests set. 
 What I want to underline is that, however validating models using test set, should be considered as a bad practice; the main porpouse of this project is not to generate the best possible model for a given set of data, but to analyze the performance of the different implementations under analysis (note how the latters are not affected by the way we validate the models).
-
 <br />On the other hand, this choice, gave me an unbiased way to evaluate the models generated, without the burden to repeat the training procedure to perform cross-validation. Note how this choice allowed me to significantly shorten the overall training procedure time. 
 
 
 The following pictures collect the results obtained during this series of tests.
-<br />For each dataset two different kind of graph:
-- A 3D plot that individually summarize, the performace of each implementation during the grid search phase 
-- A set of plots for each value of _C_ (used in the grid search) that compare how the differenet implementations perform as _sigma_ changes
+<br />For each dataset two different kind of graphs are presented:
+- A 3D plot that individually summarize for each method, the main performance measures obtained during the grid search phase.
+- A set of plots for each value of _C_ (used during the grid search) that compare how the differenet implementations perform as _sigma_ changes.
 
 ###                                                      DIABETES 
 Fan Chen and Lin

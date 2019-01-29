@@ -10,12 +10,12 @@ The first part of the project consisted in studing the three following papers:
 2. Making Large-Scale SVM Learning Practical,   [Joachims 1998](http://www.cs.cornell.edu/people/tj/publications/joachims_99a.pdf);
 3. Working Set Selection Using Second Order Information for Training Support Vector Machines,   [Fan, Chem, Lin 2005](www.jmlr.org/papers/volume6/fan05a/fan05a.pdf);
 
-The first arictle analyzes the first version of the Sequential Minimal Optimization method (SMO) proposed by Platt. 
+The first article analyses the Sequential Minimal Optimization method (SMO) proposed by Platt. 
 Whereas in the second and the third, the authors proposed two different improvements of the SMO that, respectively, employ a 1<sup>st</sup> order and 2<sup>nd</sup> order method to select the Lagrange multipliers (LMs) that composed the working set.
 
 ## Implementation
 In the second stage of the project, the algorithms have been developed by using Matlab. 
-For the sake of completeness, in addition to the Sequential Minimal Optimization methods proposed in the papers, two more versions of the SMO have been implemented, In particular:
+<br />For the sake of completeness, in addition to the Sequential Minimal Optimization methods proposed in the papers, two more versions of the SMO have been implemented, In particular:
 
 1. "Improvements to Platt's SMO algorithm for SVM Classifier Design", [Keerthi 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.5266&rep=rep1&type=pdf);
 

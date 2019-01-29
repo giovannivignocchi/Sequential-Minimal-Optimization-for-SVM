@@ -30,14 +30,13 @@ Although it might be interesting to further analyze both:
 - The performance of the Keerthi's SMO with respect to th Joachims' SMO  that use a working set with size equals 2.
 These considerations will not be taken into account in the continuation of the project. 
 
-
 The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm) collects all the implementations cited above.
 
 - Platt's version without Error Cache
 - Platt's version with Error Cache
 - Keerthi's version (1st order method)
 - Joachims (1st order method)
-- Fan Chen and Lin (2nd order method)
+- [Fan Chen and Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Fan%20Chen%20and%20Lin/FCLsmo.m) (2nd order method) 
 
 ## Testing and analysis
 The last part of the project consisted in comparing the training of the various implementations on different dataset.

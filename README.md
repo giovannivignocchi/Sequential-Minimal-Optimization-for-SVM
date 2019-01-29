@@ -5,30 +5,29 @@ the training of the support vector machines (SVM).
 
 ## The scope of the project
 
-The first part of the project consisted in studing the three following paper :
-1. Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines,   [Platt 1998](http://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/)
-2. Making Large-Scale SVM Learning Practical,   [Joachims 1998](http://www.cs.cornell.edu/people/tj/publications/joachims_99a.pdf)
-3. Working Set Selection Using Second Order Information for Training Support Vector Machines,   [Fan, Chem, Lin 2005](www.jmlr.org/papers/volume6/fan05a/fan05a.pdf)
+The first part of the project consisted in studing the three following papers:
+1. Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines,   [Platt 1998](http://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/);
+2. Making Large-Scale SVM Learning Practical,   [Joachims 1998](http://www.cs.cornell.edu/people/tj/publications/joachims_99a.pdf);
+3. Working Set Selection Using Second Order Information for Training Support Vector Machines,   [Fan, Chem, Lin 2005](www.jmlr.org/papers/volume6/fan05a/fan05a.pdf);
 
-The first arictle discusses the Sequential Minimal Optimization method (SMO) in its first version proposed by Platt, whereas in the second and the third, the authors proposed two different modifications of the SMO that employ, respectively, a 1<sup>st</sup> order and 2<sup>nd</sup> order method to select the Lagrange multipliers that composed the working set
+The first arictle discusses the Sequential Minimal Optimization method (SMO) in its first version proposed by Platt, whereas in the second and the third, the authors proposed two different modifications of the SMO that employ, respectively, a 1<sup>st</sup> order and 2<sup>nd</sup> order method to select the Lagrange multipliers that composed the working set.
 
 ## Implementation
-The second stage of the project consisted in the implementation, using Matlab, of the algorithms proposed in the papers.
+The second stage of the project consisted in the implementation of the algorithms proposed in the papers.
 For the sake of completeness, in addition to the Sequential Minimal Optimization methods proposed in the papers, two more version of the SMO were implemented, In particular:
 
-1. "Improvements to Platt's SMO algorithm for SVM Classifier Design", [Keerthi 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.5266&rep=rep1&type=pdf)
+1. "Improvements to Platt's SMO algorithm for SVM Classifier Design", [Keerthi 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.5266&rep=rep1&type=pdf);
 
-2. The original version proposed by Platt without using an auxiliary cache to store Prediction error.
+2. The original version proposed by Platt without using an auxiliary cache to store Prediction error;
 
-The implementation proposed by Keerthi, employed a 1st order method to select the LMs of a fixed size working set (size equals 2). So it does not rely on an external quadratic solver to solve the optimization step as done by the version proposed by Joachims.
+The implementation proposed by Keerthi, employed a 1<sup>st</sup> order method to select the LMs of a fixed size working set (size equals 2). So it does not rely on an external quadratic solver to solve the optimization step as done by the version proposed by Joachims.
 
-While the implemetion of the Platt's version that does not used any cache to temporarly store the prediction error is due  to the fact that could be intresting to analyze the effects of the cache on the training time.
-
+While the implementation of the Platt's version that does not use any cache to temporarly store the prediction error is due  to the fact that could be intresting to analyze the effects of the cache on the training time.
 
 Although it might be interesting to further analyze both:
-- The impact of the cache in the SMO version proposed by Platt.
-- The performance of the Keerthi's SMO with respect to th Joachims' SMO  that use a working set with size equals 2.
-These considerations will not be taken into account in the continuation of the project. 
+- The impact of the cache in the SMO version proposed by Platt;
+- The performance of the Keerthi's SMO with respect to th Joachims' SMO  that use a working set with size equals 2;
+These considerations will not be taken into account in the continuation of the project;
 
 The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm) collects all the implementations cited below:
 

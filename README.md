@@ -103,8 +103,8 @@ As for the previous series of test, I collected several statistics, that are ava
     * Recall
     * Fmeasure
     * Gmean
-
-<br />These statistics are then analyzed to show how the optimization methods respond to changes in the specified parameters.
+    
+These statistics are then analyzed to show how the optimization methods respond to changes in the specified parameters.
 
 <br />Before showing the results of the analysis, I want to stress 2 consideration about how these tests were carried out, in order to better understand the results presented in the graphs below:
 

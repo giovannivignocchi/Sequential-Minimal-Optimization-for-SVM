@@ -127,7 +127,7 @@ The following graphs compare how the differenet implementations perform as _sigm
 
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
-                                                         C = 2<sup>-5</sup>
+<pre>                                                    C = 2<sup>-5</sup></pre>
 ![diab1](https://user-images.githubusercontent.com/32396630/51906444-6796a980-23c4-11e9-9f6b-391661763e64.jpg)
 <pre>                                                    C = 2<sup>-3</sup> </pre>
 ![diab2](https://user-images.githubusercontent.com/32396630/51906447-6796a980-23c4-11e9-9aa7-ea162a46c727.jpg)   
@@ -150,7 +150,8 @@ Joachims with working set size equal 4
 Joachims with working set size equal 6
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51843398-285c5000-2313-11e9-9e89-e371c6ea4c04.jpg)
 
-                                                         C = 2<sup>-5</sup>
+
+<pre>                                                    C = 2<sup>-5</sup></pre>
 ![ring1](https://user-images.githubusercontent.com/32396630/51906430-66fe1300-23c4-11e9-8438-7332fbc118c2.jpg)
 <pre>                                                    C = 2<sup>-3</sup></pre>
 ![ring2](https://user-images.githubusercontent.com/32396630/51906434-66fe1300-23c4-11e9-8799-9e9ff7e422f3.jpg)

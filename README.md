@@ -121,6 +121,7 @@ The following pictures collect the results obtained during this series of tests.
 - A 3D plot that individually summarize for each method, the main performance measures obtained during the grid search phase.
 - A set of plots for each value of _C_ (used during the grid search) that compare how the differenet implementations perform as _sigma_ changes.
 
+
 ### DIABETES 
 **Fan Chen and Lin**
 ![flccomplessivo](https://user-images.githubusercontent.com/32396630/51791861-05625c80-21aa-11e9-80e3-4301430de884.jpg)
@@ -136,17 +137,17 @@ The following graphs compare how the differenet implementations perform as _sigm
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
 <pre>                                                    C = 2<sup>-5</sup></pre>
-![diab1](https://user-images.githubusercontent.com/32396630/51906444-6796a980-23c4-11e9-9f6b-391661763e64.jpg)
+![diab1](https://user-images.githubusercontent.com/32396630/51970337-f82dc200-2476-11e9-9260-73fc85d5d197.jpg)
 <pre>                                                    C = 2<sup>-3</sup> </pre>
-![diab2](https://user-images.githubusercontent.com/32396630/51906447-6796a980-23c4-11e9-9aa7-ea162a46c727.jpg)   
+![diab2](https://user-images.githubusercontent.com/32396630/51970339-f82dc200-2476-11e9-936c-6864a448ae67.jpg)
 <pre>                                                    C = 2  </pre>
-![diab3](https://user-images.githubusercontent.com/32396630/51906449-682f4000-23c4-11e9-8649-ca94b19c0518.jpg)
+![diab3](https://user-images.githubusercontent.com/32396630/51970340-f8c65880-2476-11e9-9b8a-3e011a81dbb7.jpg)
 <pre>                                                    C = 2<sup>7</sup>  </pre>                                                          
-![diab4](https://user-images.githubusercontent.com/32396630/51906450-682f4000-23c4-11e9-80ef-61ee3f7db269.jpg)
+![diab4](https://user-images.githubusercontent.com/32396630/51970341-f8c65880-2476-11e9-8eff-ee7082781974.jpg)
 <pre>                                                    C = 2<sup>9</sup>  </pre>                                                          
-![diab5](https://user-images.githubusercontent.com/32396630/51906452-682f4000-23c4-11e9-95ec-cbd4834e529d.jpg)
+![diab5](https://user-images.githubusercontent.com/32396630/51970343-f8c65880-2476-11e9-98b4-ce5699505d65.jpg)
 <pre>                                                    C = 2<sup>15</sup>  </pre>                                                          
-![diab6](https://user-images.githubusercontent.com/32396630/51906455-682f4000-23c4-11e9-917e-06f2d81eacef.jpg)
+![diab6](https://user-images.githubusercontent.com/32396630/51970344-f8c65880-2476-11e9-967e-fd254a4d092b.jpg)
 
 ###                                                      RINGNORM
 **Fan Chen and Lin**
@@ -162,15 +163,15 @@ The following graphs compare how the differenet implementations perform as _sigm
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
 <pre>                                                    C = 2<sup>-5</sup></pre>
-![ring1](https://user-images.githubusercontent.com/32396630/51906430-66fe1300-23c4-11e9-8438-7332fbc118c2.jpg)
+![ring1](https://user-images.githubusercontent.com/32396630/51970349-f95eef00-2476-11e9-8eb2-4660f3762c9e.jpg)
 <pre>                                                    C = 2<sup>-3</sup></pre>
-![ring2](https://user-images.githubusercontent.com/32396630/51906434-66fe1300-23c4-11e9-8799-9e9ff7e422f3.jpg)
+![ring2](https://user-images.githubusercontent.com/32396630/51970350-f9f78580-2476-11e9-9bbd-287a5892f9a1.jpg)
 <pre>                                                    C = 2  </pre>
-![ring3](https://user-images.githubusercontent.com/32396630/51906437-66fe1300-23c4-11e9-9712-37ee92c3440d.jpg)
+![ring3](https://user-images.githubusercontent.com/32396630/51970352-f9f78580-2476-11e9-9a67-bd7d1d60b9ce.jpg)
 <pre>                                                    C = 2<sup>7</sup>  </pre>           
-![ring4](https://user-images.githubusercontent.com/32396630/51906439-6796a980-23c4-11e9-90cf-feb56df5cfac.jpg)
+![ring4](https://user-images.githubusercontent.com/32396630/51970353-fa901c00-2476-11e9-8524-a693d17c6522.jpg)
 <pre>                                                    C = 2<sup>9</sup>  </pre>                          
-![ring5](https://user-images.githubusercontent.com/32396630/51906441-6796a980-23c4-11e9-95d8-42da8b43fa87.jpg)
+![ring5](https://user-images.githubusercontent.com/32396630/51970354-fa901c00-2476-11e9-9175-e406a92902b4.jpg)
 
 ###                                                         MAGIC
 **Fan Chen and Lin**
@@ -186,11 +187,11 @@ The following graphs compare how the differenet implementations perform as _sigm
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
 <pre>                                                    C = 2<sup>-3</sup> </pre>
-![mag1](https://user-images.githubusercontent.com/32396630/51906425-66657c80-23c4-11e9-95c8-5a03d9eb0d30.jpg)
+![mag1](https://user-images.githubusercontent.com/32396630/51970345-f95eef00-2476-11e9-8a47-97309707d96d.jpg)
 <pre>                                                    C = 2  </pre>
-![magic2](https://user-images.githubusercontent.com/32396630/51906428-66657c80-23c4-11e9-8e3b-42a73b7711d6.jpg)
+![mag2](https://user-images.githubusercontent.com/32396630/51970347-f95eef00-2476-11e9-9030-f825e7c3961d.jpg)
 <pre>                                                    C = 2<sup>9</sup>  </pre>                       
-![mag3](https://user-images.githubusercontent.com/32396630/51906427-66657c80-23c4-11e9-9d43-155f6507ad23.jpg)
+![mag3](https://user-images.githubusercontent.com/32396630/51970348-f95eef00-2476-11e9-9aa5-1a6e40806074.jpg)
 
 
 ## Bibliography

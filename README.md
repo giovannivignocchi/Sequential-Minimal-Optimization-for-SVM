@@ -137,8 +137,6 @@ The main porpouse of this project is not to generate the best possible model for
 **Joachims with working set size equal 6**
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
 
-The following graphs compare how the differenet implementations perform as _sigma_ changes
-
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
 <pre>                                                    C = 2<sup>-5</sup></pre>

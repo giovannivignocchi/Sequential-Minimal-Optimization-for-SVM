@@ -20,12 +20,13 @@ In the second stage of the project, the algorithms have been developed by using 
 2. The original version proposed by Platt without using an auxiliary cache to store prediction error;
 
 As in the implementation proposed by Joachims, Keerthi employed a 1<sup>st</sup> order method to select the LMs.
-But the latter avois to use an external quadratic solver to solve the optimization steps.
+However the latter avoids to use an external quadratic solver to solve the optimization steps.
 
 Although it might be interesting to further analyze both:
 - The impact of the cache in the SMO version proposed by Platt;
-- The performance of the Keerthi's SMO with respect to th Joachims' SMO  that use a working set with size equals 2;
-These considerations will not be taken into account in the continuation of the project;
+- The performance of the Keerthi's SMO with respect to the Joachims' SMO  that uses a working set with size equals 2;
+
+These considerations will not be taken into account in the continuation of the project
 
 The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Algorithm) collects all the implementations cited below:
 
@@ -36,7 +37,7 @@ The folder [Algorithms](https://github.com/giovannivignocchi/Sequential-Minimal-
 - [Fan Chen and Lin](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/blob/master/Algorithm/Fan%20Chen%20and%20Lin/FCLsmo.m) (2<sup>nd</sup> order method);
 
 ## Testing and analysis
-The third part of the project is testing and analysis stage. 
+The third part of the project is the test and analysis stage. 
 This phase is clearly divided in two sub-steps:
 
 1. A first set of tests is focused on three different (bi-dimensional) datasets that were artificially generated.
@@ -46,13 +47,12 @@ Indeed, it was easy to detect errors and imprecisions in the implementations, te
 2. A second series of tests is focused on four datasets of more substantial size and with a number of features greater than two.
 The aim of this second set of tests is to compare how a 1<sup>st</sup> order SMO and a 2<sup>nd</sup> order SMO perform in the training phase.
 
-To do so, the training phase is repeated using 3 different Sequental minimal Optimization implementations:
+To develop the 2<sup>nd</sup> point, the training phase is repeated using 3 different Sequental Minimal Optimization implementations:
+- Joachims'version with Working Set Size (WSS) equals 4;
+- Joachims'version with WSS equals 6;
+- Fan Chen and Lin' implementation;
 
-- Joachims'version with Working Set Size (WSS) equals 4
-- Joachims'version with WSS equals 6
-- Fan Chen and Lin
-
-The statistics collected in the second series of test were used to gain a better understanding on how these different training techniques behave.
+The statistics collected in the second series of test were used to gain a better understanding how these different training techniques behave.
 
 ## First series of tests
 In this phase the algorithms were tested both on perfectly separable and non-perfcetly separable data. 
@@ -64,17 +64,17 @@ Non-perfcetly separable data:
 ![nls](https://user-images.githubusercontent.com/32396630/51924099-b3f5df80-23ec-11e9-8a44-17641528ce0c.jpg)
 
 The results obtained, training the algorithms on these artificial datasets, confirm the correctness of their implementation.
-<br /> To check the results, another model was trained using the Matlab function _fitcsvm_.
-To be coherent all the relevant parameters (training algorithm, tolerance, maxIter, BoxConstraint, sigma) were set to be consistent with those used by the implementations under testing. The model generated is then used as baseline to check if the other models are consistent with it.
+<br /> To check the results, another model has been trained using the Matlab function _fitcsvm_.
+To be coherent, all the relevant parameters (training algorithm, tolerance, maxIter, BoxConstraint, sigma) were set to be consistent with those used by the implementations under testing. Then the model generated is used as baseline to check if its results are consistent with other models.
 
 Furthermore during the training phase different statistics are collected. Among these:
-- The number of iteration performed
-- Training and prediction time
-- Average number of kernel evaluation per iteration
-- Number of support vector generated
+- Number of iterations performed;
+- Training and prediction time;
+- Average number of kernel evaluations per iteration;
+- Number of support vectors generated;
 
-Since these tests are more focused on testing the overall correctness of the algorithms the results obtained are not show here.
-<br />Anyhow, the interested reader can find all the results and statistics concerning this serie of tests in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20artificial%20dataset/TEST%20RESULTS).
+Since these tests are more focused on testing the overall correctness of the algorithms the results obtained are not shown here.
+Anyhow, the interested reader can find all the results and statistics concerning this collection of tests in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20artificial%20dataset/TEST%20RESULTS).
 
 ## Second series of tests
 
@@ -84,11 +84,13 @@ The following statistics briefly describe the datasets used during this phase:
 - ringnorm (20 features, 6500 instances)
 - magic (10 features, 17118 instances)
 
-The complete datasets used, are available in the [Dataset](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Dataset/Data) folder. 
+The complete datasets used are available in the [Dataset](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Dataset/Data) folder. 
 
-To analyze the performances of the 1<sup>st</sup> and 2<sup>nd</sup> order Sequential Minimal Optimization techniques, I thought that should be usefull to test the methods under the greates number of training settings (different dataset as well as different training parameters). To do so I repeated a **Grid search** over the parameters _C_ (Box constraint) and _sigma_ (gaussian kernel variation) for each implementation and each dataset.
+To analyse the performances of the 1<sup>st</sup> and 2<sup>nd</sup> order Sequential Minimal Optimization techniques,
+the methods under investigation have been tested under a large number of training settings (different dataset as well as different training parameters) in order to gain a better overview of their behavior.
+To do this, I repeated a **Grid search** over the parameters _C_ and _sigma_ (gaussian kernel variation) for each implementation and dataset.
 
-As for the previous series of test, I collected several statistics, that are available in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS), some of these are:
+As for the previous serie of test, I collected several statistics that are available in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). Some of these are:
 
 * Total number of iteration
 * Training time
@@ -100,24 +102,29 @@ As for the previous series of test, I collected several statistics, that are ava
     * Specificity
     * Precision
     * Recall
-    * Fmeasure
-    * Gmean
+    * F_measure
+    * G_mean
     
-These statistics are then analyzed to show how the optimization methods respond to changes in the specified parameters.
+Thereafter these statistics are analyzed to show how the optimization methods respond to changes  of the specified parameters.
 
-<br />Before showing the results of the analysis, I want to stress 2 consideration about how these tests were carried out, in order to better understand the results presented in the graphs below:
+Before showing the results of the analysis, two considerations have to be taken into account:
 
-1. Based on the size of the dataset under consideration, a different number of combinations of parameters is analyzed during grid search.
+1. Based on the size of the dataset under consideration, a different number of combinations of parameters is analysed during grid search.
 
-2. To obtained statistics concerning the performances of the models generated. I tested these on the relative tests set. 
-What I want to underline is that, however validating models using test set, should be considered as a bad practice; the main porpouse of this project is not to generate the best possible model for a given set of data, but to analyze the performance of the different implementations under analysis (note how the latters are not affected by the way we validate the models).
-<br />On the other hand, this choice, gave me an unbiased way to evaluate the models generated, without the burden to repeat the training procedure to perform cross-validation. Note how this choice allowed me to significantly shorten the overall training procedure time. 
+2. To obtained statistics concerning the performances of the models generated, these have been tested against the test set. 
+However, to validate the model using the test set should be considered as a bad practice.
+The main porpouse of this project is not to generate the best possible model for a given set of data, but to analyse the performance of the different implementations. It is relevant to note that these are not affected by the way we validate the models.
+<br />On the other hand, this choice gave an unbiased way to evaluate the models generated without the burden to repeat the training procedure to perform cross-validation. It is important to underline how this choice allowed to significantly shorten the overall training procedure time. 
 
 
-The following pictures collect the results obtained during this series of tests.
-<br />For each dataset two different kind of graphs are presented:
-- A 3D plot that individually summarize for each method, the main performance measures obtained during the grid search phase.
-- A set of plots for each value of _C_ (used during the grid search) that compare how the differenet implementations perform as _sigma_ changes.
+<br />The following pictures collect the results obtained during this series of tests.
+<br />For each dataset two different kinds of graphs are presented:
+- A 3D plot that for each method shows:
+   - Number of iterations;
+   - Accuracy;
+   - Number of support vector generated;
+   
+- A set of plots that compare how the implementations perform as  _C_ and  _sigma_ change.
 
 
 ### DIABETES 

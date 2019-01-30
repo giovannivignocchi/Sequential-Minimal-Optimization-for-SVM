@@ -1,7 +1,6 @@
-# Sequential minimal optimization
+# Sequential Minimal Optimization
 
-The main purpose of the project is to analyze the optimization methods, currently emplyed to perform 
-the training of the support vector machines (SVM).
+The main purpose of the project is to analyse the optimization methods currently employed to perform the training of the support vector machines (SVM).
 
 ## The scope of the project
 
@@ -14,15 +13,14 @@ The first article analyses the Sequential Minimal Optimization method (SMO) prop
 
 ## Implementation
 In the second stage of the project, the algorithms have been developed by using Matlab. 
-<br />For the sake of completeness, in addition to the Sequential Minimal Optimization methods proposed in the papers, two more versions of the SMO have been implemented, In particular:
+<br />For the sake of completeness, in addition to the Sequential Minimal Optimization methods proposed in the papers, two more versions of the SMO have been implemented, in particular:
 
 1. "Improvements to Platt's SMO algorithm for SVM Classifier Design", [Keerthi 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.5266&rep=rep1&type=pdf);
 
-2. The original version proposed by Platt without using an auxiliary cache to store Prediction error;
+2. The original version proposed by Platt without using an auxiliary cache to store prediction error;
 
-The implementation proposed by Keerthi, employed a 1<sup>st</sup> order method to select the LMs of a fixed size working set (size equals 2). So it does not rely on an external quadratic solver to solve the optimization step as done by the version proposed by Joachims.
-
-While the implementation of the Platt's version that does not use any cache to temporarly store the prediction error is due  to the fact that could be intresting to analyze the effects of the cache on the training time.
+As in the implementation proposed by Joachims, Keerthi employed a 1<sup>st</sup> order method to select the LMs.
+But the latter avois to use an external quadratic solver to solve the optimization steps.
 
 Although it might be interesting to further analyze both:
 - The impact of the cache in the SMO version proposed by Platt;

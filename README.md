@@ -164,6 +164,8 @@ The main porpouse of this project is not to generate the best possible model for
 **Joachims with working set size equals 6**
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51843398-285c5000-2313-11e9-9e89-e371c6ea4c04.jpg)
 
+![line](https://user-images.githubusercontent.com/32396630/52021205-6cf31180-24f4-11e9-8e35-451ac5592d7b.jpg)
+
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
 <pre>                                                    C = 2<sup>-5</sup></pre>
@@ -186,6 +188,8 @@ The main porpouse of this project is not to generate the best possible model for
 
 **Joachims with working set size equals 6**
 ![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
+
+![line](https://user-images.githubusercontent.com/32396630/52021205-6cf31180-24f4-11e9-8e35-451ac5592d7b.jpg)
 
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 

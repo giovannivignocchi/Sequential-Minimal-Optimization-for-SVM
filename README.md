@@ -131,10 +131,10 @@ The main porpouse of this project is not to generate the best possible model for
 **Fan Chen and Lin**
 ![flccomplessivo](https://user-images.githubusercontent.com/32396630/51791861-05625c80-21aa-11e9-80e3-4301430de884.jpg)
 
-**Joachims with working set size equal 4**
+**Joachims with working set size equals 4**
 ![iterj4](https://user-images.githubusercontent.com/32396630/51791963-5e7ec000-21ab-11e9-9a11-97593fcff93e.jpg)
 
-**Joachims with working set size equal 6**
+**Joachims with working set size equals 6**
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51792037-6db23d80-21ac-11e9-93d2-5bd00cc19ae1.jpg)
 
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
@@ -156,13 +156,12 @@ The main porpouse of this project is not to generate the best possible model for
 **Fan Chen and Lin**
 ![fclcomplete](https://user-images.githubusercontent.com/32396630/51843395-26928c80-2313-11e9-8396-32a6712e0219.jpg)
 
-**Joachims with working set size equal 4**
+**Joachims with working set size equals 4**
 ![j4complessivo](https://user-images.githubusercontent.com/32396630/51843397-285c5000-2313-11e9-874f-99940b03f7cf.jpg)
 
-**Joachims with working set size equal 6**
+**Joachims with working set size equals 6**
 ![j6complessivo](https://user-images.githubusercontent.com/32396630/51843398-285c5000-2313-11e9-9e89-e371c6ea4c04.jpg)
 
-The following graphs compare how the differenet implementations perform as _sigma_ changes
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
 <pre>                                                    C = 2<sup>-5</sup></pre>
@@ -180,13 +179,12 @@ The following graphs compare how the differenet implementations perform as _sigm
 **Fan Chen and Lin**
 ![complessivofcl](https://user-images.githubusercontent.com/32396630/51862186-54d99180-233e-11e9-85eb-5d94a1068e9d.jpg)
 
-**Joachims with working set size equal 4**
+**Joachims with working set size equals 4**
 ![complessivoj4](https://user-images.githubusercontent.com/32396630/51862187-55722800-233e-11e9-9c6e-2f1db1adb9d4.jpg)
 
-**Joachims with working set size equal 6**
+**Joachims with working set size equals 6**
 ![complessivoj6](https://user-images.githubusercontent.com/32396630/51862189-55722800-233e-11e9-9747-bf5e5681a439.jpg)
 
-The following graphs compare how the differenet implementations perform as _sigma_ changes
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
 <pre>                                                    C = 2<sup>-3</sup> </pre>

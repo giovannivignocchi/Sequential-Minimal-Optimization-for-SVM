@@ -74,7 +74,7 @@ Furthermore during the training phase different statistics are collected. Among 
 - Number of support vectors generated;
 
 Since these tests are more focused on testing the overall correctness of the algorithms the results obtained are not shown here.
-Anyhow, the interested reader can find all the results and statistics concerning this collection of tests in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20artificial%20dataset/TEST%20RESULTS).
+Anyhow, the interested reader can find all the results and statistics concerning this collection of tests in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/1%20series%20of%20tests/TEST%20RESULTS).
 
 ## Second series of tests
 

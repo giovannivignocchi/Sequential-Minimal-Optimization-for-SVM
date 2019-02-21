@@ -90,7 +90,7 @@ To analyse the performances of the 1<sup>st</sup> and 2<sup>nd</sup> order Seque
 the methods under investigation have been tested under a large number of training settings (different dataset as well as different training parameters) in order to gain a better overview of their behavior.
 To do this, I repeated a **Grid search** over the parameters _C_ and _sigma_ (gaussian kernel variation) for each implementation and dataset.
 
-As for the previous serie of test, I collected several statistics that are available in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/on%20real%20dataset/TEST%20RESULTS). Some of these are:
+As for the previous serie of test, I collected several statistics that are available in the folder [TEST RESULT](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/TEST/2%20series%20of%20tests/TESTS%20RESULTS/GRID%20SERACH). Some of these are:
 
 * Total number of iteration
 * Training time

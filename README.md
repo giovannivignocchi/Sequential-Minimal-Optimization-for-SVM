@@ -7,7 +7,7 @@ The main purpose of the project is to analyse the optimization methods currently
 The first part of the project consisted in studing the three following papers:
 1. Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines,   [Platt 1998](http://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/);
 2. Making Large-Scale SVM Learning Practical,   [Joachims 1998](http://www.cs.cornell.edu/people/tj/publications/joachims_99a.pdf);
-3. Working Set Selection Using Second Order Information for Training Support Vector Machines, [Fan, Chem, Lin 2005](www.jmlr.org/papers/volume6/fan05a/fan05a.pdf);
+3. Working Set Selection Using Second Order Information for Training Support Vector Machines, [Fan, Chem, Lin 2005](http://www.jmlr.org/papers/volume6/fan05a/fan05a.pdf);
 
 The first article analyses the Sequential Minimal Optimization method (SMO) proposed by Platt. <br />Whereas in the second and the third, the authors proposed two different improvements of the SMO that, respectively, employ a 1<sup>st</sup> order and 2<sup>nd</sup> order method to select the Lagrange multipliers (LMs) that composed the working set.
 

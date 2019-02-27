@@ -210,6 +210,10 @@ Due to the high number of instances that compose this dataset, would be to expen
 As a consequence a fixed _sigma_ is heuristically selected (using the [Jaakkola](http://image.diku.dk/shark/sphinx_pages/build/html/rest_sources/tutorials/algorithms/svmModelSelection.html) heuristic) and a grid search is performed only over the _C_ parameter.
 <br/>The Sigma parameter selected is equal to 3.2497
 
+
+![line](https://user-images.githubusercontent.com/32396630/52021205-6cf31180-24f4-11e9-8e35-451ac5592d7b.jpg)
+![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
+
 <pre>                                                      sigma = 3.2497 </pre>
 ![codrna](https://user-images.githubusercontent.com/32396630/53512834-131a4300-3ac4-11e9-84d2-c573516f8fc7.jpg)
 

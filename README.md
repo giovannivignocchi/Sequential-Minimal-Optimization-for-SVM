@@ -207,7 +207,11 @@ The main porpouse of this project is not to generate the best possible model for
 ###                                                         CODRNA
 
 Due to the high number of instances that compose this dataset, would be to expensive to perform a complete gid search (over both _C_ and _sigma_) as done in the previous dataset. 
-As a consequence a fixed _sigma_ is heuristically selected (using the [Jaakkola](http://image.diku.dk/shark/sphinx_pages/build/html/rest_sources/tutorials/algorithms/svmModelSelection.html) heuristic) and a grid search is performed only over the _C_ parameter. 
+As a consequence a fixed _sigma_ is heuristically selected (using the [Jaakkola](http://image.diku.dk/shark/sphinx_pages/build/html/rest_sources/tutorials/algorithms/svmModelSelection.html) heuristic) and a grid search is performed only over the _C_ parameter.
+The Sigma parameter selected using this heuristic is: _sigma_ = 3.2497
+
+<pre>                                                     _sigma_ = 3.2497 </pre>
+![codrna](https://user-images.githubusercontent.com/32396630/53512834-131a4300-3ac4-11e9-84d2-c573516f8fc7.jpg)
 
 
 

@@ -44,7 +44,7 @@ This phase is clearly divided in two sub-steps:
 The main goal of this first test phase is to assess the correctness of the implementations.
 Indeed, it was easy to detect errors and imprecisions in the implementations, testing the algorithms against this small-size and known datasets.
 
-2. A second series of tests is focused on four datasets of more substantial size and with a number of features greater than two.
+2. A second series of tests is focused on six datasets of more substantial size and with a number of features greater than two.
 The aim of this second set of tests is to compare how a 1<sup>st</sup> order SMO and a 2<sup>nd</sup> order SMO perform in the training phase.
 
 To develop the 2<sup>nd</sup> point, the training phase is repeated using 3 different Sequental Minimal Optimization implementations:
@@ -83,6 +83,8 @@ The following statistics briefly describe the datasets used during this phase:
 - diabetes (8 features, 576 instances)
 - ringnorm (20 features, 6500 instances)
 - magic (10 features, 17118 instances)
+- a9a (124 features, 12682 instances)
+- codrna (8 features, 59535 instances)
 
 The complete datasets used are available in the [Dataset](https://github.com/giovannivignocchi/Sequential-Minimal-Optimization-for-SVM/tree/master/Dataset/Data) folder. 
 
@@ -109,7 +111,7 @@ Thereafter these statistics are analyzed to show how the optimization methods re
 
 Before showing the results of the analysis, two considerations have to be taken into account:
 
-1. Based on the size of the dataset under consideration, a different number of combinations of parameters is analysed during grid search.
+1. Based on the size of the dataset under consideration, a different number of combinations of parameters is analysed during grid search. Notice how for the last two dataset (given their high number of instances and features) only the _C_ parameter is investigated during grid search.
 
 2. To obtained statistics concerning the performances of the models generated, these have been tested against the test set. 
 However, to validate the model using the test set should be considered as a bad practice.
@@ -199,6 +201,14 @@ The main porpouse of this project is not to generate the best possible model for
 ![mag2](https://user-images.githubusercontent.com/32396630/51970347-f95eef00-2476-11e9-9030-f825e7c3961d.jpg)
 <pre>                                                    C = 2<sup>9</sup>  </pre>                       
 ![mag3](https://user-images.githubusercontent.com/32396630/51970348-f95eef00-2476-11e9-9aa5-1a6e40806074.jpg)
+
+###                                                          A9A
+
+###                                                         CODRNA
+
+Due to the high number of instances that compose this dataset, would be to expensive to perform a complete gid search (over both _C_ and _sigma_) as done in the previous dataset. 
+As a consequence a fixed _sigma_ is heuristically selected (using the [Jaakkola](http://image.diku.dk/shark/sphinx_pages/build/html/rest_sources/tutorials/algorithms/svmModelSelection.html) heuristic) and a grid search is performed only over the _C_ parameter. 
+
 
 
 ## Bibliography

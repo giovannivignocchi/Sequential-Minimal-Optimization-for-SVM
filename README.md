@@ -210,7 +210,7 @@ Due to the high number of instances that compose this dataset, would be to expen
 As a consequence a fixed _sigma_ is heuristically selected (using the [Jaakkola](http://image.diku.dk/shark/sphinx_pages/build/html/rest_sources/tutorials/algorithms/svmModelSelection.html) heuristic) and a grid search is performed only over the _C_ parameter.
 <br/>The Sigma parameter selected is equal to 3.2497
 
-<pre>                                                     _sigma_ = 3.2497 </pre>
+<pre>                                                      sigma = 3.2497 </pre>
 ![codrna](https://user-images.githubusercontent.com/32396630/53512834-131a4300-3ac4-11e9-84d2-c573516f8fc7.jpg)
 
 
@@ -219,7 +219,7 @@ As a consequence a fixed _sigma_ is heuristically selected (using the [Jaakkola]
 
 1. Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines,   [Platt 1998](http://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/)
 2. Making Large-Scale SVM Learning Practical,   [Joachims 1998](http://www.cs.cornell.edu/people/tj/publications/joachims_99a.pdf)
-3. Working Set Selection Using Second Order Information for Training Support Vector Machines,   [Fan, Chem, Lin 2005](www.jmlr.org/papers/volume6/fan05a/fan05a.pdf)
+3. Working Set Selection Using Second Order Information for Training Support Vector Machines,  [Fan, Chem, Lin 2005](http://www.jmlr.org/papers/volume6/fan05a/fan05a.pdf)
 4. Improvements to Platt's SMO algorithm for SVM Classifier Design [Keerthi 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.5266&rep=rep1&type=pdf)
 5. On the Convergence of the Decomposition Method for Support Vector Machines [Chih-Jen Lin](https://www.csie.ntu.edu.tw/~cjlin/papers/conv.pdf)
 6. [_SVMlight_ library documentation](http://svmlight.joachims.org/)

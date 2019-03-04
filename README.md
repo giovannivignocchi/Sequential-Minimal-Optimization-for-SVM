@@ -215,7 +215,7 @@ As a consequence a fixed _sigma_ is heuristically selected (using the [Jaakkola]
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
 
 <pre>                                                      sigma = 3.2497 </pre>
-![codrna](https://user-images.githubusercontent.com/32396630/53512834-131a4300-3ac4-11e9-84d2-c573516f8fc7.jpg)
+<img width="957" alt="codrna" src="https://user-images.githubusercontent.com/32396630/53735306-c4cfc000-3e86-11e9-97ab-da583993d79b.png">
 
 
 

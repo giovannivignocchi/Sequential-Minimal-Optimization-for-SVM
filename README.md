@@ -203,6 +203,12 @@ The main porpouse of this project is not to generate the best possible model for
 ![mag3](https://user-images.githubusercontent.com/32396630/51970348-f95eef00-2476-11e9-9aa5-1a6e40806074.jpg)
 
 ###                                                          A9A
+<pre>                                                    C = 2<sup>-3</sup> </pre>
+![a9ac2](https://user-images.githubusercontent.com/32396630/53986741-4e99ba80-411f-11e9-9cd4-6a2bad11600a.png)
+<pre>                                                    C = 2 </pre>
+![a9ac3](https://user-images.githubusercontent.com/32396630/53986742-4e99ba80-411f-11e9-94dd-a963b0e928a2.png)
+<pre>                                                    C = 2<sup>7</sup>  </pre> 
+<img width="839" alt="a9ac1" src="https://user-images.githubusercontent.com/32396630/53986744-4e99ba80-411f-11e9-915f-d4e35d480c03.png">
 
 ###                                                         CODRNA
 

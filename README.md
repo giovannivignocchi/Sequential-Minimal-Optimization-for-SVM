@@ -129,7 +129,7 @@ The main porpouse of this project is not to generate the best possible model for
 - A set of plots that compare how the implementations perform as  _C_ and  _sigma_ change.
 
 
-### DIABETES 
+## DIABETES 
 **Fan Chen and Lin**
 ![flccomplessivo](https://user-images.githubusercontent.com/32396630/51791861-05625c80-21aa-11e9-80e3-4301430de884.jpg)
 
@@ -156,7 +156,7 @@ The main porpouse of this project is not to generate the best possible model for
 <pre>                                                    C = 2<sup>15</sup>  </pre>                                                          
 ![diab6](https://user-images.githubusercontent.com/32396630/51970344-f8c65880-2476-11e9-967e-fd254a4d092b.jpg)
 
-###                                                      RINGNORM
+##                                                      RINGNORM
 **Fan Chen and Lin**
 ![fclcomplete](https://user-images.githubusercontent.com/32396630/51843395-26928c80-2313-11e9-8396-32a6712e0219.jpg)
 
@@ -181,7 +181,7 @@ The main porpouse of this project is not to generate the best possible model for
 <pre>                                                    C = 2<sup>9</sup>  </pre>                          
 ![ring5](https://user-images.githubusercontent.com/32396630/51970354-fa901c00-2476-11e9-9175-e406a92902b4.jpg)
 
-###                                                         MAGIC
+##                                                         MAGIC
 **Fan Chen and Lin**
 ![complessivofcl](https://user-images.githubusercontent.com/32396630/51862186-54d99180-233e-11e9-85eb-5d94a1068e9d.jpg)
 
@@ -202,7 +202,7 @@ The main porpouse of this project is not to generate the best possible model for
 <pre>                                                    C = 2<sup>9</sup>  </pre>                       
 ![mag3](https://user-images.githubusercontent.com/32396630/51970348-f95eef00-2476-11e9-9aa5-1a6e40806074.jpg)
 
-###                                                          A9A
+##                                                          A9A
 
 ![line](https://user-images.githubusercontent.com/32396630/52021205-6cf31180-24f4-11e9-8e35-451ac5592d7b.jpg)
 ![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
@@ -215,7 +215,7 @@ The main porpouse of this project is not to generate the best possible model for
 <pre>                                                    C = 2<sup>7</sup>  </pre> 
 <img width="839" alt="a9ac1" src="https://user-images.githubusercontent.com/32396630/53986744-4e99ba80-411f-11e9-915f-d4e35d480c03.png">
 
-###                                                         CODRNA
+##                                                         CODRNA
 
 Due to the high number of instances that compose this dataset, would be to expensive to perform a complete gid search (over both _C_ and _sigma_) as done in the previous dataset. 
 As a consequence a fixed _sigma_ is heuristically selected (using the [Jaakkola](http://image.diku.dk/shark/sphinx_pages/build/html/rest_sources/tutorials/algorithms/svmModelSelection.html) heuristic) and a grid search is performed only over the _C_ parameter.

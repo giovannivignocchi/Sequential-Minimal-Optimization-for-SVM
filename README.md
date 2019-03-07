@@ -111,7 +111,7 @@ Thereafter these statistics are analyzed to show how the optimization methods re
 
 Before showing the results of the analysis, two considerations have to be taken into account:
 
-1. Based on the size of the dataset under consideration, a different number of combinations of parameters is analysed during grid search. Notice how for the last two dataset (given their high number of instances and features) only the _C_ parameter is investigated during grid search.
+1. Based on the size of the dataset under consideration, a different number of combinations of parameters is analysed during grid search. Notice how for the last dataset (given its high number of instances) only the _C_ parameter is investigated during grid search.
 
 2. To obtained statistics concerning the performances of the models generated, these have been tested against the test set. 
 However, to validate the model using the test set should be considered as a bad practice.
@@ -203,6 +203,11 @@ The main porpouse of this project is not to generate the best possible model for
 ![mag3](https://user-images.githubusercontent.com/32396630/51970348-f95eef00-2476-11e9-9aa5-1a6e40806074.jpg)
 
 ###                                                          A9A
+
+![line](https://user-images.githubusercontent.com/32396630/52021205-6cf31180-24f4-11e9-8e35-451ac5592d7b.jpg)
+![legnd](https://user-images.githubusercontent.com/32396630/51909976-2dcaa080-23ce-11e9-8b45-e3c2f1f44a74.jpg)
+
+
 <pre>                                                    C = 2<sup>-3</sup> </pre>
 ![a9ac2](https://user-images.githubusercontent.com/32396630/53986741-4e99ba80-411f-11e9-9cd4-6a2bad11600a.png)
 <pre>                                                    C = 2 </pre>

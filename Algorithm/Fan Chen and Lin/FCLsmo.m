@@ -266,6 +266,7 @@ classdef FCLsmo < handle
             % means that there are no (i,j) violating the kkt
             % condition and the solution found so far is optimal.
             smo.violation(smo.iter+1) = G_max - G_min; 
+           
             if(G_max - G_min < smo.tolerance)
                 i = -1;
                 j = -1;

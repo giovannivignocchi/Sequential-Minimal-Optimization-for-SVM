@@ -320,7 +320,7 @@ classdef Jsmo < handle
                     i = indexB(k1);
                     for k2=1:size(indexN,1)
                         j = indexN(k2);
-                        Qbn(k1,k2) = yB(k1)*yN(k2)*smo.kernel(smo.x(i,:),smo.x(j,:));
+                         Qbn(k1,k2) = yB(k1)*yN(k2)*smo.kernel(smo.x(i,:),smo.x(j,:));
                     end
                 end
                 

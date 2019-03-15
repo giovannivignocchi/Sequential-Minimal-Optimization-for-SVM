@@ -228,7 +228,24 @@ As a consequence a fixed _sigma_ is heuristically selected (using the [Jaakkola]
 <pre>                                                      sigma = 3.2497 </pre>
 <img width="957" alt="codrna" src="https://user-images.githubusercontent.com/32396630/53735306-c4cfc000-3e86-11e9-97ab-da583993d79b.png">
 
+## Conclusion
 
+Thanks to the data collected during the training phases, we can infer interesting characteristics on the behavior of the Sequential Minimal Optimization algorithm when combine with first or second order working set selection methods.
+
+First of all, note how the datasets analyzed have different characteristics in term of number of instances and features.
+They are reported below in increasing order of complexity (number of fetaures and instances):
+
+- diabetes (8 features, 576 instances)
+- ringnorm (20 features, 6500 instances)
+- magic (10 features, 17118 instances)
+- a9a (124 features, 12682 instances)
+- codrna (8 features, 59535 instances)
+
+
+
+
+
+As first co
 
 ## Bibliography
 

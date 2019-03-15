@@ -241,6 +241,16 @@ They are reported below in increasing order of complexity (number of fetaures an
 - a9a (124 features, 12682 instances)
 - codrna (8 features, 59535 instances)
 
+The data collected highlight how the type of dataset on which the training is carried out has a strong impact on the performance of the Sequential Minimal Optimization algorithm. 
+
+Indeed, we can see how for datasets composed of a relatively low number of instances or features the first order method has better performance in terms of training time than those obtained using a second order method.
+This is visible for the following three datasets:
+- diabetes (8 features, 576 instances)
+- ringnorm (20 features, 6500 instances)
+- magic (10 features, 17118 instances)
+</br>
+
+Note 
 
 
 

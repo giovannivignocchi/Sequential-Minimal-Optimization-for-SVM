@@ -261,6 +261,12 @@ Analysing the performance obtained in the remaining two datasets:
 
 we can deduce as for datasets characterized by a greater number of instances and features, the choice of using the second order method gives us better performance, as expected.
 
+</br>
+
+To conclude we can say that the data collected throughout this project confirm in part the thesis that the Sequential Minimal Optimization algorithm, equipped with a working set selection of the second order, generally gives better performances than using the first order approach.
+
+On the other hand, we must also note how the performance gap obtained by using these two methods is accentuated for datasets characterized by a high number of instances and features.
+
 
 ## Bibliography
 

@@ -228,6 +228,44 @@ As a consequence a fixed _sigma_ is heuristically selected (using the [Jaakkola]
 <pre>                                                      sigma = 3.2497 </pre>
 <img width="957" alt="codrna" src="https://user-images.githubusercontent.com/32396630/53735306-c4cfc000-3e86-11e9-97ab-da583993d79b.png">
 
+## Conclusion
+
+Thanks to the data collected during the training phases, we can infer interesting characteristics on the behavior of the Sequential Minimal Optimization algorithm when combine with first or second order working set selection methods.
+
+First of all, note how the datasets analyzed have different characteristics in term of number of instances and features.
+They are reported below in increasing order of complexity (number of fetaures and instances):
+
+- diabetes (8 features, 576 instances)
+- ringnorm (20 features, 6500 instances)
+- magic (10 features, 17118 instances)
+- a9a (124 features, 12682 instances)
+- codrna (8 features, 59535 instances)
+
+</br>
+
+The data collected highlight how the type of dataset on which the training is carried out has a strong impact on the performance of the Sequential Minimal Optimization algorithm. 
+
+Indeed, we can see how for datasets composed of a relatively low number of instances or features the first order method has better performance in terms of training time than those obtained using a second order method.
+This is visible for the following three datasets:
+
+- diabetes (8 features, 576 instances)
+- ringnorm (20 features, 6500 instances)
+- magic (10 features, 17118 instances)
+
+It is important to underline that the Matlab implementations of the algorithms derived exclusively from the pseudocodes present in the papers. Because of this the implementations obtained do not take into consideration any optimization to speed up the process.
+As a consequence the training time obtained could be influenced by this issue.
+
+Analysing the performance obtained in the remaining two datasets:
+- a9a (124 features, 12682 instances)
+- codrna (8 features, 59535 instances)
+
+we can deduce as for datasets characterized by a greater number of instances and features, the choice of using the second order method gives us better performance, as expected.
+
+</br>
+
+To conclude we can say that the data collected throughout this project confirm in part the thesis that the Sequential Minimal Optimization algorithm, equipped with a working set selection of the second order, generally gives better performances than using the first order approach.
+
+On the other hand, we must also note how the performance gap obtained by using these two methods is accentuated for datasets characterized by a high number of instances and features.
 
 
 ## Bibliography
